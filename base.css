@@ -347,6 +347,45 @@ body {
     animation-play-state: paused;
 }
 
+
+.casa-section {
+}
+
+.titulo-nossa-casa {
+    font-family: 'AbsolutHeadline';
+    text-align: center;
+    font-size: clamp(32px, 8vw, 45px);
+    margin-bottom: 2rem;
+    padding: 0 20px;
+}
+
+.sobre-casa{
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row; 
+    align-items: center;
+}
+
+.conteudo-casa {
+    order: 2;
+    text-align: center;
+    background: url('Background/white_background.png');
+    flex: 1 1 50%;
+    padding: 1vw 2vw;
+    border: black;
+    cursor: pointer;
+    font-size: 5vw;
+    font-family: 'AbsolutHandwritten';
+    transition-duration: 0.4s;
+}
+
+.conteudo-casa:hover{
+    background: url('Background/background_v4.png');
+    color: white;
+    box-shadow:0 8px 16px 0 rgba(0,0,0,0.6);
+}
+
+
 /* ===============================================================
    8. ESTILOS DESKTOP (769px e maior)
    =============================================================== */
@@ -592,6 +631,27 @@ body {
         text-align: right;
     }
 
+    
+    .conteudo-casa {
+        order: 2;
+        text-align: center;
+        background: url('Background/white_background.png');
+        flex: 1 1 50%;
+        padding: 1vw 2vw;
+        border: black;
+        cursor: pointer;
+        font-size: 2vw;
+        font-family: 'AbsolutHandwritten';
+        transition-duration: 0.4s;
+    }
+
+    .conteudo-casa:hover{
+        background: url('Background/background_v4.png');
+        color: white;
+        box-shadow:0 8px 16px 0 rgba(0,0,0,0.6);
+    }
+
+
     /* --- Moradores --- */
     .scrollbar-moradores figure {
         flex-basis: 200px;
@@ -615,43 +675,6 @@ body {
 .fade-in-element.is-visible {
   opacity: 1;
   transform: translateY(0);
-}
-
-.casa-section {
-}
-
-.titulo-nossa-casa {
-    font-family: 'AbsolutHeadline';
-    text-align: center;
-    font-size: clamp(32px, 8vw, 45px);
-    margin-bottom: 2rem;
-    padding: 0 20px;
-}
-
-.sobre-casa{
-    display: flex;
-    justify-content: flex-end;
-    flex-direction: row; 
-    align-items: center;
-}
-
-.conteudo-casa {
-    order: 2;
-    text-align: center;
-    background: url('Background/white_background.png');
-    flex: 1 1 50%;
-    padding: 1vw 2vw;
-    border: black;
-    cursor: pointer;
-    font-size: 5vw;
-    font-family: 'AbsolutHandwritten';
-    transition-duration: 0.4s;
-}
-
-.conteudo-casa:hover{
-    background: url('Background/background_v4.png');
-    color: white;
-    box-shadow:0 8px 16px 0 rgba(0,0,0,0.6);
 }
 
 .foto-casa {

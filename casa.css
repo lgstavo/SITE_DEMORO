@@ -197,31 +197,6 @@ h2 {
     object-fit: cover;
 }
 
-/* =============================================
-    5. CHURRASCO DOS PAIS (MOBILE)
-    ============================================= */
-.sobre-churras-dos-pais {
-    padding: 0;
-    text-align: center;
-    background-color: #fff;
-    color: #333;
-}
-.background-churras-pais img { width: 100%; height: auto; }
-.conteudo-churras-pais { padding: 20px; }
-.conteudo-churras-pais .titulo-churras-pais {
-    font-family: 'AbsolutHeadline';
-    font-size: clamp(32px, 8vw, 50px);
-}
-.conteudo-churras-pais .muito-mais-rep {
-    font-family: 'AbsolutHandwritten';
-    font-size: clamp(32px, 8vw, 60px);
-}
-.conteudo-churras-pais .texto-churras-pais {
-    font-size: 18px;
-    max-width: 700px;
-    margin: 15px auto;
-    line-height: 1.6;
-}
 
 .entre-em-contato{
     display: flex;
@@ -238,11 +213,16 @@ h2 {
     margin-bottom: 1vw;
     border: none;
     cursor: pointer;
-    font-size:5vw;
+    font-size:6vw;
     font-family: 'AbsolutHandwritten';
     transition-duration: 0.4s;
-    
-    
+}
+
+
+.botao-whats:hover{
+    background: url('Background/background_v4.png');
+    color: white;
+    box-shadow:0 8px 16px 0 rgba(0,0,0,0.6);
 }
 
 .titulo-contato {
@@ -386,56 +366,49 @@ h2 {
         width: calc(40% - 12px);
     }
 
-    /* --- Churrasco dos Pais --- */
-    .sobre-churras-dos-pais {
-        position: relative;
-        color: white;
-        background-color: transparent;
-    }
-    .background-churras-pais img {
-        display: block;
-        width: 100%;
-        height: 85vh;
-        object-fit: cover;
-    }
-    .conteudo-churras-pais {
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        padding: 0;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
-    }
-    .conteudo-churras-pais h3,
-    .conteudo-churras-pais p {
-        position: absolute;
-        transform: translate(-50%, -50%);
-        margin: 0;
-        width: auto;
-    }
-    .conteudo-churras-pais .titulo-churras-pais {
-        font-size: clamp(40px, 5vw, 70px);
-        left: 19.5%;
-        top: 20%;
-        text-align: left;
-    }
-    .conteudo-churras-pais .texto-churras-pais {
-        left: 25%;
-        top: 31.5%;
-        text-align: left;
-        max-width: 40%;
-        font-size: clamp(16px, 1.2vw, 22px);
-    }
-    .conteudo-churras-pais .muito-mais-rep {
-        left: 80%;
-        top: 40%;
-        text-align: right;
-        font-size: clamp(32px, 3vw, 60px);
-    }
     
-    /* --- Moradores --- */
-    .scrollbar-moradores figure { flex-basis: 200px; }
-    .scrollbar-moradores img { width: 200px; height: 300px; }
-    .scrollbar-moradores figcaption { font-size: 20px; }
+    .entre-em-contato{
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: row; 
+        align-items: center;
+    }
+
+    .botao-whats {
+        order: 2;
+        text-align: center;
+        background: url('Background/white_background.png');
+        flex: 1 1 80%;
+        margin-bottom: 1vw;
+        border: none;
+        cursor: pointer;
+        font-size:3vw;
+        font-family: 'AbsolutHandwritten';
+        transition-duration: 0.4s;
+    }
+
+
+    .botao-whats:hover{
+        background: url('Background/background_v4.png');
+        color: white;
+        box-shadow:0 8px 16px 0 rgba(0,0,0,0.6);
+    }
+
+    .titulo-contato {
+        font-family: 'AbsolutHandwritten';
+        text-align: center;
+        font-size: clamp(32px, 8vw, 45px);
+        margin-bottom: 2rem;
+        padding: 0 20px;
+    }
+
+
+    .contato-item{
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: column; 
+        align-items: center;
+    }
 }
 
 /* =============================================
