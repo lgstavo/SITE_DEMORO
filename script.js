@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- Código para o Menu Hambúrguer (que você já tem) ---
     const hamburger = document.querySelector('.hamburger');
     const menu = document.querySelector('.menu');
 
@@ -20,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
         menu.classList.toggle('active');
     });
 
-    // 1. Seleciona todos os elementos que você quer animar
     const elementsToFadeIn = document.querySelectorAll('.fade-in-element');
 
     // 2. Opções para o Intersection Observer

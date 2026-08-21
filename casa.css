@@ -296,11 +296,11 @@ h2 {
 
     /* --- Layouts de Seção --- */
     .titulo-quarto, .titulo-estudos {
-        text-align: left;
+        text-align: center;
     }
     
     .titulo-sala, .titulo-cozinha, .titulo-lazer {  
-        text-align: right;
+        text-align: center;
     }
 
     .split-layout {
@@ -332,7 +332,7 @@ h2 {
         text-align: left;
     }
     .texto-sala, .texto-cozinha, .texto-lazer {
-        text-align: right;
+        text-align: left;
     }
     
     /* Layout da seção QUARTOS */
@@ -342,7 +342,7 @@ h2 {
     
     /* Layout da seção SALA */
     #sala .split-layout .fotos-galeria {
-        order: -1; /* Coloca fotos da sala na esquerda */
+        order: 2; /* Coloca fotos da sala na esquerda */
     }
     .fotos-sala figure {
         width: calc(33.333% - 10px);

@@ -7,25 +7,43 @@
     <title>República Demorô</title>
     <link rel="icon" href="images/Logo_Aba.ico">
     <link rel="stylesheet" href="base.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
 
-    <header class="barra_cima">
-        <a href="#"><img class="logo" src="images/Logos/LOGO_DEMORO_SITE.png" alt="Logo Demorô"></a>
-
-        <nav class="menu">
-            <a href="#sobre-nos">Sobre Nós</a>
-            <a href="#eventos">Eventos</a>
-            <a href="#moradores">Moradores</a>
-            <a href="casa.html">Nossa Casa</a>
-        </nav>
-
+    <header class="main bg-blue-600 text-white z-10 top-0 fixed w-full flex items-center h-header transform transition-transform duration-300 ease-in-out border-b border-solid border-blue-700">
+        <picture>
+            <source srcset="BARRA_CIMA.avif"> 
+            <img class="absolute inset-0 w-full h-full object-cover" src="BARRA_CIMA.avif" sizes="100vw" fetchpriority="high" alt="Barra Superior" srcset="BARRA_CIMA.avif">
+        </picture>
         <div class="hamburger">
             <div></div>
             <div></div>
             <div></div>
         </div>
+        <div class="flex flex-wrap w-full">
+            <div class="w-3/5 md:w-1/4 flex items-center justify-start z-20"></div>
+            <div class="w-3/5 md:w-2/4 flex items-center justify-center z-20">
+                <a class="flex items-center transform ease-in-out duration-100 oring-center hover:scale-[1.03] p-1" href="index.html" aria-label="Ir para o Menu">
+                    <picture>
+                        <source srcset="images/Logos/LOGO_DEMORO_SITE.png" media="(max-width: 768px)">
+                        <img class="logo" src="images/Logos/LOGO_DEMORO_SITE.png"  alt="Logo Demorô">
+                    </picture>
+                </a>
+            </div>
+            <div class="w-3/5 md:w-1/4 flex items-center justify-start z-20">
+                <nav">
+                    <a class="p-3 hover:bg-opacity-50" href="#sobre-nos">Sobre Nós</a>
+                    <a class="p-3" href="#eventos">Eventos</a>
+                    <a class="p-3" href="#moradores">Moradores</a>
+                    <a class="p-3" href="casa.html">Nossa Casa</a>
+                </nav>
+            </div>
+
+        </div>
+        
+
     </header>
 
     <main>

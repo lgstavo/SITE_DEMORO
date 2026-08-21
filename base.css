@@ -11,7 +11,7 @@ html, body {
     color: #f0f0f0;
     scroll-behavior: smooth;
     width: 100%;
-    overflow-x: hidden; /* <-- ADICIONE: Impede a rolagem horizontal */
+    overflow-x: hidden; 
 
 
 }
@@ -29,33 +29,29 @@ body {
    2. HEADER / NAVBAR
    ============================================= */
 
-.barra_cima {
+ .barra_cima {
     width: 100%;
-    height: 40px;
-    background: url("BARRA_CIMA.avif") center/cover no-repeat;
     position: fixed;
-    top: 0;
-    left: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 20px;
     box-sizing: border-box;
-    z-index: 1000;
-}
+} 
 .logo {
-    height: 30px;
+    height: 40px;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index:20;
 }
 .menu {
-    display: none;
+    display: flex;
     position: absolute;
     flex-direction: column;
     background: rgba(0, 0, 0, 0.9);
-    top: 40px;
-    right: 0;
-    width: 200px;
     padding: 20px;
+    z-index: 30;
+
 }
 .menu.active {
     display: flex;
