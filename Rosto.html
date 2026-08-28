@@ -7,33 +7,34 @@
     <title>República Demorô</title>
     <link rel="icon" href="images/Logo_Aba.ico">
     <link rel="stylesheet" href="base.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
 
-    <header class="main bg-blue-600 text-white z-10 top-0 fixed w-full flex items-center h-header transform transition-transform duration-300 ease-in-out border-b border-solid border-blue-700">
+    <header class="fixed main bg-blue-600 text-white z-10 top-0 fixed w-full flex items-center h-10 transform transition-transform duration-300 ease-in-out border-b border-solid border-blue-700">
         <picture>
             <source srcset="BARRA_CIMA.avif"> 
-            <img class="absolute inset-0 w-full h-full object-cover" src="BARRA_CIMA.avif" sizes="100vw" fetchpriority="high" alt="Barra Superior" srcset="BARRA_CIMA.avif">
+            <img class="absolute inset-0 w-full h-10 object-cover" src="BARRA_CIMA.avif" sizes="100px" fetchpriority="high" alt="Barra Superior" srcset="BARRA_CIMA.avif">
         </picture>
         <div class="hamburger">
-            <div></div>
-            <div></div>
-            <div></div>
+            <div class="w-[25px] h-[3px] bg-white rounded-sm"></div>
+            <div class="w-[25px] h-[3px] bg-white rounded-sm"></div>
+            <div class="w-[25px] h-[3px] bg-white rounded-sm"></div>
         </div>
-        <div class="flex flex-wrap w-full">
-            <div class="w-3/5 md:w-1/4 flex items-center justify-start z-20"></div>
-            <div class="w-3/5 md:w-2/4 flex items-center justify-center z-20">
-                <a class="flex items-center transform ease-in-out duration-100 oring-center hover:scale-[1.03] p-1" href="index.html" aria-label="Ir para o Menu">
+        <div class="flex flex-wrap md:w-full">
+            <div class="w-1/5 md:w-1/4 sm:w-1/4 flex items-center justify-start z-20"></div>
+            <div class="w-3/5 md:w-2/4 sm:w-full flex items-center justify-center z-20">
+                <a class="flex items-center transform ease-in-out duration-100 origin-center hover:scale-[1.03] p-1" href="index.html" aria-label="Ir para o Menu">
                     <picture>
-                        <source srcset="images/Logos/LOGO_DEMORO_SITE.png" media="(max-width: 768px)">
-                        <img class="logo" src="images/Logos/LOGO_DEMORO_SITE.png"  alt="Logo Demorô">
+                        <source srcset="images/Logos/LOGO_DEMORO_SITE.png" media="(max-width: 1080px)">
+                        <img class="h-5 sm:h-6 md:h-8 w-auto object-contain" src="images/Logos/LOGO_DEMORO_SITE.png"  alt="Logo Demorô">
                     </picture>
                 </a>
             </div>
-            <div class="w-3/5 md:w-1/4 flex items-center justify-start z-20">
-                <nav">
+            <div class="hidden md:flex w-1/5 md:w-1/4 items-center justify-start z-20">
+                <nav class="menu">
                     <a class="p-3 hover:bg-opacity-50" href="#sobre-nos">Sobre Nós</a>
                     <a class="p-3" href="#eventos">Eventos</a>
                     <a class="p-3" href="#moradores">Moradores</a>
@@ -77,31 +78,32 @@
                 por partilhar os bons momentos da vida universitária entre nós!
             </p>
         </section>
+    <section>
+        <h2 class="titulo-nossos-eventos fade-in-element">
+            Nossos Eventos
+        </h2>
 
-        <section id="eventos" class="eventos-section">
-            <p class="titulo-nossos-eventos fade-in-element">
-                Nossos Eventos
-            </p>
-
-            <div class="sobre-torneio-interrep fade-in-element">
-                <div class="conteudo-texto">
-                    <img class="logo-torneio-interrep" src="images/Logos/Logo_InterREP.png" alt="Logo InterREP">
-                    <p class="texto-torneio-interrep">
+            <div class="flex flex-col max-w-full my-10 mx-auto items-center md:m-[40px] fade-in-element">
+                <div class="flex-1 order-2 fade-in-element">
+                    <img class="max-w-[250px] mx-auto mb-[20px]" src="images/Logos/Logo_InterREP.png" alt="Logo InterREP" width="250" height="250" loading="lazy">
+                    <p class="text-[clamp(18px,1.0vw,21px)] text-center">
                         Organizado desde 2005, o Torneio InterREP se trata da maior competição entre Repúblicas de São Carlos. Organizada anualmente por nós, atualmente estamos na XIX Edição do Torneio, que conta com mais de 80 Repúblicas e 750 Atletas, o InterREP se divide em diversas áreas, como Marketing, Financeiro, Patrocínios, Operacional e Presidência.
+                        <br>Durante o Torneio, desenvolvemos Soft Skills como Liderança, Trabalho em Equipe, Gestão de Conflitos e Comunicação. Sempre em contato com fornecedores e patrocinadores, o InterREP é a porta de entrada para adquirir experiências relevantes no mercado de trabalho.<br>
+                        Como patrocinadores, já tivemos empresas como Cultura Inglesa, Top Meat e, mais recentemente, a SmartFit São Carlos, promovendo ações de marketing em colaboração com a nossa República!
                     </p>
                 </div>
                 <div class="fotos-interrep fade-in-element">
-                    <figure><img src="Fotos_InterREP/Fotos Final 2/FOTO_DTV.jpg" alt="Foto DTV"></figure>
-                    <figure><img src="Fotos_InterREP/Fotos Final 2/FOTO_TROFEU.jpg" alt="Foto TROFEU"></figure>
-                    <figure><img src="Fotos_InterREP/Fotos Final 2/FOTO_BORA_BORA.jpg" alt="Foto Bora Bora"></figure>
-                    <figure><img src="Fotos_InterREP/Fotos Final 2/FOTO_ARTILHEIRO.jpg" alt="Foto Artilheiro"></figure>
+                    <figure><img src="Fotos_InterREP/Fotos%20Final%202/FOTO_DTV.jpg" alt="Jogadores em partida do Torneio InterREP" loading="lazy"></figure>
+                    <figure><img src="Fotos_InterREP/Fotos%20Final%202/FOTO_TROFEU.jpg" alt="Troféu do Torneio InterREP" loading="lazy"></figure>
+                    <figure><img src="Fotos_InterREP/Fotos%20Final%202/FOTO_BORA_BORA.jpg" alt="Comemoração da equipe Bora Bora no torneio" loading="lazy"></figure>
+                    <figure><img src="Fotos_InterREP/Fotos%20Final%202/FOTO_ARTILHEIRO.jpg" alt="Artilheiro do torneio recebendo prêmio" loading="lazy"></figure>
                 </div>
             </div>
 
-            <div class="sobre-a-festa fade-in-element">
+            <div class="flex flex-col max-w-full my-10 mx-auto items-center md:m-[40px] fade-in-element">
                 <div class="conteudo-texto-festa">
-                    <img class="logo-a-festa" src="images/Logos/LOGO_INTERREP_A_FESTA.png" alt="Logo InterREP A FESTA">
-                    <p class="texto-a-festa">
+                    <img class="max-w-[250px] mx-auto mb-[20px]" src="images/Logos/LOGO_INTERREP_A_FESTA.png" alt="Logo InterREP A FESTA">
+                    <p  class="text-[clamp(18px,1.2vw,21px)] text-center">
                         Ao final do Torneio, sempre organizamos um evento de finalização do campeonato. O InterREP - A Festa se trata de um momento de comemoração, feito tanto para os ganhadores da competição, quanto feito para nós mesmos, com o objetivo de comemorarmos a finalização de um torneio trabalhoso para nós. Na última edição, contamos com a participação de 300 pessoas, com direito a entrega dos troféus para os campeões num clima perfeito de tardezinha, cerveja e piscina.
                     </p>
                 </div>

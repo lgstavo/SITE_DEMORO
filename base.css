@@ -180,7 +180,7 @@ body {
 }
 .conteudo-texto, .conteudo-texto-festa {
     order: 1;
-    text-align: center;
+    text-align: left;
     margin-bottom: 30px;
 }
 .fotos-interrep, .fotos-a-festa {
@@ -188,14 +188,14 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: 0px;
 }
 .fotos-interrep figure, .fotos-a-festa figure {
     width: 100%;
     max-width: 400px;
     margin: 0;
     aspect-ratio: 4/3;
-    border-radius: 8px;
+    border-radius: 0px;
     overflow: hidden;
 }
 .fotos-interrep figure img, .fotos-a-festa figure img {
@@ -396,9 +396,7 @@ body {
         color: #f0f0f0;
         scroll-behavior: smooth;
         width: 100%;
-        overflow-x: hidden; /* <-- ADICIONE: Impede a rolagem horizontal */
-
-
+        overflow-x: hidden;
     }
 
     /* --- Header / Navbar --- */
@@ -446,21 +444,21 @@ body {
 
     /* --- Seções de Eventos --- */
     .sobre-torneio-interrep, .sobre-a-festa {
-        flex-direction: row;
+        flex-direction: column;
         max-width: 100%;
         margin: 40px auto;
         align-items: center;
-        gap: 30px;
     }
     .conteudo-texto {
         flex: 1 1 100%;
-        order: 2;
+        order: 1;
     }
     .fotos-interrep {
         flex: 1 1 100%;
-        order: 1;
+        order: 2;
         flex-direction: row;
         flex-wrap: wrap;
+        justify-content: center; 
     }
     .conteudo-texto-festa {
         flex: 1 1 100%;
@@ -481,7 +479,7 @@ body {
     */
     .texto-torneio-interrep{
         font-size: clamp(18px, 1.2vw, 21px); /* Fonte maior para desktop */
-        text-align: right;
+        text-align: left;
     }
     .texto-a-festa {
         font-size: clamp(18px, 1.2vw, 21px); /* Fonte maior para desktop */
