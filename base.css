@@ -45,13 +45,16 @@ body {
     z-index:20;
 }
 .menu {
-    display: flex;
+    /* Mobile: fechado por padrao; o hamburger adiciona .active para abrir */
+    display: none;
     position: absolute;
+    top: 40px;
+    right: 0;
+    width: 200px;
     flex-direction: column;
     background: rgba(0, 0, 0, 0.9);
     padding: 20px;
     z-index: 30;
-
 }
 .menu.active {
     display: flex;
@@ -72,8 +75,12 @@ body {
     flex-direction: column;
     gap: 5px;
     cursor: pointer;
+    /* reset do <button> para manter a aparencia original */
+    background: none;
+    border: 0;
+    padding: 0;
 }
-.hamburger div {
+.hamburger span {
     width: 25px;
     height: 3px;
     background: white;
@@ -385,7 +392,7 @@ body {
 /* ===============================================================
    8. ESTILOS DESKTOP (769px e maior)
    =============================================================== */
-@media (min-width: 769px) {
+@media (min-width: 768px) {
 
     html, body {
         margin: 0;

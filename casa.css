@@ -69,8 +69,12 @@ body {
     flex-direction: column;
     gap: 5px;
     cursor: pointer;
+    /* reset do <button> para manter a aparencia original */
+    background: none;
+    border: 0;
+    padding: 0;
 }
-.hamburger div {
+.hamburger span {
     width: 25px;
     height: 3px;
     background: white;

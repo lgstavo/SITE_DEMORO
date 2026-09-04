@@ -4,7 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>República Demorô</title>
+    <title>Nossa Casa - República Demorô</title>
+    <meta name="description" content="Conheça a casa da República Demorô em São Carlos: 8 quartos, 2 salas, cozinha ampla, sala de estudos e mais de 1200m2 de área de lazer com piscina.">
+
+    <!-- Open Graph: preview ao compartilhar o link (WhatsApp, Instagram, etc.) -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="República Demorô">
+    <meta property="og:title" content="Nossa Casa - República Demorô">
+    <meta property="og:description" content="8 quartos, piscina e mais de 1200m2 de quintal. Vem ser feliz na Demorô!">
+    <meta property="og:image" content="https://lgstavo.github.io/SITE_DEMORO/FOTOS_CASA/piscina_2.jpeg">
+    <meta property="og:url" content="https://lgstavo.github.io/SITE_DEMORO/casa.html">
+    <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" href="images/Logo_Aba.ico">
     <link rel="stylesheet" href="casa.css">
 </head>
@@ -12,8 +23,8 @@
 <body>
 
     <header class="barra_cima">
-        <a href="Rosto.html"><img class="logo" src="images/Logos/LOGO_DEMORO_SITE.png" alt="Logo Demorô"></a>
-        <nav class="menu">
+        <a href="index.html"><img class="logo" src="images/Logos/LOGO_DEMORO_SITE.png" alt="Logo Demorô"></a>
+        <nav id="menu-principal" class="menu">
             <a href="#sala">Sala</a>
             <a href="#quartos">Quartos</a>
             <a href="#cozinha">Cozinha</a>
@@ -22,11 +33,11 @@
             <a href="#entre-em-contato">Entre em Contato</a>
 
         </nav>
-        <div class="hamburger">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
+        <button type="button" class="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </header>
 
     <main>
@@ -41,7 +52,7 @@
                 </iframe>
             </div>
 
-            <img class="foto_casa" src="FOTOS_CASA\Escada (2) (2).jpg" alt="Foto da fachada da casa">
+            <img class="foto_casa" src="FOTOS_CASA/Escada (2) (2).jpg" alt="Foto da fachada da casa">
             <p class="titulo-rep-demoro fonte-nos">Nossa Casa</p>
         </section>
 
@@ -50,9 +61,9 @@
                 <p class="titulo-secao titulo-sala fade-in-element">Sala</p>
                 <div class="split-layout">
                     <div class="fotos-galeria fotos-sala fade-in-element">
-                        <figure><img src="FOTOS_CASA\foto_sala.jpeg" alt="Foto Sala"></figure>
-                        <figure><img src="FOTOS_CASA\foto_sala_2.jpeg" alt="Foto Sala2"></figure>
-                        <figure><img src="FOTOS_CASA\foto_sala_recente.jpeg" alt="Foto Sala Recente"></figure>
+                        <figure><img src="FOTOS_CASA/foto_sala.jpeg" alt="Foto Sala"></figure>
+                        <figure><img src="FOTOS_CASA/foto_sala_2.jpeg" alt="Foto Sala2"></figure>
+                        <figure><img src="FOTOS_CASA/foto_sala_recente.jpeg" alt="Foto Sala Recente"></figure>
                     </div>
                     <div class="texto-container">
                         <p class="conteudo-texto texto-sala">
@@ -73,11 +84,11 @@
                     </p>
                 </div>
                 <div class="fotos-galeria fotos-quartos fade-in-element">
-                    <figure><img src="FOTOS_CASA\quarto_bixos.jpeg" alt="Foto Quarto Bixos"></figure>
-                    <figure><img src="FOTOS_CASA\quarto_corredor.jpeg" alt="Foto Quarto Corredor"></figure>
-                    <figure><img src="FOTOS_CASA\quarto-cozinha.jpeg" alt="Foto quarto Cozinha"></figure>
-                    <figure><img src="FOTOS_CASA\quarto_bixos_2.jpeg" alt="Foto quarto bixos 2"></figure>
-                    <figure><img src="FOTOS_CASA\quarto_corredor_2.jpeg" alt="Foto quarto corredor 2"></figure>
+                    <figure><img src="FOTOS_CASA/quarto_bixos.jpeg" alt="Foto Quarto Bixos"></figure>
+                    <figure><img src="FOTOS_CASA/quarto_corredor.jpeg" alt="Foto Quarto Corredor"></figure>
+                    <figure><img src="FOTOS_CASA/quarto-cozinha.jpeg" alt="Foto quarto Cozinha"></figure>
+                    <figure><img src="FOTOS_CASA/quarto_bixos_2.jpeg" alt="Foto quarto bixos 2"></figure>
+                    <figure><img src="FOTOS_CASA/quarto_corredor_2.jpeg" alt="Foto quarto corredor 2"></figure>
                 </div>
             </div>
         </section>
@@ -87,8 +98,8 @@
                 <p class="titulo-secao titulo-cozinha fade-in-element">Cozinha</p>
                 <div class="split-layout">
                     <div class="fotos-galeria fotos-cozinha fade-in-element">
-                        <figure><img src="FOTOS_CASA\foto_cozinha_2.jpeg" alt="Foto Cozinha 2"></figure>
-                        <figure><img src="FOTOS_CASA\foto_cozinha.jpeg" alt="Foto Cozinha"></figure>
+                        <figure><img src="FOTOS_CASA/foto_cozinha_2.jpeg" alt="Foto Cozinha 2"></figure>
+                        <figure><img src="FOTOS_CASA/foto_cozinha.jpeg" alt="Foto Cozinha"></figure>
                     </div>
                     <div class="texto-container">
                         <p class="conteudo-texto texto-cozinha">
@@ -110,7 +121,7 @@
                     </p>
                 </div>
                 <div class="fotos-galeria fotos-estudos fade-in-element">
-                    <figure><img src="FOTOS_CASA\sala_de_estudos.jpeg" alt="Foto Sala Estudos"></figure>
+                    <figure><img src="FOTOS_CASA/sala_de_estudos.jpeg" alt="Foto Sala Estudos"></figure>
                 </div>
             </div>
         </section>
@@ -120,10 +131,10 @@
                 <p class="titulo-secao titulo-lazer fade-in-element">Área de Lazer e Piscina</p>
                 <div class="split-layout">
                     <div class="fotos-galeria fotos-lazer fade-in-element">
-                        <figure><img src="FOTOS_CASA\quintal_1.jpeg" alt="Foto Quintal"></figure>
-                        <figure><img src="FOTOS_CASA\varanda.jpeg" alt="Foto Varanda"></figure>
-                        <figure><img src="FOTOS_CASA\Escada (2) (2).jpg" alt="Foto Piscina"></figure>
-                        <figure><img src="FOTOS_CASA\piscina_2.jpeg" alt="Foto Piscina 2"></figure>
+                        <figure><img src="FOTOS_CASA/quintal_1.jpeg" alt="Foto Quintal"></figure>
+                        <figure><img src="FOTOS_CASA/varanda.jpeg" alt="Foto Varanda"></figure>
+                        <figure><img src="FOTOS_CASA/Escada (2) (2).jpg" alt="Foto Piscina"></figure>
+                        <figure><img src="FOTOS_CASA/piscina_2.jpeg" alt="Foto Piscina 2"></figure>
                     </div>
                     <div class="texto-container">
                         <p class="conteudo-texto texto-lazer">

@@ -15,9 +15,36 @@ document.addEventListener('DOMContentLoaded', function() {
     const hamburger = document.querySelector('.hamburger');
     const menu = document.querySelector('.menu');
 
-    hamburger.addEventListener('click', function() {
-        menu.classList.toggle('active');
-    });
+    // Guarda: sem esse if, uma pagina sem .hamburger lancaria TypeError e
+    // abortaria o resto do DOMContentLoaded (fade-in e carrossel parariam).
+    if (hamburger && menu) {
+        // Mantem o aria-expanded em sincronia com o estado visual,
+        // para leitores de tela saberem se o menu esta aberto.
+        const setMenuAberto = (aberto) => {
+            menu.classList.toggle('active', aberto);
+            hamburger.setAttribute('aria-expanded', String(aberto));
+            hamburger.setAttribute('aria-label', aberto ? 'Fechar menu' : 'Abrir menu');
+        };
+
+        hamburger.addEventListener('click', function() {
+            setMenuAberto(!menu.classList.contains('active'));
+        });
+
+        // Fecha o menu ao clicar em um link (mobile)
+        menu.addEventListener('click', function(e) {
+            if (e.target.tagName === 'A') {
+                setMenuAberto(false);
+            }
+        });
+
+        // Esc fecha o menu e devolve o foco ao botao
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && menu.classList.contains('active')) {
+                setMenuAberto(false);
+                hamburger.focus();
+            }
+        });
+    }
 
     const elementsToFadeIn = document.querySelectorAll('.fade-in-element');
 
