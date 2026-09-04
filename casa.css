@@ -13,7 +13,7 @@ body {
     margin: 0;
     padding: 40px 0 0 0; /* Apenas padding no topo para a barra fixa */
     font-family: 'Absolut', sans-serif;
-    background-image: url("Background/mobile_background_v2.png");
+    background-image: url("Background/mobile_background_v2.jpg");
     background-repeat: repeat;
     color: #f0f0f0;
     width: 100%;
@@ -212,7 +212,7 @@ h2 {
 .botao-whats {
     order: 2;
     text-align: center;
-    background: url('Background/white_background.png');
+    background: url('Background/white_background.jpg');
     flex: 1 1 80%;
     margin-bottom: 1vw;
     border: none;
@@ -224,7 +224,7 @@ h2 {
 
 
 .botao-whats:hover{
-    background: url('Background/background_v4.png');
+    background: url('Background/background_v4.jpg');
     color: white;
     box-shadow:0 8px 16px 0 rgba(0,0,0,0.6);
 }
@@ -251,7 +251,7 @@ h2 {
     =============================================================== */
 @media (min-width: 769px) {
     body {
-        background-image: url("Background/background_v4.png");
+        background-image: url("Background/background_v4.jpg");
     }
 
     /* --- Header / Navbar --- */
@@ -381,7 +381,7 @@ h2 {
     .botao-whats {
         order: 2;
         text-align: center;
-        background: url('Background/white_background.png');
+        background: url('Background/white_background.jpg');
         flex: 1 1 80%;
         margin-bottom: 1vw;
         border: none;
@@ -393,7 +393,7 @@ h2 {
 
 
     .botao-whats:hover{
-        background: url('Background/background_v4.png');
+        background: url('Background/background_v4.jpg');
         color: white;
         box-shadow:0 8px 16px 0 rgba(0,0,0,0.6);
     }
