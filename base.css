@@ -94,9 +94,12 @@ body {
 .video-container {
     position: relative;
     width: 100%;
-    padding-bottom: 177.78%; /* ANTES: 56.25% */
+    padding-bottom: 177.78%; /* 9:16 vertical */
     height: 0;
     overflow: hidden;
+    /* Cor do proprio fundo do site: enquanto o player carrega o espaco
+       fica coerente em vez de um retangulo branco de quase uma tela. */
+    background-color: #0d306d;
 }
 
 .video-container iframe {
@@ -108,12 +111,6 @@ body {
     border: 0;
 }
 
-.video_demolimpiadas{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
 
 .crop {
     padding-bottom: 30px;
@@ -423,12 +420,6 @@ body {
         padding-bottom: 56.25%; 
         height: 0;
         overflow: hidden;
-        display: none;
-    }
-    .video_demolimpiadas{
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
         display: none;
     }
 

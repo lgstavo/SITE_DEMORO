@@ -2,14 +2,77 @@
 document.addEventListener('DOMContentLoaded', function() {
 
 
-    const video = document.querySelector('#video_introducao');
-    const proximaSecao = document.querySelector('#rep_section');
-    if(video && proximaSecao){
-        video.addEventListener('ended', () => {
-            proximaSecao.scrollIntoView({
-                behavior: 'smooth'
+    // =============================================================
+    // VIDEO DO HERO (somente mobile)
+    //
+    // O <iframe> nao vem no HTML: display:none nao impede o browser
+    // de baixar o embed, entao o desktop pagaria por um player que
+    // nunca ve. Aqui ele so e criado quando a tela e mobile.
+    //
+    // Usamos a IFrame Player API porque o evento 'ended' de <video>
+    // NAO dispara em iframe -- era por isso que o scroll automatico
+    // nunca funcionou.
+    // =============================================================
+    const slotVideo = document.querySelector('.video-slot');
+
+    if (slotVideo) {
+        // Lidos agora porque a API substitui o elemento pelo <iframe>
+        const idVideo = slotVideo.dataset.youtubeId;
+        const seletorAlvo = slotVideo.dataset.scrollPara;
+
+        // Casa com o @media (min-width: 768px) do CSS
+        const ehMobile = window.matchMedia('(max-width: 767.98px)');
+        let jaCriado = false;
+
+        const aoTerminarVideo = () => {
+            const alvo = seletorAlvo && document.querySelector(seletorAlvo);
+            if (!alvo) return;
+            const menosMovimento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            alvo.scrollIntoView({ behavior: menosMovimento ? 'auto' : 'smooth' });
+        };
+
+        const criarPlayer = () => {
+            if (jaCriado || !idVideo) return;
+            jaCriado = true;
+            new YT.Player(slotVideo, {
+                videoId: idVideo,
+                playerVars: {
+                    autoplay: 1,
+                    mute: 1,        // sem isso o autoplay e bloqueado
+                    playsinline: 1, // sem isso o iOS abre em tela cheia
+                    rel: 0,
+                    modestbranding: 1
+                },
+                events: {
+                    onReady: (e) => { e.target.mute(); e.target.playVideo(); },
+                    onStateChange: (e) => {
+                        if (e.data === YT.PlayerState.ENDED) aoTerminarVideo();
+                    }
+                }
             });
-        });
+        };
+
+        const carregarApi = () => {
+            if (jaCriado) return;
+            if (window.YT && window.YT.Player) { criarPlayer(); return; }
+
+            // A API avisa que carregou chamando esta funcao global
+            const anterior = window.onYouTubeIframeAPIReady;
+            window.onYouTubeIframeAPIReady = function () {
+                if (typeof anterior === 'function') anterior();
+                criarPlayer();
+            };
+
+            if (!document.querySelector('script[src*="youtube.com/iframe_api"]')) {
+                const tag = document.createElement('script');
+                tag.src = 'https://www.youtube.com/iframe_api';
+                document.head.appendChild(tag);
+            }
+        };
+
+        if (ehMobile.matches) carregarApi();
+        // Cobre girar o aparelho ou redimensionar a janela para mobile
+        ehMobile.addEventListener('change', (e) => { if (e.matches) carregarApi(); });
     }
 
     const hamburger = document.querySelector('.hamburger');
