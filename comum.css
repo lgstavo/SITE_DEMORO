@@ -1,0 +1,195 @@
+/* =================================================================
+   COMUM — regras compartilhadas por index.html e casa.html
+
+   Antes estas regras estavam duplicadas em base.css e casa.css. As
+   duas copias divergiram com o tempo e foi exatamente isso que criou
+   o bug do menu mobile (.menu estava certo numa folha e errado na
+   outra). Cada pagina carrega comum.css + a sua folha especifica.
+   ================================================================= */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* -----------------------------------------------------------------
+   1. FONTES
+   font-display: swap faz o texto aparecer numa fonte de sistema
+   enquanto a fonte propria baixa, em vez de ficar invisivel (FOIT).
+   ----------------------------------------------------------------- */
+@font-face {
+    font-family: 'AbsolutHeadline';
+    src: url('fonts/absolut-headline.woff2') format('woff2');
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Absolut';
+    src: url('fonts/absolut-regular.woff') format('woff');
+    font-display: swap;
+}
+@font-face {
+    font-family: 'AbsolutHandwritten';
+    src: url('fonts/absolut-handwritten-regular.woff') format('woff');
+    font-display: swap;
+}
+@font-face {
+    font-family: "EdwardianScript";
+    src: url("fonts/Edwardian Script ITC V1.woff2") format("woff2");
+    font-display: swap;
+}
+
+/* -----------------------------------------------------------------
+   2. FOCO VISIVEL
+   Nenhuma das folhas tinha estilo de foco: quem navega por teclado
+   dependia do outline padrao, que some sobre o azul escuro.
+   ----------------------------------------------------------------- */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+    outline: 3px solid #ffd400;
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* -----------------------------------------------------------------
+   3. TITULOS
+   Os titulos viraram <h1>/<h2> por semantica. Estas regras impedem
+   que o negrito e as margens padrao do browser mudem a aparencia
+   que ja existia quando eles eram <p>.
+   ----------------------------------------------------------------- */
+h1, h2, h3 {
+    font-weight: normal;
+    margin-top: 0;
+}
+
+/* -----------------------------------------------------------------
+   4. HEADER / MENU
+   ----------------------------------------------------------------- */
+.menu {
+    /* Mobile: fechado por padrao; o hamburger adiciona .active para abrir */
+    display: none;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    width: 200px;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 20px;
+    z-index: 30;
+}
+.menu.active {
+    display: flex;
+}
+.menu a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+.menu a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    /* reset do <button> para manter a aparencia original */
+    background: none;
+    border: 0;
+    padding: 0;
+}
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+}
+
+/* -----------------------------------------------------------------
+   5. HERO / VIDEO
+   ----------------------------------------------------------------- */
+.video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 177.78%; /* 9:16 vertical */
+    height: 0;
+    overflow: hidden;
+    /* Cor do proprio fundo do site: enquanto o player carrega o espaco
+       fica coerente em vez de um retangulo branco de quase uma tela. */
+    background-color: #0d306d;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.crop {
+    padding-bottom: 30px;
+    text-align: center;
+    background-color: #fff;
+}
+
+.titulo-rep-demoro {
+    padding: 0 15px;
+    margin-bottom: 0;
+    font-size: clamp(28px, 8vw, 40px);
+    line-height: 1.2;
+    color: #111;
+}
+
+/* -----------------------------------------------------------------
+   6. ANIMACAO DE ENTRADA
+   Escopo .js de proposito: o script.js adiciona a classe .js no
+   <html>. Sem JavaScript nada fica com opacity:0, entao o conteudo
+   continua visivel em vez de sumir para sempre.
+   O transform inicial e por pagina (base.css / casa.css).
+   ----------------------------------------------------------------- */
+.js .fade-in-element {
+    opacity: 0;
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.js .fade-in-element.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .js .fade-in-element {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+/* =================================================================
+   7. DESKTOP (768px e maior — igual ao md: do Tailwind)
+   ================================================================= */
+@media (min-width: 768px) {
+    .hamburger { display: none; }
+
+    .menu {
+        display: flex;
+        position: static;
+        flex-direction: row;
+        background: transparent;
+        width: auto;
+        padding: 0;
+    }
+    .menu a { padding: 8px 12px; }
+
+    /* O video e so para mobile; o script.js nem chega a criar o player */
+    .video-container { display: none; }
+
+    .crop {
+        position: relative;
+        padding-bottom: 0;
+    }
+}

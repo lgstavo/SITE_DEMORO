@@ -17,13 +17,20 @@
     <meta property="og:url" content="https://lgstavo.github.io/SITE_DEMORO/casa.html">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" href="images/Logo_Aba.ico">
+    <link rel="preload" href="fonts/absolut-regular.woff" as="font" type="font/woff" crossorigin>
+    <link rel="stylesheet" href="comum.css">
     <link rel="stylesheet" href="casa.css">
+
+    <!-- Marca que o JS esta ativo. O CSS so esconde os elementos de
+         fade-in sob .js, entao sem JavaScript o conteudo continua
+         visivel em vez de ficar preso em opacity:0. -->
+    <script>document.documentElement.classList.add('js');</script>
 </head>
 
 <body>
 
     <header class="barra_cima">
-        <a href="index.html"><img class="logo" src="images/Logos/LOGO_DEMORO_SITE.png" alt="Logo Demorô"></a>
+        <a href="index.html"><img class="logo" src="images/Logos/LOGO_DEMORO_SITE.png" alt="Logo Demorô" width="1196" height="306"></a>
         <nav id="menu-principal" class="menu">
             <a href="#sala">Sala</a>
             <a href="#quartos">Quartos</a>
@@ -50,18 +57,18 @@
                      data-scroll-para="#casa_hero"></div>
             </div>
 
-            <img class="foto_casa" id="casa_hero" src="FOTOS_CASA/Escada (2) (2).jpg" alt="Foto da fachada da casa">
-            <p class="titulo-rep-demoro fonte-nos">Nossa Casa</p>
+            <img class="foto_casa" id="casa_hero" src="FOTOS_CASA/Escada (2) (2).jpg" alt="Foto da fachada da casa" width="1920" height="894">
+            <h1 class="titulo-rep-demoro fonte-nos">Nossa Casa</h1>
         </section>
 
         <section id="sala" class="sala-section">
             <div class="sala-item">
-                <p class="titulo-secao titulo-sala fade-in-element">Sala</p>
+                <h2 class="titulo-secao titulo-sala fade-in-element">Sala</h2>
                 <div class="split-layout">
                     <div class="fotos-galeria fotos-sala fade-in-element">
-                        <figure><img src="FOTOS_CASA/foto_sala.jpeg" alt="Foto Sala"></figure>
-                        <figure><img src="FOTOS_CASA/foto_sala_2.jpeg" alt="Foto Sala2"></figure>
-                        <figure><img src="FOTOS_CASA/foto_sala_recente.jpeg" alt="Foto Sala Recente"></figure>
+                        <figure><img src="FOTOS_CASA/foto_sala.jpeg" alt="Foto Sala" width="1280" height="1014" loading="lazy" decoding="async"></figure>
+                        <figure><img src="FOTOS_CASA/foto_sala_2.jpeg" alt="Foto Sala2" width="1280" height="960" loading="lazy" decoding="async"></figure>
+                        <figure><img src="FOTOS_CASA/foto_sala_recente.jpeg" alt="Foto Sala Recente" width="1599" height="899" loading="lazy" decoding="async"></figure>
                     </div>
                     <div class="texto-container">
                         <p class="conteudo-texto texto-sala">
@@ -74,7 +81,7 @@
         </section>
 
         <section id="quartos" class="quartos-section">
-            <p class="titulo-secao titulo-quarto">Quartos</p>
+            <h2 class="titulo-secao titulo-quarto">Quartos</h2>
             <div class="split-layout">
                 <div class="texto-container">
                     <p class="conteudo-texto texto-quartos">
@@ -82,22 +89,22 @@
                     </p>
                 </div>
                 <div class="fotos-galeria fotos-quartos fade-in-element">
-                    <figure><img src="FOTOS_CASA/quarto_bixos.jpeg" alt="Foto Quarto Bixos"></figure>
-                    <figure><img src="FOTOS_CASA/quarto_corredor.jpeg" alt="Foto Quarto Corredor"></figure>
-                    <figure><img src="FOTOS_CASA/quarto-cozinha.jpeg" alt="Foto quarto Cozinha"></figure>
-                    <figure><img src="FOTOS_CASA/quarto_bixos_2.jpeg" alt="Foto quarto bixos 2"></figure>
-                    <figure><img src="FOTOS_CASA/quarto_corredor_2.jpeg" alt="Foto quarto corredor 2"></figure>
+                    <figure><img src="FOTOS_CASA/quarto_bixos.jpeg" alt="Foto Quarto Bixos" width="1280" height="960" loading="lazy" decoding="async"></figure>
+                    <figure><img src="FOTOS_CASA/quarto_corredor.jpeg" alt="Foto Quarto Corredor" width="1280" height="960" loading="lazy" decoding="async"></figure>
+                    <figure><img src="FOTOS_CASA/quarto-cozinha.jpeg" alt="Foto quarto Cozinha" width="1280" height="960" loading="lazy" decoding="async"></figure>
+                    <figure><img src="FOTOS_CASA/quarto_bixos_2.jpeg" alt="Foto quarto bixos 2" width="1280" height="960" loading="lazy" decoding="async"></figure>
+                    <figure><img src="FOTOS_CASA/quarto_corredor_2.jpeg" alt="Foto quarto corredor 2" width="1280" height="960" loading="lazy" decoding="async"></figure>
                 </div>
             </div>
         </section>
 
         <section id="cozinha" class="cozinha-section">
             <div class="cozinha-item">
-                <p class="titulo-secao titulo-cozinha fade-in-element">Cozinha</p>
+                <h2 class="titulo-secao titulo-cozinha fade-in-element">Cozinha</h2>
                 <div class="split-layout">
                     <div class="fotos-galeria fotos-cozinha fade-in-element">
-                        <figure><img src="FOTOS_CASA/foto_cozinha_2.jpeg" alt="Foto Cozinha 2"></figure>
-                        <figure><img src="FOTOS_CASA/foto_cozinha.jpeg" alt="Foto Cozinha"></figure>
+                        <figure><img src="FOTOS_CASA/foto_cozinha_2.jpeg" alt="Foto Cozinha 2" width="1280" height="960" loading="lazy" decoding="async"></figure>
+                        <figure><img src="FOTOS_CASA/foto_cozinha.jpeg" alt="Foto Cozinha" width="1280" height="960" loading="lazy" decoding="async"></figure>
                     </div>
                     <div class="texto-container">
                         <p class="conteudo-texto texto-cozinha">
@@ -110,7 +117,7 @@
         </section>
 
         <section id="sala_de_estudos" class="estudos-section">
-            <p class="titulo-secao titulo-estudos">Sala de Estudos</p>
+            <h2 class="titulo-secao titulo-estudos">Sala de Estudos</h2>
             <div class="split-layout">
                 <div class="texto-container">
                     <p class="conteudo-texto texto-estudos">
@@ -119,20 +126,20 @@
                     </p>
                 </div>
                 <div class="fotos-galeria fotos-estudos fade-in-element">
-                    <figure><img src="FOTOS_CASA/sala_de_estudos.jpeg" alt="Foto Sala Estudos"></figure>
+                    <figure><img src="FOTOS_CASA/sala_de_estudos.jpeg" alt="Foto Sala Estudos" width="1280" height="960" loading="lazy" decoding="async"></figure>
                 </div>
             </div>
         </section>
 
         <section id="area_de_lazer" class="lazer-section">
             <div class="lazer-item">
-                <p class="titulo-secao titulo-lazer fade-in-element">Área de Lazer e Piscina</p>
+                <h2 class="titulo-secao titulo-lazer fade-in-element">Área de Lazer e Piscina</h2>
                 <div class="split-layout">
                     <div class="fotos-galeria fotos-lazer fade-in-element">
-                        <figure><img src="FOTOS_CASA/quintal_1.jpeg" alt="Foto Quintal"></figure>
-                        <figure><img src="FOTOS_CASA/varanda.jpeg" alt="Foto Varanda"></figure>
-                        <figure><img src="FOTOS_CASA/Escada (2) (2).jpg" alt="Foto Piscina"></figure>
-                        <figure><img src="FOTOS_CASA/piscina_2.jpeg" alt="Foto Piscina 2"></figure>
+                        <figure><img src="FOTOS_CASA/quintal_1.jpeg" alt="Foto Quintal" width="1280" height="960" loading="lazy" decoding="async"></figure>
+                        <figure><img src="FOTOS_CASA/varanda.jpeg" alt="Foto Varanda" width="1280" height="960" loading="lazy" decoding="async"></figure>
+                        <figure><img src="FOTOS_CASA/Escada (2) (2).jpg" alt="Escada de acesso a area da piscina" width="1920" height="894" loading="lazy" decoding="async"></figure>
+                        <figure><img src="FOTOS_CASA/piscina_2.jpeg" alt="Foto Piscina 2" width="1280" height="960" loading="lazy" decoding="async"></figure>
                     </div>
                     <div class="texto-container">
                         <p class="conteudo-texto texto-lazer">
@@ -147,7 +154,7 @@
         </section>
         <section id="entre-em-contato" class="contato-section">
             <div class="contato-item">
-                <p class="titulo-contato fade-in-element">Quer viver essa experiência única na sua vida?</p>
+                <h2 class="titulo-contato fade-in-element">Quer viver essa experiência única na sua vida?</h2>
                 <button onclick="location.href='https://wa.me/5511943996754'" class="botao-whats">
                     Vem ser feliz na Demorô!
                 </button>

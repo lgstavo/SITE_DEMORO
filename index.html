@@ -17,17 +17,22 @@
     <meta property="og:url" content="https://lgstavo.github.io/SITE_DEMORO/">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" href="images/Logo_Aba.ico">
+    <link rel="preload" href="fonts/absolut-regular.woff" as="font" type="font/woff" crossorigin>
+    <link rel="stylesheet" href="comum.css">
     <link rel="stylesheet" href="base.css">
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Marca que o JS esta ativo. O CSS so esconde os elementos de
+         fade-in sob .js, entao sem JavaScript o conteudo continua
+         visivel em vez de ficar preso em opacity:0. -->
+    <script>document.documentElement.classList.add('js');</script>
 </head>
 
 <body>
 
-    <header class="fixed main bg-blue-600 text-white z-10 top-0 w-full flex items-center h-10 transform transition-transform duration-300 ease-in-out border-b border-solid border-blue-700">
-        <picture>
-            <source srcset="BARRA_CIMA.avif"> 
-            <img class="absolute inset-0 w-full h-10 object-cover" src="BARRA_CIMA.avif" sizes="100px" fetchpriority="high" alt="Barra Superior" srcset="BARRA_CIMA.avif">
-        </picture>
+    <header class="fixed bg-blue-600 text-white z-10 top-0 w-full flex items-center h-10 border-b border-solid border-blue-700">
+        <!-- Barra decorativa: alt vazio para o leitor de tela ignorar -->
+        <img class="absolute inset-0 w-full h-10 object-cover" src="BARRA_CIMA.avif" fetchpriority="high" alt="" width="600" height="48">
         <button type="button" class="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">
             <span class="w-[25px] h-[3px] bg-white rounded-sm"></span>
             <span class="w-[25px] h-[3px] bg-white rounded-sm"></span>
@@ -37,10 +42,7 @@
             <div class="w-1/5 sm:w-1/4 md:w-auto md:flex-1 flex items-center justify-start z-20"></div>
             <div class="w-3/5 sm:w-full md:w-auto md:flex-none flex items-center justify-center z-20">
                 <a class="flex items-center transform ease-in-out duration-100 origin-center hover:scale-[1.03] p-1" href="index.html" aria-label="Ir para o Menu">
-                    <picture>
-                        <source srcset="images/Logos/LOGO_DEMORO_SITE.png" media="(max-width: 1080px)">
-                        <img class="h-5 sm:h-6 md:h-8 w-auto object-contain" src="images/Logos/LOGO_DEMORO_SITE.png"  alt="Logo Demorô">
-                    </picture>
+                    <img class="h-5 sm:h-6 md:h-8 w-auto object-contain" src="images/Logos/LOGO_DEMORO_SITE.png" alt="Logo Demorô" width="1196" height="306">
                 </a>
             </div>
             <div class="w-1/5 md:w-auto md:flex-1 flex items-center justify-start md:justify-end z-20">
@@ -67,20 +69,20 @@
                      data-youtube-id="ZyaM1rqH4c8"
                      data-scroll-para="#rep_section"></div>
             </div>
-            <img class="foto_churrasco_ex" src="FOTO_REENCONTRO/foto_churrasco_ex_cortada.jpg" alt="Foto do churrasco da república"  id="rep_section">
+            <img class="foto_churrasco_ex" src="FOTO_REENCONTRO/foto_churrasco_ex_cortada.jpg" alt="Foto do churrasco da república"  id="rep_section" width="1600" height="730">
             
-            <span class="titulo-rep-demoro">
+            <h1 class="titulo-rep-demoro">
                 <span class="fonte-sobre">Aprecie a Graduação,</span> 
                 <span class="fonte-nos">Deguste a Faculdade.</span>
                 <span class="fonte-moderacao">(Sem Moderação)</span>
-            </span>
+            </h1>
         </section>
 
         <section id="sobre-nos" class="sobre-nos-section">
-            <p class="titulo-sobre-nos ">
+            <h2 class="titulo-sobre-nos">
                 <span class="fonte-sobre">Sobre</span>
                 <span class="fonte-nos">Nós</span>
-            </p>
+            </h2>
             <p class="sobre-nos">
                 Fundada em 2005 por estudantes das Engenharias da USP, a República Demorô é uma das mais tradicionais
                 repúblicas universitárias de São Carlos.
@@ -89,12 +91,12 @@
             </p>
         </section>
     <section id="eventos">
-        <h1 class="titulo-nossos-eventos fade-in-element">
+        <h2 class="titulo-nossos-eventos fade-in-element">
             Nossos Eventos
-        </h1>
+        </h2>
 
             <div class="flex flex-col max-w-full my-10 mx-auto items-center md:m-[40px] fade-in-element">
-                <div class="flex-1 order-2 fade-in-element">
+                <div class="flex-1 order-2">
                     <img class="max-w-[250px] mx-auto mb-[20px]" src="images/Logos/Logo_InterREP.png" alt="Logo InterREP" width="250" height="250" loading="lazy">
                     <p class="text-[clamp(18px,1.0vw,21px)] text-center">
                         Organizado desde 2005, o Torneio InterREP se trata da maior competição entre Repúblicas de São Carlos. Organizada anualmente por nós, atualmente estamos na XIX Edição do Torneio, que conta com mais de 80 Repúblicas e 750 Atletas, o InterREP se divide em diversas áreas, como Marketing, Financeiro, Patrocínios, Operacional e Presidência.
@@ -103,31 +105,31 @@
                     </p>
                 </div>
                 <div class="fotos-interrep fade-in-element">
-                    <figure><img src="Fotos_InterREP/Fotos%20Final%202/FOTO_DTV.jpg" alt="Jogadores em partida do Torneio InterREP" loading="lazy"></figure>
-                    <figure><img src="Fotos_InterREP/Fotos%20Final%202/FOTO_TROFEU.jpg" alt="Troféu do Torneio InterREP" loading="lazy"></figure>
-                    <figure><img src="Fotos_InterREP/Fotos%20Final%202/FOTO_BORA_BORA.jpg" alt="Comemoração da equipe Bora Bora no torneio" loading="lazy"></figure>
-                    <figure><img src="Fotos_InterREP/Fotos%20Final%202/FOTO_ARTILHEIRO.jpg" alt="Artilheiro do torneio recebendo prêmio" loading="lazy"></figure>
+                    <figure><img src="Fotos_InterREP/Fotos%20Final%202/FOTO_DTV.jpg" alt="Jogadores em partida do Torneio InterREP" loading="lazy" width="800" height="1067"></figure>
+                    <figure><img src="Fotos_InterREP/Fotos%20Final%202/FOTO_TROFEU.jpg" alt="Troféu do Torneio InterREP" loading="lazy" width="800" height="600"></figure>
+                    <figure><img src="Fotos_InterREP/Fotos%20Final%202/FOTO_BORA_BORA.jpg" alt="Comemoração da equipe Bora Bora no torneio" loading="lazy" width="800" height="1067"></figure>
+                    <figure><img src="Fotos_InterREP/Fotos%20Final%202/FOTO_ARTILHEIRO.jpg" alt="Artilheiro do torneio recebendo prêmio" loading="lazy" width="800" height="1067"></figure>
                 </div>
             </div>
 
             <div class="flex flex-col max-w-full my-10 mx-auto items-center md:m-[40px] fade-in-element">
                 <div class="conteudo-texto-festa">
-                    <img class="max-w-[250px] mx-auto mb-[20px]" src="images/Logos/LOGO_INTERREP_A_FESTA.png" alt="Logo InterREP A FESTA">
+                    <img class="max-w-[250px] mx-auto mb-[20px]" src="images/Logos/LOGO_INTERREP_A_FESTA.png" alt="Logo InterREP A FESTA" width="821" height="590" loading="lazy" decoding="async">
                     <p  class="text-[clamp(18px,1.2vw,21px)] text-center">
                         Ao final do Torneio, sempre organizamos um evento de finalização do campeonato. O InterREP - A Festa se trata de um momento de comemoração, feito tanto para os ganhadores da competição, quanto feito para nós mesmos, com o objetivo de comemorarmos a finalização de um torneio trabalhoso para nós. Na última edição, contamos com a participação de 300 pessoas, com direito a entrega dos troféus para os campeões num clima perfeito de tardezinha, cerveja e piscina.
                     </p>
                 </div>
                 <div class="fotos-a-festa">
-                    <figure><img src="Fotos_InterREP_A_Festa/PLACA.jpeg" alt="Foto Placa"></figure>
-                    <figure><img src="Fotos_InterREP_A_Festa/DTV.jpeg" alt="Foto DTV"></figure>
-                    <figure><img src="Fotos_InterREP_A_Festa/VDN.jpeg" alt="Foto VDN"></figure>
-                    <figure><img src="Fotos_InterREP_A_Festa/TPD.jpeg" alt="Foto TPD"></figure>
+                    <figure><img src="Fotos_InterREP_A_Festa/PLACA.jpeg" alt="Placa comemorativa do InterREP - A Festa" width="800" height="1067" loading="lazy" decoding="async"></figure>
+                    <figure><img src="Fotos_InterREP_A_Festa/DTV.jpeg" alt="República DTV na festa de encerramento" width="800" height="1067" loading="lazy" decoding="async"></figure>
+                    <figure><img src="Fotos_InterREP_A_Festa/VDN.jpeg" alt="República VDN na festa de encerramento" width="800" height="600" loading="lazy" decoding="async"></figure>
+                    <figure><img src="Fotos_InterREP_A_Festa/TPD.jpeg" alt="República TPD na festa de encerramento" width="800" height="1067" loading="lazy" decoding="async"></figure>
                 </div>
             </div>
 
             <div class="sobre-churras-dos-pais">
                 <div class="background-churras-pais">
-                    <img src="FOTOS_CHURRAS_PAIS/FOTO_CHURRAS_PAIS.jpeg" alt="Foto do Churrasco dos Pais">
+                    <img src="FOTOS_CHURRAS_PAIS/FOTO_CHURRAS_PAIS.jpeg" alt="Foto do Churrasco dos Pais" width="1920" height="1176" loading="lazy" decoding="async">
                 </div>
 
                 <div class="conteudo-churras-pais">
@@ -141,7 +143,7 @@
 
             <div class="sobre-churras-ex-moradores">
                 <div class="background-churras-ex-moradores">
-                    <img src="FOTO_REENCONTRO/foto_churrasco_ex.jpeg" alt="Foto do nosso Reencontro 2025">
+                    <img src="FOTO_REENCONTRO/foto_churrasco_ex.jpeg" alt="Foto do nosso Reencontro 2025" width="1600" height="1066" loading="lazy" decoding="async">
                 </div>
 
                 <div class="conteudo-churras-ex-moradores">
@@ -158,9 +160,9 @@
         </section>
 
         <section id="casa" class="casa-section">
-            <p class="titulo-nossa-casa fade-in-element">
+            <h2 class="titulo-nossa-casa fade-in-element">
                 Nossa Casa
-            </p>
+            </h2>
             
             <div class="sobre-casa fade-in-element">
 
@@ -170,64 +172,76 @@
         </section>
 
         <section id="moradores" class="moradores">
-            <p class="titulo-moradores">Moradores</p>
-            <div class="scrollbar-moradores">
+            <h2 class="titulo-moradores">Moradores</h2>
+            <!-- WCAG 2.2.2: conteudo em movimento precisa de um jeito de parar.
+                 Comeca com [hidden]; o script.js so revela quando a animacao
+                 esta de fato ligada. -->
+            <div class="moradores-controles">
+                <button type="button" class="botao-pausar" hidden
+                        aria-controls="carrossel-moradores" aria-pressed="false">Pausar</button>
+            </div>
+            <div id="carrossel-moradores" class="scrollbar-moradores">
                 <figure>
-                    <img src="Fotos_Moradores/FOTO_FAXINA.jpeg" alt="Faxina">
+                    <img src="Fotos_Moradores/FOTO_FAXINA.jpeg" alt="Faxina" width="400" height="711" loading="lazy" decoding="async">
                     <figcaption>Faxina - 021<br>Educação Física<br>UFSCar</figcaption>
                 </figure>
                 <figure>
-                    <img src="Fotos_Moradores/FOTO_TRANCADO.jpeg" alt="Trancado">
+                    <img src="Fotos_Moradores/FOTO_TRANCADO.jpeg" alt="Trancado" width="400" height="533" loading="lazy" decoding="async">
                     <figcaption>Trancado - 022<br>Engenharia de Produção<br>USP</figcaption>
                 </figure>
                 <figure>
-                    <img src="Fotos_Moradores/FOTO_WHISKY.jpeg" alt="Whisky">
+                    <img src="Fotos_Moradores/FOTO_WHISKY.jpeg" alt="Whisky" width="400" height="533" loading="lazy" decoding="async">
                     <figcaption>Whisky - 022<br>Engenharia Mecânica<br>UFSCar</figcaption>
                 </figure>
                 <figure>
-                    <img src="Fotos_Moradores/FOTO_DESISTO.jpeg" alt="Desisto">
+                    <img src="Fotos_Moradores/FOTO_DESISTO.jpeg" alt="Desisto" width="400" height="533" loading="lazy" decoding="async">
                     <figcaption>Desisto - 022<br>Biologia<br>UFSCar</figcaption>
                 </figure>
                 <figure>
-                    <img src="Fotos_Moradores/FOTO_DOBBY.jpg" alt="Dobby">
+                    <img src="Fotos_Moradores/FOTO_DOBBY.jpg" alt="Dobby" width="400" height="600" loading="lazy" decoding="async">
                     <figcaption>Dobby - 022<br>Ciência da Computação<br>UFSCar</figcaption>
                 </figure>
                 <figure>
-                    <img src="Fotos_Moradores/FOTO_LIMITADO.jpeg" alt="Limitado">
+                    <img src="Fotos_Moradores/FOTO_LIMITADO.jpeg" alt="Limitado" width="400" height="533" loading="lazy" decoding="async">
                     <figcaption>Limitado - 023<br>Engenharia Civil<br>USP</figcaption>
                 </figure>
                 <figure>
-                    <img src="Fotos_Moradores/FOTO_JORGE.jpeg" alt="Jorge">
+                    <img src="Fotos_Moradores/FOTO_JORGE.jpeg" alt="Jorge" width="400" height="400" loading="lazy" decoding="async">
                     <figcaption>Jorge - 023<br>Mestrado em Engenharia Química<br>UFSCar</figcaption>
                 </figure>
                 <figure>
-                    <img src="Fotos_Moradores/Foto_Quack.jpg" alt="Quack">
+                    <img src="Fotos_Moradores/Foto_Quack.jpg" alt="Quack" width="400" height="533" loading="lazy" decoding="async">
                     <figcaption>Quack - 024<br>Engenharia de Materiais<br>UFSCar</figcaption>
                 </figure>
                 <figure>
-                    <img src="Fotos_Moradores/Foto_Lactea.jpeg" alt="Lactea">
+                    <img src="Fotos_Moradores/Foto_Lactea.jpeg" alt="Lactea" width="400" height="266" loading="lazy" decoding="async">
                     <figcaption>Lactea - 024<br>Ciência da Computação<br>UFSCar</figcaption>
                 </figure>
                 <figure>
-                    <img src="Fotos_Moradores/FOTO_CUPIM.jpeg" alt="Cupim">
+                    <img src="Fotos_Moradores/FOTO_CUPIM.jpeg" alt="Cupim" width="400" height="711" loading="lazy" decoding="async">
                     <figcaption>Cupim - 025<br>Engenharia Mecatrônica<br>USP</figcaption>
                 </figure>
                 <figure>
-                    <img src="Fotos_Moradores/FOTO_PATATA.jpeg" alt="Patata">
+                    <img src="Fotos_Moradores/FOTO_PATATA.jpeg" alt="Patata" width="400" height="533" loading="lazy" decoding="async">
                     <figcaption>Patatá - 025<br>Arquitetura e Urbanismo<br>USP</figcaption>
                 </figure>
                 <figure>
-                    <img src="Fotos_Moradores/FOTO_MEGA.jpeg" alt="Mega">
+                    <img src="Fotos_Moradores/FOTO_MEGA.jpeg" alt="Mega" width="400" height="533" loading="lazy" decoding="async">
                     <figcaption>Mega - 025<br>Engenharia Elétrica<br>USP</figcaption>
                 </figure>
                 <figure>
-                    <img src="Fotos_Moradores/FOTO_SUSSURRO.jpeg" alt="Sussurro">
+                    <img src="Fotos_Moradores/FOTO_SUSSURRO.jpeg" alt="Sussurro" width="400" height="657" loading="lazy" decoding="async">
                     <figcaption>Sussurro - 025<br>Engenharia Elétrica<br>USP</figcaption>
                 </figure>
             </div>
         </section>
 
     </main>
+
+    <footer class="demoro-footer">
+        <p>República Demorô</p>
+        <p>Desde 2005</p>
+    </footer>
 
     <script src="script.js"></script>
 

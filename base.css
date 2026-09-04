@@ -1,5 +1,11 @@
+/* =============================================================
+   base.css — especifico do index.html
+   O que e compartilhado com casa.html mora em comum.css, que
+   deve ser carregado ANTES desta folha.
+   ============================================================= */
+
 /* =============================================
-   1. ESTILOS GERAIS E FONTES
+   1. ESTILOS GERAIS
    ============================================= */
 
 html, body {
@@ -11,129 +17,44 @@ html, body {
     color: #f0f0f0;
     scroll-behavior: smooth;
     width: 100%;
-    overflow-x: hidden; 
+}
 
-
+html {
+    /* O header e fixo com 40px: sem isto o alvo de cada link ancora
+       (#sobre-nos, #eventos...) para escondido atras da barra. */
+    scroll-padding-top: 48px;
 }
 
 body {
     padding-top: 40px;
+    /* 'clip' no lugar de 'hidden': contem qualquer vazamento lateral
+       sem criar um container de rolagem (que quebraria position:sticky
+       e a rolagem programatica). Auditado: hoje o unico elemento mais
+       largo que a tela e o carrossel, que ja se corta sozinho. */
+    overflow-x: clip;
 }
 
-@font-face { font-family: 'AbsolutHeadline'; src: url('fonts/absolut-headline.woff2') format('woff2'); }
-@font-face { font-family: 'Absolut'; src: url('fonts/absolut-regular.woff') format('woff'); }
-@font-face { font-family: 'AbsolutHandwritten'; src: url('fonts/absolut-handwritten-regular.woff') format('woff'); }
-@font-face { font-family: "EdwardianScript"; src: url("fonts/Edwardian Script ITC V1.woff2") format("woff2"); }
-
-/* =============================================
-   2. HEADER / NAVBAR
-   ============================================= */
-
- .barra_cima {
-    width: 100%;
-    position: fixed;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-sizing: border-box;
-} 
-.logo {
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index:20;
-}
-.menu {
-    /* Mobile: fechado por padrao; o hamburger adiciona .active para abrir */
-    display: none;
-    position: absolute;
-    top: 40px;
-    right: 0;
-    width: 200px;
-    flex-direction: column;
-    background: rgba(0, 0, 0, 0.9);
-    padding: 20px;
-    z-index: 30;
-}
-.menu.active {
-    display: flex;
-}
-.menu a {
-    color: white;
-    text-decoration: none;
-    padding: 10px;
-    text-align: center;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-.menu a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-}
-.hamburger {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    /* reset do <button> para manter a aparencia original */
-    background: none;
-    border: 0;
-    padding: 0;
-}
-.hamburger span {
-    width: 25px;
-    height: 3px;
-    background: white;
-    border-radius: 2px;
+@media (prefers-reduced-motion: reduce) {
+    html, body { scroll-behavior: auto; }
 }
 
 /* =============================================
-   3. HERO BANNER (.CROP SECTION)
+   2. HERO BANNER (.CROP SECTION)
    ============================================= */
 
-.video-container {
-    position: relative;
-    width: 100%;
-    padding-bottom: 177.78%; /* 9:16 vertical */
-    height: 0;
-    overflow: hidden;
-    /* Cor do proprio fundo do site: enquanto o player carrega o espaco
-       fica coerente em vez de um retangulo branco de quase uma tela. */
-    background-color: #0d306d;
-}
-
-.video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-}
-
-
-.crop {
-    padding-bottom: 30px;
-    text-align: center;
-    background-color: #fff;
-}
 .foto_churrasco_ex {
     width: 100%;
     height: auto;
     display: block;
 }
-.titulo-rep-demoro {
-    padding: 0 15px;
-    margin-bottom: 0px;
-    font-size: clamp(28px, 8vw, 40px);
-    line-height: 1.2;
-    color: #111;
-}
+
 .titulo-rep-demoro .fonte-sobre { font-family: 'AbsolutHeadline'; }
 .titulo-rep-demoro .fonte-nos { font-family: 'AbsolutHandwritten'; }
-.titulo-rep-demoro .fonte-moderacao { 
+.titulo-rep-demoro .fonte-moderacao {
     font-family: 'Absolut';
-    font-size: clamp(16px, 1vw, 3px); 
+    /* Antes: clamp(16px, 1vw, 3px) -- o maximo era MENOR que o minimo,
+       entao o valor travava em 16px e o 1vw nunca atuava. */
+    font-size: clamp(14px, 2.2vw, 20px);
 }
 
 .titulo-rep-demoro span { display: block; }
@@ -142,7 +63,7 @@ body {
 .titulo-sobre-nos span { display: block; }
 
 /* =============================================
-   4. SEÇÃO SOBRE NÓS
+   3. SEÇÃO SOBRE NÓS
    ============================================= */
 
 .sobre-nos-section {
@@ -152,11 +73,11 @@ body {
 .titulo-sobre-nos {
     font-size: clamp(28px, 8vw, 40px);
     margin-bottom: 1rem;
-    
 }
 .sobre-nos {
-    /* CORREÇÃO: O valor mínimo do clamp deve ser menor que o máximo */
-    font-size: clamp(20px, 3vw, 20px);
+    /* Antes: clamp(20px, 3vw, 20px) -- minimo igual ao maximo, o que
+       anulava o clamp. Agora escala de verdade entre 17px e 21px. */
+    font-size: clamp(17px, 2.2vw, 21px);
     color: #eeeeee;
     max-width: 900px;
     margin: 0 auto;
@@ -164,11 +85,9 @@ body {
 }
 
 /* =============================================
-   5. SEÇÃO NOSSOS EVENTOS
+   4. SEÇÃO NOSSOS EVENTOS
    ============================================= */
 
-.eventos-section {
-}
 .titulo-nossos-eventos {
     font-family: 'AbsolutHeadline';
     text-align: center;
@@ -176,13 +95,7 @@ body {
     margin-bottom: 2rem;
     padding: 0 20px;
 }
-.sobre-torneio-interrep, .sobre-a-festa {
-    display: flex;
-    flex-direction: column;
-    padding: 0 20px;
-    margin-bottom: 40px;
-}
-.conteudo-texto, .conteudo-texto-festa {
+.conteudo-texto-festa {
     order: 1;
     text-align: left;
     margin-bottom: 30px;
@@ -207,18 +120,9 @@ body {
     height: 100%;
     object-fit: cover;
 }
-.logo-torneio-interrep, .logo-a-festa {
-    max-width: 250px;
-    margin: 0 auto 20px auto;
-}
-.texto-torneio-interrep, .texto-a-festa {
-    font-size: clamp(16px, 4vw, 18px);
-    line-height: 1.6;
-    color: #e0e0e0;
-}
 
 /* =============================================
-   6. SEÇÃO CHURRASCO DOS PAIS
+   5. CHURRASCO DOS PAIS E DE EX-MORADORES
    ============================================= */
 
 .sobre-churras-dos-pais {
@@ -231,11 +135,9 @@ body {
     width: 100%;
     height: auto;
 }
-.conteudo-churras-pais {
-}
 .conteudo-churras-pais .titulo-churras-pais{
-  font-family: 'AbsolutHeadline';
-  font-size: clamp(32px, 8vw, 50px);
+    font-family: 'AbsolutHeadline';
+    font-size: clamp(32px, 8vw, 50px);
 }
 .conteudo-churras-pais .muito-mais-rep {
     font-family: 'AbsolutHandwritten';
@@ -248,7 +150,6 @@ body {
     line-height: 1.6;
 }
 
-
 .sobre-churras-ex-moradores {
     padding: 0px;
     text-align: center;
@@ -259,11 +160,9 @@ body {
     width: 100%;
     height: auto;
 }
-.conteudo-churras-ex-moradores {
-}
 .conteudo-churras-ex-moradores .titulo-churras-ex-moradores{
-  font-family: 'AbsolutHeadline';
-  font-size: clamp(32px, 8vw, 50px);
+    font-family: 'AbsolutHeadline';
+    font-size: clamp(32px, 8vw, 50px);
 }
 .conteudo-churras-ex-moradores .muito-mais-rep {
     font-family: 'AbsolutHandwritten';
@@ -277,7 +176,7 @@ body {
 }
 
 /* =============================================
-   7. SEÇÃO MORADORES
+   6. SEÇÃO MORADORES
    ============================================= */
 
 .moradores {
@@ -291,6 +190,29 @@ body {
     font-size: 40px;
     text-align: center;
     margin-bottom: 30px;
+}
+
+/* Controle de pausa do carrossel: a WCAG 2.2.2 pede um mecanismo
+   para parar conteudo em movimento. O :hover sozinho nao serve,
+   porque nao existe em tela de toque. O script.js revela o botao
+   apenas quando a animacao esta realmente ligada. */
+.moradores-controles {
+    text-align: center;
+    margin-bottom: 16px;
+}
+.botao-pausar {
+    font-family: 'Absolut', sans-serif;
+    font-size: 15px;
+    color: #fff;
+    background-color: #09008a;
+    border: 0;
+    border-radius: 999px;
+    padding: 8px 20px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.botao-pausar:hover {
+    background-color: #0d0bb5;
 }
 
 .scrollbar-moradores {
@@ -308,7 +230,7 @@ body {
     display: flex;
     flex-wrap: nowrap;
     gap: 16px;
-    /* O tempo da animação (ex: 40s) controla a velocidade */
+    /* O tempo da animação controla a velocidade */
     animation: scroll 20s linear infinite;
 }
 
@@ -320,7 +242,6 @@ body {
     }
 }
 
-/* Estilos da figura e legenda (sem alterações) */
 .scrollbar-moradores figure {
     flex: 0 0 150px;
     text-align: center;
@@ -342,14 +263,15 @@ body {
     border-radius: 4px;
 }
 
-/* Pausa a animação no hover */
-.scrollbar-moradores:hover .scroller__inner {
+/* Pausa no hover (mouse) e pela classe que o botao alterna (toque/teclado) */
+.scrollbar-moradores:hover .scroller__inner,
+.scrollbar-moradores.pausado .scroller__inner {
     animation-play-state: paused;
 }
 
-
-.casa-section {
-}
+/* =============================================
+   7. SEÇÃO NOSSA CASA
+   ============================================= */
 
 .titulo-nossa-casa {
     font-family: 'AbsolutHeadline';
@@ -362,7 +284,7 @@ body {
 .sobre-casa{
     display: flex;
     justify-content: flex-end;
-    flex-direction: row; 
+    flex-direction: row;
     align-items: center;
 }
 
@@ -374,8 +296,11 @@ body {
     padding: 1vw 2vw;
     border: black;
     cursor: pointer;
-    font-size: 5vw;
+    /* Antes 5vw puro: 16px numa tela de 320px. Agora tem piso e teto. */
+    font-size: clamp(20px, 5vw, 34px);
     font-family: 'AbsolutHandwritten';
+    text-decoration: none;
+    color: inherit;
     transition-duration: 0.4s;
 }
 
@@ -385,49 +310,39 @@ body {
     box-shadow:0 8px 16px 0 rgba(0,0,0,0.6);
 }
 
+/* =============================================
+   8. ANIMAÇÃO DE ENTRADA (direção desta página)
+   O restante da regra esta em comum.css
+   ============================================= */
+.js .fade-in-element {
+    transform: translateY(30px);
+}
+
+/* =============================================
+   9. RODAPÉ
+   ============================================= */
+.demoro-footer {
+    font-family: 'AbsolutHandwritten';
+    font-size: clamp(16px, 2vw, 22px);
+    line-height: 1.4;
+    padding: 28px 20px;
+    margin: 0;
+    text-align: center;
+}
+.demoro-footer p {
+    margin: 2px 0;
+}
 
 /* ===============================================================
-   8. ESTILOS DESKTOP (769px e maior)
+   10. ESTILOS DESKTOP (768px e maior — igual ao md: do Tailwind)
    =============================================================== */
 @media (min-width: 768px) {
 
     html, body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Absolut', sans-serif;
         background-image: url("Background/background_v4.jpg");
-        background-repeat: repeat;
-        color: #f0f0f0;
-        scroll-behavior: smooth;
-        width: 100%;
-        overflow-x: hidden;
-    }
-
-    /* --- Header / Navbar --- */
-    .hamburger { display: none; }
-    .menu {
-        display: flex;
-        position: static;
-        flex-direction: row;
-        background: transparent;
-        width: auto;
-        padding: 0;
-    }
-    .menu a { padding: 8px 12px; }
-    .video-container {
-        position: relative;
-        width: 100%;
-        padding-bottom: 56.25%; 
-        height: 0;
-        overflow: hidden;
-        display: none;
     }
 
     /* --- Hero Banner --- */
-    .crop {
-        position: relative;
-        padding-bottom: 0;
-    }
     .titulo-rep-demoro {
         position: absolute;
         bottom: 5%;
@@ -435,28 +350,19 @@ body {
         transform: translate(-50%, 0);
         width: 100%;
         color: #101010;
-        font-size: 2.5vw;
+        /* Antes 2.5vw puro */
+        font-size: clamp(20px, 2.5vw, 44px);
         text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.7);
     }
     .titulo-rep-demoro span { display: inline; }
 
     /* --- Seções de Eventos --- */
-    .sobre-torneio-interrep, .sobre-a-festa {
-        flex-direction: column;
-        max-width: 100%;
-        margin: 40px auto;
-        align-items: center;
-    }
-    .conteudo-texto {
-        flex: 1 1 100%;
-        order: 1;
-    }
     .fotos-interrep {
         flex: 1 1 100%;
         order: 2;
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: center; 
+        justify-content: center;
     }
     .conteudo-texto-festa {
         flex: 1 1 100%;
@@ -467,29 +373,15 @@ body {
         order: 2;
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: center; /* <-- Adicione esta linha */
-
-    }
-
-    /* ======================================================
-      ===> AJUSTE 1: Aumentando o tamanho da fonte aqui <===
-      ======================================================
-    */
-    .texto-torneio-interrep{
-        font-size: clamp(18px, 1.2vw, 21px); /* Fonte maior para desktop */
-        text-align: left;
-    }
-    .texto-a-festa {
-        font-size: clamp(18px, 1.2vw, 21px); /* Fonte maior para desktop */
-        text-align: left;
+        justify-content: center;
     }
 
     /* Grids de fotos no desktop */
     .fotos-interrep figure {
-        flex: 1 1 calc(50% - 8px); /* De 4 para 2 colunas (fotos maiores) */
+        flex: 1 1 calc(50% - 8px);
     }
     .fotos-a-festa figure {
-        flex: 1 1 calc(50% - 8px); /* Grid de 2 colunas */
+        flex: 1 1 calc(50% - 8px);
     }
 
     /* --- Churrasco dos Pais --- */
@@ -507,15 +399,6 @@ body {
         object-fit: cover;
     }
 
-    /* CORREÇÃO: O gradiente foi adicionado de volta à sobreposição */
-    .background-churras-pais::before {
-        content: '';
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        z-index: 2;
-    }
-
     .conteudo-churras-pais {
         position: absolute;
         z-index: 3;
@@ -525,7 +408,10 @@ body {
         text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
     }
 
-    /* CORREÇÃO: Regra unificada para posicionar TODOS os textos */
+    /* Regra unificada para posicionar TODOS os textos.
+       ATENCAO: o posicionamento abaixo e por porcentagem calibrada a
+       olho sobre a foto. Os max-width em % existem para o texto nao
+       transbordar a imagem quando o conteudo mudar. */
     .conteudo-churras-pais .titulo-churras-pais,
     .conteudo-churras-pais .texto-churras-pais,
     .conteudo-churras-pais .muito-mais-rep {
@@ -533,14 +419,19 @@ body {
         transform: translate(-50%, -50%); /* Centraliza o elemento em suas coordenadas */
         margin: 0;
         width: auto;
+        max-width: 46%;
     }
 
-    /* CORREÇÃO: Estilos individuais e posicionamento corrigidos */
     .conteudo-churras-pais .titulo-churras-pais {
         font-family: 'AbsolutHeadline';
         font-size: clamp(40px, 5vw, 70px);
-        left: 19.5%;
+        /* Ancorado pela borda esquerda, nao pelo centro. Com left:19.5% +
+           translate(-50%) a posicao dependia da largura do texto, e o titulo
+           saia 10px para fora da tela em 1280px (pior ainda em 768px).
+           De quebra, agora alinha com o paragrafo logo abaixo. */
+        left: 5%;
         top: 20%;
+        transform: translate(0, -50%);
         text-align: left;
     }
 
@@ -549,7 +440,9 @@ body {
         top: 31.5%;
         text-align: left;
         max-width: 40%;
-        font-size: clamp(20px,1vw, 40px);
+        /* Antes clamp(20px, 1vw, 40px): 1vw so passa de 20px acima de
+           2000px de tela, ou seja, era 20px fixo na pratica. */
+        font-size: clamp(16px, 1.4vw, 22px);
     }
 
     .conteudo-churras-pais .muito-mais-rep {
@@ -558,8 +451,9 @@ body {
         text-align: right;
     }
 
+    /* --- Churrasco de Ex-Moradores --- */
     .sobre-churras-ex-moradores {
-        position: relative; /* Mantém o contexto para o conteúdo flutuante */
+        position: relative;
         color: white;
         padding: 0;
         background-color: transparent;
@@ -568,17 +462,8 @@ body {
     .background-churras-ex-moradores img {
         display: block;
         width: 100%;
-        height: 85vh; /* Define a altura da seção com base na altura da tela */
+        height: 85vh;
         object-fit: cover;
-    }
-
-    /* CORREÇÃO: O gradiente foi adicionado de volta à sobreposição */
-    .background-churras-ex-moradores::before {
-        content: '';
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        z-index: 2;
     }
 
     .conteudo-churras-ex-moradores {
@@ -590,17 +475,16 @@ body {
         text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
     }
 
-    /* CORREÇÃO: Regra unificada para posicionar TODOS os textos */
     .conteudo-churras-ex-moradores .titulo-churras-ex-moradores,
     .conteudo-churras-ex-moradores .texto-churras-ex-moradores,
     .conteudo-churras-ex-moradores .muito-mais-rep {
         position: absolute;
-        transform: translate(-50%, -50%); /* Centraliza o elemento em suas coordenadas */
+        transform: translate(-50%, -50%);
         margin: 0;
         width: auto;
+        max-width: 46%;
     }
 
-    /* CORREÇÃO: Estilos individuais e posicionamento corrigidos */
     .conteudo-churras-ex-moradores .titulo-churras-ex-moradores {
         font-family: 'AbsolutHeadline';
         font-size: clamp(40px, 5vw, 70px);
@@ -614,7 +498,7 @@ body {
         top: 85.5%;
         text-align: left;
         max-width: 80%;
-        font-size: clamp(20px,1vw, 40px);
+        font-size: clamp(16px, 1.4vw, 22px);
     }
 
     .conteudo-churras-ex-moradores .muito-mais-rep {
@@ -623,26 +507,11 @@ body {
         text-align: right;
     }
 
-    
+    /* --- Nossa Casa --- */
     .conteudo-casa {
-        order: 2;
-        text-align: center;
-        background: url('Background/white_background.jpg');
-        flex: 1 1 50%;
         padding: 1vw 2vw;
-        border: black;
-        cursor: pointer;
-        font-size: 2vw;
-        font-family: 'AbsolutHandwritten';
-        transition-duration: 0.4s;
+        font-size: clamp(22px, 2vw, 32px);
     }
-
-    .conteudo-casa:hover{
-        background: url('Background/background_v4.jpg');
-        color: white;
-        box-shadow:0 8px 16px 0 rgba(0,0,0,0.6);
-    }
-
 
     /* --- Moradores --- */
     .scrollbar-moradores figure {
@@ -655,31 +524,4 @@ body {
     .scrollbar-moradores figcaption {
         font-size: 20px;
     }
-}
-
-.fade-in-element {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-/* Estado final: O elemento fica visível na sua posição original */
-.fade-in-element.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.foto-casa {
-    order: 1;
-}
-.foto-casa figure{
-    width: 100%;
-    max-width: 1000px;
-    margin: 0;
-    overflow: auto;
-    box-shadow:0 8px 16px 0 rgba(0,0,0,1)
-}
-.foto-casa figure img{
-    width: 100%;
-    height: auto;
 }

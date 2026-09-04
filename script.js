@@ -5,10 +5,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // =============================================================
     // VIDEO DO HERO (somente mobile)
     //
-    // O <iframe> nao vem no HTML: display:none nao impede o browser
-    // de baixar o embed, entao o desktop pagaria por um player que
-    // nunca ve. Aqui ele so e criado quando a tela e mobile.
-    //
     // Usamos a IFrame Player API porque o evento 'ended' de <video>
     // NAO dispara em iframe -- era por isso que o scroll automatico
     // nunca funcionou.
@@ -112,10 +108,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const elementsToFadeIn = document.querySelectorAll('.fade-in-element');
 
     // 2. Opções para o Intersection Observer
+    // threshold 0 + rootMargin negativo no lugar de threshold 0.24:
+    // com 0.24 um elemento mais alto que ~4x a viewport nunca chega a
+    // 24% visivel e nunca apareceria. Assim o gatilho independe da altura.
     const observerOptions = {
         root: null,
-        rootMargin: '0px',
-        threshold: 0.24    };
+        rootMargin: '0px 0px -12% 0px',
+        threshold: 0
+    };
 
     // 3. A função que será chamada quando um elemento entrar na tela
     const observerCallback = (entries, observer) => {
@@ -144,6 +144,23 @@ document.addEventListener('DOMContentLoaded', function() {
     // Verifica se o usuário não tem preferência por movimento reduzido
     if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
         addAnimation();
+        configurarBotaoPausar();
+    }
+
+    // WCAG 2.2.2: conteudo em movimento precisa de um jeito de parar.
+    // O :hover do CSS nao cobre toque nem teclado. O botao nasce com
+    // [hidden] no HTML e so aparece se a animacao estiver mesmo ligada.
+    function configurarBotaoPausar() {
+        const botao = document.querySelector('.botao-pausar');
+        const carrossel = document.querySelector('.scrollbar-moradores');
+        if (!botao || !carrossel) return;
+
+        botao.hidden = false;
+        botao.addEventListener('click', function () {
+            const pausado = carrossel.classList.toggle('pausado');
+            botao.setAttribute('aria-pressed', String(pausado));
+            botao.textContent = pausado ? 'Retomar' : 'Pausar';
+        });
     }
 
     function addAnimation() {
