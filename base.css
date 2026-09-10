@@ -181,7 +181,7 @@
 .destaque-assinatura {
     font-family: 'AbsolutHandwritten', cursive;
     font-size: var(--t-secao);
-    color: var(--acido);
+    color: var(--azul-claro);
     line-height: 1.1;
 }
 
@@ -209,14 +209,14 @@
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--papel);
-    background-color: var(--tinta);
+    background-color: var(--azul);
     border: 0;
     padding: var(--e-2) var(--e-4);
     cursor: pointer;
     transition: background-color 0.25s ease, color 0.25s ease;
 }
 .botao-pausar:hover {
-    background-color: var(--acido);
+    background-color: var(--azul-claro);
     color: var(--tinta);
 }
 
@@ -321,22 +321,16 @@
         align-items: center;
         margin-bottom: var(--e-7);
     }
-    /* A galeria do primeiro evento vai para a esquerda, a do segundo para
-       a direita: alterna o ritmo em vez de repetir o mesmo bloco. */
     .evento:nth-of-type(odd) .galeria-evento { order: -1; }
 
     .galeria-evento {
         gap: var(--e-2);
     }
 
-    /* Este artigo cede largura do texto para a galeria, porque ela tem
-       3 colunas em vez de 2. */
     .evento-com-cartaz {
-        grid-template-columns: 0.85fr 1.6fr;
+        grid-template-columns: 0.85fr 2.0fr;
     }
-    /* 2.07fr nao e chute: o cartaz e 4:5 e precisa cobrir a altura de
-       duas fotos 4:5 mais o gap. Resolvendo P = 0,8 x (2,5W + gap),
-       chega-se em P ~ 2,1W qualquer que seja a largura da galeria. */
+
     .galeria-com-cartaz {
         grid-template-columns: 1fr 1fr 2.1fr;
     }
@@ -347,7 +341,7 @@
     }
     .galeria-com-cartaz .galeria-cartaz img {
         height: 100%;
-        width: 100%;
+        width: 100%
     }
 
     /* --- Destaques --- */

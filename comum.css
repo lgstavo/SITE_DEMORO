@@ -22,9 +22,14 @@
     /* Paleta — extraida do site da Absolut */
     --tinta: #000000;           /* texto e superficies escuras */
     --papel: #ffffff;           /* fundo */
-    --azul: #0000bd;            /* azul da marca */
+    --azul: #0000bd;            /* azul da marca -- a cor principal */
     --azul-escuro: #00008e;
-    --acido: #eeff3d;           /* destaque e foco */
+    /* O azul da marca so tem 1,7:1 sobre preto, ilegivel. Este e o mesmo
+       azul clareado ate passar em AA sobre fundo escuro (5,8:1). */
+    --azul-claro: #5b7cff;
+    /* Acido reservado ao foco por teclado: precisa ser a cor mais visivel
+       da pagina E diferente do azul, para ler como estado e nao decoracao. */
+    --acido: #eeff3d;
     --cinza-texto: #4a4a4a;     /* texto secundario sobre papel */
     --cinza-linha: #dcdcdc;     /* filetes */
 
@@ -133,7 +138,19 @@ p { margin: 0; }
     color: var(--azul);
     margin-bottom: var(--e-2);
 }
-.rotulo-claro { color: var(--acido); }
+.rotulo-claro { color: var(--azul-claro); }
+
+/* Painel solido no azul da marca. E o gesto mais forte da identidade
+   Absolut e o que fixa o azul como cor principal do site. */
+.secao-azul {
+    background-color: var(--azul);
+    color: var(--papel);
+}
+/* Sobre o azul, o proprio azul claro cai para 3,3:1. Rotulo em branco. */
+.secao-azul .rotulo,
+.secao-azul .rotulo-claro {
+    color: rgba(255, 255, 255, 0.78);
+}
 
 /* Medida de leitura */
 .medida {
@@ -207,7 +224,7 @@ button:focus-visible,
     transition: color 0.2s ease;
 }
 .menu a:last-child { border-bottom: 0; }
-.menu a:hover { color: var(--acido); }
+.menu a:hover { color: var(--azul-claro); }
 
 .hamburger {
     display: flex;
@@ -235,9 +252,9 @@ button:focus-visible,
     padding-bottom: 177.78%; /* 9:16 vertical */
     height: 0;
     overflow: hidden;
-    /* Enquanto o player carrega o espaco fica preto, coerente com o
-       header, em vez de um retangulo branco de quase uma tela. */
-    background-color: var(--tinta);
+    /* Enquanto o player carrega o espaco fica no azul da marca, em vez
+       de um retangulo branco de quase uma tela. */
+    background-color: var(--azul);
 }
 
 .video-container iframe {
@@ -279,7 +296,7 @@ button:focus-visible,
     transition: background-color 0.25s ease, color 0.25s ease;
 }
 .botao:hover {
-    background-color: var(--acido);
+    background-color: var(--azul-claro);
     color: var(--tinta);
 }
 
@@ -289,8 +306,8 @@ button:focus-visible,
     color: var(--tinta);
 }
 .botao-claro:hover {
-    background-color: var(--acido);
-    color: var(--tinta);
+    background-color: var(--azul);
+    color: var(--papel);
 }
 
 /* -----------------------------------------------------------------
@@ -313,7 +330,7 @@ button:focus-visible,
     font-size: var(--t-rotulo);
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--acido);
+    color: var(--azul-claro);
 }
 
 /* -----------------------------------------------------------------

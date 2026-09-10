@@ -97,9 +97,10 @@
     3. CONTATO
     ============================================= */
 
+/* O fundo azul e a cor do texto vem de .secao-azul (comum.css), que e o
+   mesmo tratamento do bloco "Nossa Casa" no index: as duas chamadas para
+   acao do site sao identicas. Aqui fica so o espacamento. */
 .secao-contato {
-    background-color: var(--tinta);
-    color: var(--papel);
     padding: var(--e-7) var(--e-3);
     text-align: center;
 }
