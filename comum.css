@@ -7,12 +7,53 @@
    outra). Cada pagina carrega comum.css + a sua folha especifica.
    ================================================================= */
 
+/* -----------------------------------------------------------------
+   1. TOKENS DE COR
+
+   Toda cor do site sai daqui. Antes eram 16 literais espalhados por
+   tres arquivos, e era por isso que trocar o fundo para branco
+   deixava o texto invisivel: nao havia como o texto "saber" que o
+   fundo tinha mudado. Para mexer na paleta, mexa so nesta secao.
+   ----------------------------------------------------------------- */
+:root {
+    /* Texto */
+    --cor-texto: #f0f0f0;          /* corpo, sobre fundo escuro */
+    --cor-texto-suave: #eeeeee;    /* paragrafos longos */
+    --cor-texto-em-claro: #333;    /* texto dentro de blocos claros */
+    --cor-titulo-hero: #111;
+
+    /* Marca */
+    --cor-marca: #09008a;
+    --cor-marca-hover: #0d0bb5;
+    --cor-foco: #ffd400;           /* contorno de foco por teclado */
+
+    /* Superficies */
+    --cor-superficie-clara: #fff;
+    --cor-video-placeholder: #0d306d;
+
+    /* Sombras e sobreposicoes */
+    --sombra-cartao: 0 8px 16px 0 rgba(0, 0, 0, 0.6);
+    --sombra-texto-sobre-foto: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    --overlay-menu: rgba(0, 0, 0, 0.9);
+    --overlay-menu-hover: rgba(255, 255, 255, 0.2);
+}
+
 *, *::before, *::after {
     box-sizing: border-box;
 }
 
+/* Normalizacao de imagem. Os atributos width/height (que existem para
+   reservar espaco e evitar salto de layout) tambem funcionam como dica
+   de apresentacao: sem isto, um <img width="1196"> renderiza com 1196px
+   de largura de verdade. O index.html escapava porque o Preflight do
+   Tailwind ja fazia isso -- o casa.html nao, e o logo transbordava. */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 /* -----------------------------------------------------------------
-   1. FONTES
+   2. FONTES
    font-display: swap faz o texto aparecer numa fonte de sistema
    enquanto a fonte propria baixa, em vez de ficar invisivel (FOIT).
    ----------------------------------------------------------------- */
@@ -38,20 +79,20 @@
 }
 
 /* -----------------------------------------------------------------
-   2. FOCO VISIVEL
+   3. FOCO VISIVEL
    Nenhuma das folhas tinha estilo de foco: quem navega por teclado
    dependia do outline padrao, que some sobre o azul escuro.
    ----------------------------------------------------------------- */
 a:focus-visible,
 button:focus-visible,
 [tabindex]:focus-visible {
-    outline: 3px solid #ffd400;
+    outline: 3px solid var(--cor-foco);
     outline-offset: 2px;
     border-radius: 4px;
 }
 
 /* -----------------------------------------------------------------
-   3. TITULOS
+   4. TITULOS
    Os titulos viraram <h1>/<h2> por semantica. Estas regras impedem
    que o negrito e as margens padrao do browser mudem a aparencia
    que ja existia quando eles eram <p>.
@@ -62,7 +103,7 @@ h1, h2, h3 {
 }
 
 /* -----------------------------------------------------------------
-   4. HEADER / MENU
+   5. HEADER / MENU
    ----------------------------------------------------------------- */
 .menu {
     /* Mobile: fechado por padrao; o hamburger adiciona .active para abrir */
@@ -72,7 +113,7 @@ h1, h2, h3 {
     right: 0;
     width: 200px;
     flex-direction: column;
-    background: rgba(0, 0, 0, 0.9);
+    background: var(--overlay-menu);
     padding: 20px;
     z-index: 30;
 }
@@ -80,7 +121,7 @@ h1, h2, h3 {
     display: flex;
 }
 .menu a {
-    color: white;
+    color: var(--cor-superficie-clara);
     text-decoration: none;
     padding: 10px;
     text-align: center;
@@ -88,7 +129,7 @@ h1, h2, h3 {
     transition: background-color 0.3s ease;
 }
 .menu a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: var(--overlay-menu-hover);
 }
 
 .hamburger {
@@ -104,12 +145,12 @@ h1, h2, h3 {
 .hamburger span {
     width: 25px;
     height: 3px;
-    background: white;
+    background: var(--cor-superficie-clara);
     border-radius: 2px;
 }
 
 /* -----------------------------------------------------------------
-   5. HERO / VIDEO
+   6. HERO / VIDEO
    ----------------------------------------------------------------- */
 .video-container {
     position: relative;
@@ -117,9 +158,9 @@ h1, h2, h3 {
     padding-bottom: 177.78%; /* 9:16 vertical */
     height: 0;
     overflow: hidden;
-    /* Cor do proprio fundo do site: enquanto o player carrega o espaco
-       fica coerente em vez de um retangulo branco de quase uma tela. */
-    background-color: #0d306d;
+    /* Enquanto o player carrega o espaco fica coerente com o site,
+       em vez de um retangulo branco de quase uma tela. */
+    background-color: var(--cor-video-placeholder);
 }
 
 .video-container iframe {
@@ -134,7 +175,7 @@ h1, h2, h3 {
 .crop {
     padding-bottom: 30px;
     text-align: center;
-    background-color: #fff;
+    background-color: var(--cor-superficie-clara);
 }
 
 .titulo-rep-demoro {
@@ -142,14 +183,14 @@ h1, h2, h3 {
     margin-bottom: 0;
     font-size: clamp(28px, 8vw, 40px);
     line-height: 1.2;
-    color: #111;
+    color: var(--cor-titulo-hero);
 }
 
 /* -----------------------------------------------------------------
-   6. ANIMACAO DE ENTRADA
-   Escopo .js de proposito: o script.js adiciona a classe .js no
-   <html>. Sem JavaScript nada fica com opacity:0, entao o conteudo
-   continua visivel em vez de sumir para sempre.
+   7. ANIMACAO DE ENTRADA
+   Escopo .js de proposito: o <head> adiciona a classe .js no <html>.
+   Sem JavaScript nada fica com opacity:0, entao o conteudo continua
+   visivel em vez de sumir para sempre.
    O transform inicial e por pagina (base.css / casa.css).
    ----------------------------------------------------------------- */
 .js .fade-in-element {
@@ -170,7 +211,7 @@ h1, h2, h3 {
 }
 
 /* =================================================================
-   7. DESKTOP (768px e maior — igual ao md: do Tailwind)
+   8. DESKTOP (768px e maior — igual ao md: do Tailwind)
    ================================================================= */
 @media (min-width: 768px) {
     .hamburger { display: none; }

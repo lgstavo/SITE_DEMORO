@@ -1,7 +1,7 @@
 /* =============================================================
    base.css — especifico do index.html
    O que e compartilhado com casa.html mora em comum.css, que
-   deve ser carregado ANTES desta folha.
+   deve ser carregado ANTES desta folha (e de onde vem a paleta).
    ============================================================= */
 
 /* =============================================
@@ -14,7 +14,7 @@ html, body {
     font-family: 'Absolut', sans-serif;
     background-image: url("Background/mobile_background_v2.jpg");
     background-repeat: repeat;
-    color: #f0f0f0;
+    color: var(--cor-texto);
     scroll-behavior: smooth;
     width: 100%;
 }
@@ -42,7 +42,7 @@ body {
    2. HERO BANNER (.CROP SECTION)
    ============================================= */
 
-.foto_churrasco_ex {
+.foto-churrasco-ex {
     width: 100%;
     height: auto;
     display: block;
@@ -78,7 +78,7 @@ body {
     /* Antes: clamp(20px, 3vw, 20px) -- minimo igual ao maximo, o que
        anulava o clamp. Agora escala de verdade entre 17px e 21px. */
     font-size: clamp(17px, 2.2vw, 21px);
-    color: #eeeeee;
+    color: var(--cor-texto-suave);
     max-width: 900px;
     margin: 0 auto;
     line-height: 1.6;
@@ -99,6 +99,9 @@ body {
     order: 1;
     text-align: left;
     margin-bottom: 30px;
+    /* Sem cor fixa: herda --cor-texto, que ja e escura no desktop e
+       clara no mobile. Um 'color: black' aqui ficaria preto sobre o
+       fundo azul do celular. */
 }
 .fotos-interrep, .fotos-a-festa {
     order: 2;
@@ -123,52 +126,39 @@ body {
 
 /* =============================================
    5. CHURRASCO DOS PAIS E DE EX-MORADORES
+
+   As duas secoes sao o mesmo componente com nomes diferentes.
+   Os seletores estao agrupados: o que varia entre elas fica so
+   nas coordenadas dentro do @media de desktop.
    ============================================= */
 
-.sobre-churras-dos-pais {
-    padding: 0px;
+.sobre-churras-dos-pais,
+.sobre-churras-ex-moradores {
+    padding: 0;
     text-align: center;
-    background-color: #fff;
-    color: #333;
-}
-.background-churras-pais img {
-    width: 100%;
-    height: auto;
-}
-.conteudo-churras-pais .titulo-churras-pais{
-    font-family: 'AbsolutHeadline';
-    font-size: clamp(32px, 8vw, 50px);
-}
-.conteudo-churras-pais .muito-mais-rep {
-    font-family: 'AbsolutHandwritten';
-    font-size: clamp(32px, 8vw, 60px);
-}
-.conteudo-churras-pais .texto-churras-pais {
-    font-size: 18px;
-    max-width: 700px;
-    margin: 15px auto;
-    line-height: 1.6;
+    background-color: var(--cor-superficie-clara);
+    color: var(--cor-texto-em-claro);
 }
 
-.sobre-churras-ex-moradores {
-    padding: 0px;
-    text-align: center;
-    background-color: #fff;
-    color: #333;
-}
+.background-churras-pais img,
 .background-churras-ex-moradores img {
     width: 100%;
     height: auto;
 }
-.conteudo-churras-ex-moradores .titulo-churras-ex-moradores{
+
+.titulo-churras-pais,
+.titulo-churras-ex-moradores {
     font-family: 'AbsolutHeadline';
     font-size: clamp(32px, 8vw, 50px);
 }
-.conteudo-churras-ex-moradores .muito-mais-rep {
+
+.muito-mais-rep {
     font-family: 'AbsolutHandwritten';
     font-size: clamp(32px, 8vw, 60px);
 }
-.conteudo-churras-ex-moradores .texto-churras-ex-moradores {
+
+.texto-churras-pais,
+.texto-churras-ex-moradores {
     font-size: 18px;
     max-width: 700px;
     margin: 15px auto;
@@ -182,7 +172,7 @@ body {
 .moradores {
     background: url('Background/white_background.jpg');
     padding: 40px 0;
-    color: #333;
+    color: var(--cor-texto-em-claro);
 }
 
 .titulo-moradores {
@@ -203,8 +193,8 @@ body {
 .botao-pausar {
     font-family: 'Absolut', sans-serif;
     font-size: 15px;
-    color: #fff;
-    background-color: #09008a;
+    color: var(--cor-superficie-clara);
+    background-color: var(--cor-marca);
     border: 0;
     border-radius: 999px;
     padding: 8px 20px;
@@ -212,7 +202,7 @@ body {
     transition: background-color 0.2s ease;
 }
 .botao-pausar:hover {
-    background-color: #0d0bb5;
+    background-color: var(--cor-marca-hover);
 }
 
 .scrollbar-moradores {
@@ -225,7 +215,7 @@ body {
     mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
 }
 
-.scrollbar-moradores[data-animated="true"] .scroller__inner {
+.scrollbar-moradores[data-animated="true"] .scroller-inner {
     width: max-content; /* Garante que os itens fiquem em uma linha */
     display: flex;
     flex-wrap: nowrap;
@@ -256,16 +246,16 @@ body {
 .scrollbar-moradores figcaption {
     margin-top: 8px;
     font-size: 16px;
-    background-color: #09008a;
-    color: white;
+    background-color: var(--cor-marca);
+    color: var(--cor-superficie-clara);
     font-family: 'AbsolutHandwritten', sans-serif;
     padding: 4px;
     border-radius: 4px;
 }
 
 /* Pausa no hover (mouse) e pela classe que o botao alterna (toque/teclado) */
-.scrollbar-moradores:hover .scroller__inner,
-.scrollbar-moradores.pausado .scroller__inner {
+.scrollbar-moradores:hover .scroller-inner,
+.scrollbar-moradores.pausado .scroller-inner {
     animation-play-state: paused;
 }
 
@@ -294,20 +284,19 @@ body {
     background: url('Background/white_background.jpg');
     flex: 1 1 50%;
     padding: 1vw 2vw;
-    border: black;
     cursor: pointer;
     /* Antes 5vw puro: 16px numa tela de 320px. Agora tem piso e teto. */
     font-size: clamp(20px, 5vw, 34px);
     font-family: 'AbsolutHandwritten';
     text-decoration: none;
-    color: inherit;
+    color: var(--cor-texto-em-claro);
     transition-duration: 0.4s;
 }
 
 .conteudo-casa:hover{
     background: url('Background/background_v4.jpg');
-    color: white;
-    box-shadow:0 8px 16px 0 rgba(0,0,0,0.6);
+    color: var(--cor-superficie-clara);
+    box-shadow: var(--sombra-cartao);
 }
 
 /* =============================================
@@ -338,8 +327,16 @@ body {
    =============================================================== */
 @media (min-width: 768px) {
 
+    /* Tema claro no desktop. Redefinir os tokens aqui faz o texto
+       acompanhar o fundo automaticamente -- era esse elo que faltava
+       quando o fundo virou branco e o texto continuou #f0f0f0. */
+    :root {
+        --cor-texto: #1a1a1a;
+        --cor-texto-suave: #333;
+    }
+
     html, body {
-        background-image: url("Background/background_v4.jpg");
+        background: var(--cor-superficie-clara);
     }
 
     /* --- Hero Banner --- */
@@ -349,7 +346,7 @@ body {
         left: 50%;
         transform: translate(-50%, 0);
         width: 100%;
-        color: #101010;
+        color: var(--cor-titulo-hero);
         /* Antes 2.5vw puro */
         font-size: clamp(20px, 2.5vw, 44px);
         text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.7);
@@ -377,44 +374,50 @@ body {
     }
 
     /* Grids de fotos no desktop */
-    .fotos-interrep figure {
-        flex: 1 1 calc(50% - 8px);
-    }
+    .fotos-interrep figure,
     .fotos-a-festa figure {
         flex: 1 1 calc(50% - 8px);
+        padding: 5px;
+    }
+    .fotos-interrep figure {
+        /* 'border: #09008a' sozinho nao pinta nada: o atalho precisa de
+           espessura e estilo, senao border-style fica 'none'. */
+        border: 2px solid var(--cor-marca);
     }
 
-    /* --- Churrasco dos Pais --- */
-    .sobre-churras-dos-pais {
+    /* --- Churrasco dos Pais e de Ex-Moradores (estrutura comum) --- */
+    .sobre-churras-dos-pais,
+    .sobre-churras-ex-moradores {
         position: relative; /* Mantém o contexto para o conteúdo flutuante */
-        color: white;
+        color: var(--cor-superficie-clara);
         padding: 0;
         background-color: transparent;
     }
 
-    .background-churras-pais img {
+    .background-churras-pais img,
+    .background-churras-ex-moradores img {
         display: block;
         width: 100%;
         height: 85vh; /* Define a altura da seção com base na altura da tela */
         object-fit: cover;
     }
 
-    .conteudo-churras-pais {
+    .conteudo-churras-pais,
+    .conteudo-churras-ex-moradores {
         position: absolute;
         z-index: 3;
         top: 0; left: 0;
         width: 100%; height: 100%;
         padding: 0;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        text-shadow: var(--sombra-texto-sobre-foto);
     }
 
-    /* Regra unificada para posicionar TODOS os textos.
-       ATENCAO: o posicionamento abaixo e por porcentagem calibrada a
-       olho sobre a foto. Os max-width em % existem para o texto nao
-       transbordar a imagem quando o conteudo mudar. */
-    .conteudo-churras-pais .titulo-churras-pais,
-    .conteudo-churras-pais .texto-churras-pais,
-    .conteudo-churras-pais .muito-mais-rep {
+    /* Todos os textos flutuantes das duas secoes.
+       ATENCAO: as coordenadas abaixo sao calibradas a olho sobre a
+       foto. Os max-width existem para o texto nao transbordar quando
+       o conteudo mudar. */
+    .conteudo-churras-pais > p,
+    .conteudo-churras-ex-moradores > p {
         position: absolute;
         transform: translate(-50%, -50%); /* Centraliza o elemento em suas coordenadas */
         margin: 0;
@@ -422,9 +425,28 @@ body {
         max-width: 46%;
     }
 
-    .conteudo-churras-pais .titulo-churras-pais {
+    .conteudo-churras-pais .titulo-churras-pais,
+    .conteudo-churras-ex-moradores .titulo-churras-ex-moradores {
         font-family: 'AbsolutHeadline';
         font-size: clamp(40px, 5vw, 70px);
+        text-align: left;
+    }
+
+    .conteudo-churras-pais .texto-churras-pais,
+    .conteudo-churras-ex-moradores .texto-churras-ex-moradores {
+        text-align: left;
+        /* Antes clamp(20px, 1vw, 40px): 1vw so passa de 20px acima de
+           2000px de tela, ou seja, era 20px fixo na pratica. */
+        font-size: clamp(16px, 1.4vw, 22px);
+    }
+
+    .conteudo-churras-pais .muito-mais-rep,
+    .conteudo-churras-ex-moradores .muito-mais-rep {
+        text-align: right;
+    }
+
+    /* --- Coordenadas: o unico ponto onde as duas secoes divergem --- */
+    .conteudo-churras-pais .titulo-churras-pais {
         /* Ancorado pela borda esquerda, nao pelo centro. Com left:19.5% +
            translate(-50%) a posicao dependia da largura do texto, e o titulo
            saia 10px para fora da tela em 1280px (pior ainda em 768px).
@@ -432,79 +454,29 @@ body {
         left: 5%;
         top: 20%;
         transform: translate(0, -50%);
-        text-align: left;
     }
-
     .conteudo-churras-pais .texto-churras-pais {
         left: 25%;
         top: 31.5%;
-        text-align: left;
         max-width: 40%;
-        /* Antes clamp(20px, 1vw, 40px): 1vw so passa de 20px acima de
-           2000px de tela, ou seja, era 20px fixo na pratica. */
-        font-size: clamp(16px, 1.4vw, 22px);
     }
-
     .conteudo-churras-pais .muito-mais-rep {
         left: 80%;
         top: 40%;
-        text-align: right;
-    }
-
-    /* --- Churrasco de Ex-Moradores --- */
-    .sobre-churras-ex-moradores {
-        position: relative;
-        color: white;
-        padding: 0;
-        background-color: transparent;
-    }
-
-    .background-churras-ex-moradores img {
-        display: block;
-        width: 100%;
-        height: 85vh;
-        object-fit: cover;
-    }
-
-    .conteudo-churras-ex-moradores {
-        position: absolute;
-        z-index: 3;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        padding: 0;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
-    }
-
-    .conteudo-churras-ex-moradores .titulo-churras-ex-moradores,
-    .conteudo-churras-ex-moradores .texto-churras-ex-moradores,
-    .conteudo-churras-ex-moradores .muito-mais-rep {
-        position: absolute;
-        transform: translate(-50%, -50%);
-        margin: 0;
-        width: auto;
-        max-width: 46%;
     }
 
     .conteudo-churras-ex-moradores .titulo-churras-ex-moradores {
-        font-family: 'AbsolutHeadline';
-        font-size: clamp(40px, 5vw, 70px);
         left: 26.5%;
         top: 68%;
-        text-align: left;
     }
-
     .conteudo-churras-ex-moradores .texto-churras-ex-moradores {
         left: 36.5%;
         top: 85.5%;
-        text-align: left;
         max-width: 80%;
-        font-size: clamp(16px, 1.4vw, 22px);
     }
-
     .conteudo-churras-ex-moradores .muito-mais-rep {
         left: 80%;
         top: 80%;
-        text-align: right;
     }
 
     /* --- Nossa Casa --- */

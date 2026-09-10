@@ -31,6 +31,8 @@ document.addEventListener('DOMContentLoaded', function() {
             if (jaCriado || !idVideo) return;
             jaCriado = true;
             new YT.Player(slotVideo, {
+                // -nocookie: nao planta cookie de rastreamento antes de interagir
+                host: 'https://www.youtube-nocookie.com',
                 videoId: idVideo,
                 playerVars: {
                     autoplay: 1,
@@ -173,7 +175,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Cria um wrapper interno para a animação
             const scrollerInner = document.createElement('div');
-            scrollerInner.classList.add('scroller__inner');
+            scrollerInner.classList.add('scroller-inner');
             scroller.appendChild(scrollerInner);
 
             // Move os itens originais para dentro do wrapper

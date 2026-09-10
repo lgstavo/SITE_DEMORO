@@ -21,7 +21,7 @@ body {
     font-family: 'Absolut', sans-serif;
     background-image: url("Background/mobile_background_v2.jpg");
     background-repeat: repeat;
-    color: #f0f0f0;
+    color: var(--cor-texto);
     width: 100%;
     /* 'clip' no lugar de 'hidden': contem vazamento lateral sem criar
        um container de rolagem (que quebraria position:sticky). */
@@ -35,7 +35,7 @@ body {
 /* =============================================
     2. HEADER / NAVBAR
     ============================================= */
-.barra_cima {
+.barra-cima {
     width: 100%;
     height: 40px;
     background: url("BARRA_CIMA.avif") center/cover no-repeat;
@@ -48,13 +48,15 @@ body {
     padding: 0 20px;
     z-index: 1000;
 }
-.logo { height: 30px; }
+/* width:auto anula a dica de apresentacao do atributo width do <img>,
+   para a largura sair da proporcao real e nao dos 1196px declarados. */
+.logo { height: 30px; width: auto; }
 
 /* =============================================
     3. HERO BANNER E TÍTULOS DE SEÇÃO
     ============================================= */
 
-.foto_casa {
+.foto-casa {
     width: 100%;
     height: auto;
     display: block;
@@ -94,7 +96,7 @@ body {
 .conteudo-texto {
     font-size: clamp(16px, 4vw, 18px);
     line-height: 1.6;
-    color: #e0e0e0;
+    color: var(--cor-texto-suave);
 }
 
 .texto-sala, .texto-quartos, .texto-estudos {
@@ -147,8 +149,8 @@ body {
 
 .botao-whats:hover{
     background: url('Background/background_v4.jpg');
-    color: white;
-    box-shadow:0 8px 16px 0 rgba(0,0,0,0.6);
+    color: var(--cor-superficie-clara);
+    box-shadow: var(--sombra-cartao);
 }
 
 .titulo-contato {
@@ -210,7 +212,7 @@ body {
         left: 50%;
         transform: translate(-50%, 0);
         width: 100%;
-        color: #101010;
+        color: var(--cor-titulo-hero);
         /* Antes 2.5vw puro */
         font-size: clamp(20px, 2.5vw, 44px);
     }
@@ -292,4 +294,41 @@ body {
         /* Antes 3vw puro: 57px numa tela de 1920 */
         font-size: clamp(22px, 3vw, 40px);
     }
+}
+
+/* =============================================
+    9. PÁGINA 404
+    ============================================= */
+.pagina-erro {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 18vh 20px 10vh;
+    text-align: center;
+}
+.titulo-erro {
+    font-family: 'AbsolutHeadline';
+    font-size: clamp(32px, 8vw, 52px);
+    margin-bottom: 1rem;
+}
+.texto-erro {
+    font-size: clamp(17px, 2.2vw, 21px);
+    line-height: 1.6;
+    color: var(--cor-texto-suave);
+    margin-bottom: 2.5rem;
+}
+.botao-voltar {
+    display: inline-block;
+    font-family: 'AbsolutHandwritten';
+    font-size: clamp(20px, 4vw, 28px);
+    text-decoration: none;
+    color: var(--cor-texto-em-claro);
+    background: url('Background/white_background.jpg');
+    padding: 12px 32px;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+}
+.botao-voltar:hover {
+    background: url('Background/background_v4.jpg');
+    color: var(--cor-superficie-clara);
+    box-shadow: var(--sombra-cartao);
 }
