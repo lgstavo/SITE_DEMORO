@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página não encontrada - República Demorô</title>
     <meta name="robots" content="noindex">
+    <meta name="theme-color" content="#000000">
     <link rel="icon" href="images/Logo_Aba.ico">
+    <link rel="preload" href="fonts/absolut-regular.woff" as="font" type="font/woff" crossorigin>
     <link rel="stylesheet" href="comum.css">
     <link rel="stylesheet" href="casa.css">
 </head>
@@ -14,21 +16,24 @@
 <body>
 
     <header class="barra-cima">
-        <a href="index.html"><img class="logo" src="images/Logos/LOGO_DEMORO_SITE.png" alt="Logo Demorô" width="1196" height="306"></a>
+        <a class="logo-link" href="index.html" aria-label="República Demorô, ir para o início">
+            <img class="logo" src="images/Logos/LOGO_DEMORO_SITE.png" alt="República Demorô" width="1196" height="306">
+        </a>
     </header>
 
     <main class="pagina-erro">
+        <p class="rotulo">Erro 404</p>
         <h1 class="titulo-erro">Essa página se perdeu</h1>
         <p class="texto-erro">
-            O endereço que você tentou abrir não existe (ou não existe mais).<br>
+            O endereço que você tentou abrir não existe, ou não existe mais.
             Deve ter sido a resenha.
         </p>
-        <a href="index.html" class="botao-voltar">Voltar para o início</a>
+        <a href="index.html" class="botao">Voltar para o início</a>
     </main>
 
     <footer class="demoro-footer">
-        <p>República Demorô</p>
-        <p>Desde 2005</p>
+        <p class="marca">República Demorô</p>
+        <p class="desde">Desde 2005 &middot; São Carlos</p>
     </footer>
 
 </body>

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nossa Casa - República Demorô</title>
     <meta name="description" content="Conheça a casa da República Demorô em São Carlos: 8 quartos, 2 salas, cozinha ampla, sala de estudos e mais de 1200m2 de área de lazer com piscina.">
+    <meta name="theme-color" content="#000000">
 
     <!-- Open Graph: preview ao compartilhar o link (WhatsApp, Instagram, etc.) -->
     <meta property="og:type" content="website">
@@ -16,8 +17,10 @@
     <meta property="og:image" content="https://lgstavo.github.io/SITE_DEMORO/FOTOS_CASA/piscina_2.jpeg">
     <meta property="og:url" content="https://lgstavo.github.io/SITE_DEMORO/casa.html">
     <meta name="twitter:card" content="summary_large_image">
+
     <link rel="icon" href="images/Logo_Aba.ico">
     <link rel="preload" href="fonts/absolut-regular.woff" as="font" type="font/woff" crossorigin>
+    <link rel="preload" href="fonts/absolut-headline.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="comum.css">
     <link rel="stylesheet" href="casa.css">
 
@@ -30,16 +33,19 @@
 <body>
 
     <header class="barra-cima">
-        <a href="index.html"><img class="logo" src="images/Logos/LOGO_DEMORO_SITE.png" alt="Logo Demorô" width="1196" height="306"></a>
+        <a class="logo-link" href="index.html" aria-label="República Demorô, ir para o início">
+            <img class="logo" src="images/Logos/LOGO_DEMORO_SITE.png" alt="República Demorô" width="1196" height="306">
+        </a>
+
         <nav id="menu-principal" class="menu">
             <a href="#sala">Sala</a>
             <a href="#quartos">Quartos</a>
             <a href="#cozinha">Cozinha</a>
-            <a href="#sala_de_estudos">Sala de Estudos</a>
+            <a href="#sala_de_estudos">Estudos</a>
             <a href="#area_de_lazer">Lazer</a>
-            <a href="#entre-em-contato">Entre em Contato</a>
-
+            <a href="#entre-em-contato">Contato</a>
         </nav>
+
         <button type="button" class="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">
             <span></span>
             <span></span>
@@ -49,6 +55,9 @@
 
     <main>
 
+        <!-- ============================================================
+             HERO
+             ============================================================ -->
         <section class="crop">
             <!-- Mesmo esquema do index.html: o player so e criado no mobile. -->
             <div class="video-container">
@@ -57,117 +66,120 @@
                      data-scroll-para="#casa_hero"></div>
             </div>
 
-            <img class="foto-casa" id="casa_hero" src="FOTOS_CASA/Escada (2) (2).jpg" alt="Foto da fachada da casa" width="1920" height="894">
-            <h1 class="titulo-rep-demoro fonte-nos">Nossa Casa</h1>
-        </section>
+            <img id="casa_hero" src="FOTOS_CASA/Escada (2) (2).jpg" alt="Escada de acesso à área da piscina da república" width="1920" height="894" fetchpriority="high">
 
-        <section id="sala" class="sala-section">
-            <div class="sala-item">
-                <h2 class="titulo-secao titulo-sala fade-in-element">Sala</h2>
-                <div class="split-layout">
-                    <div class="fotos-galeria fotos-sala fade-in-element">
-                        <figure><img src="FOTOS_CASA/foto_sala.jpeg" alt="Foto Sala" width="1280" height="1014" loading="lazy" decoding="async"></figure>
-                        <figure><img src="FOTOS_CASA/foto_sala_2.jpeg" alt="Foto Sala2" width="1280" height="960" loading="lazy" decoding="async"></figure>
-                        <figure><img src="FOTOS_CASA/foto_sala_recente.jpeg" alt="Foto Sala Recente" width="1599" height="899" loading="lazy" decoding="async"></figure>
-                    </div>
-                    <div class="texto-container">
-                        <p class="conteudo-texto texto-sala">
-                            Temos 2 salas bem espaçosas!<br>Na sala principal, possuímos uma TV de 50 polegadas e é onde nos reunimos todos os dias para almoçarmos juntos, fazer aquela resenha e assistir a alguns filmes!<br>
-                            Na salinha é onde tiramos um tempo para relaxar dos estudos e nos divertimos um pouco. Nela, temos mais uma TV de 45 polegadas, PS4 com inúmeros jogos e 3 sofás!
-                        </p>
-                    </div>
-                </div>
+            <div class="hero-conteudo">
+                <p class="rotulo rotulo-claro">São Carlos</p>
+                <h1 class="hero-titulo">Nossa Casa</h1>
+                <p class="hero-nota">8 quartos &middot; 2 salas &middot; 1200m² de quintal</p>
             </div>
         </section>
 
-        <section id="quartos" class="quartos-section">
-            <h2 class="titulo-secao titulo-quarto">Quartos</h2>
-            <div class="split-layout">
-                <div class="texto-container">
-                    <p class="conteudo-texto texto-quartos">
-                        Nossa casa possui 8 quartos amplos, todos equipados com armários e mesas de estudo para garantir conforto e praticidade.
-                    </p>
-                </div>
-                <div class="fotos-galeria fotos-quartos fade-in-element">
-                    <figure><img src="FOTOS_CASA/quarto_bixos.jpeg" alt="Foto Quarto Bixos" width="1280" height="960" loading="lazy" decoding="async"></figure>
-                    <figure><img src="FOTOS_CASA/quarto_corredor.jpeg" alt="Foto Quarto Corredor" width="1280" height="960" loading="lazy" decoding="async"></figure>
-                    <figure><img src="FOTOS_CASA/quarto-cozinha.jpeg" alt="Foto quarto Cozinha" width="1280" height="960" loading="lazy" decoding="async"></figure>
-                    <figure><img src="FOTOS_CASA/quarto_bixos_2.jpeg" alt="Foto quarto bixos 2" width="1280" height="960" loading="lazy" decoding="async"></figure>
-                    <figure><img src="FOTOS_CASA/quarto_corredor_2.jpeg" alt="Foto quarto corredor 2" width="1280" height="960" loading="lazy" decoding="async"></figure>
-                </div>
+        <!-- ============================================================
+             CÔMODOS
+             ============================================================ -->
+        <section id="sala" class="comodo">
+            <div class="comodo-texto fade-in-element">
+                <p class="rotulo">Onde a resenha acontece</p>
+                <h2 class="titulo-secao">Sala</h2>
+                <p>
+                    Temos 2 salas bem espaçosas. Na sala principal, possuímos uma TV de 50 polegadas e é onde nos reunimos todos os dias para almoçarmos juntos, fazer aquela resenha e assistir a alguns filmes.
+                </p>
+                <p>
+                    Na salinha é onde tiramos um tempo para relaxar dos estudos e nos divertimos um pouco. Nela, temos mais uma TV de 45 polegadas, PS4 com inúmeros jogos e 3 sofás.
+                </p>
+            </div>
+            <div class="comodo-galeria fade-in-element">
+                <figure><img src="FOTOS_CASA/foto_sala.jpeg" alt="Sala principal com sofás e TV" width="1280" height="1014" loading="lazy" decoding="async"></figure>
+                <figure><img src="FOTOS_CASA/foto_sala_2.jpeg" alt="Segunda vista da sala principal" width="1280" height="960" loading="lazy" decoding="async"></figure>
+                <figure><img src="FOTOS_CASA/foto_sala_recente.jpeg" alt="Salinha de descanso com PS4" width="1599" height="899" loading="lazy" decoding="async"></figure>
             </div>
         </section>
 
-        <section id="cozinha" class="cozinha-section">
-            <div class="cozinha-item">
-                <h2 class="titulo-secao titulo-cozinha fade-in-element">Cozinha</h2>
-                <div class="split-layout">
-                    <div class="fotos-galeria fotos-cozinha fade-in-element">
-                        <figure><img src="FOTOS_CASA/foto_cozinha_2.jpeg" alt="Foto Cozinha 2" width="1280" height="960" loading="lazy" decoding="async"></figure>
-                        <figure><img src="FOTOS_CASA/foto_cozinha.jpeg" alt="Foto Cozinha" width="1280" height="960" loading="lazy" decoding="async"></figure>
-                    </div>
-                    <div class="texto-container">
-                        <p class="conteudo-texto texto-cozinha">
-                            Possuímos uma cozinha ampla, com diversos armários para a divisão entre os moradores e 1 fogão industrial.<br>
-                            Também possuímos Air-Fryer, 2 geladeiras, microondas, forno elétrico e tudo que é necessário para fazermos nossas refeições aos finais de semana.
-                        </p>
-                    </div>
-                </div>
+        <section id="quartos" class="comodo comodo-invertido">
+            <div class="comodo-texto fade-in-element">
+                <p class="rotulo">Oito ao todo</p>
+                <h2 class="titulo-secao">Quartos</h2>
+                <p>
+                    Nossa casa possui 8 quartos amplos, todos equipados com armários e mesas de estudo para garantir conforto e praticidade.
+                </p>
+            </div>
+            <div class="comodo-galeria fade-in-element">
+                <figure><img src="FOTOS_CASA/quarto_bixos.jpeg" alt="Quarto dos bixos com armários e mesa de estudo" width="1280" height="960" loading="lazy" decoding="async"></figure>
+                <figure><img src="FOTOS_CASA/quarto_corredor.jpeg" alt="Quarto do corredor" width="1280" height="960" loading="lazy" decoding="async"></figure>
+                <figure><img src="FOTOS_CASA/quarto-cozinha.jpeg" alt="Quarto próximo à cozinha" width="1280" height="960" loading="lazy" decoding="async"></figure>
+                <figure><img src="FOTOS_CASA/quarto_bixos_2.jpeg" alt="Segunda vista do quarto dos bixos" width="1280" height="960" loading="lazy" decoding="async"></figure>
             </div>
         </section>
 
-        <section id="sala_de_estudos" class="estudos-section">
-            <h2 class="titulo-secao titulo-estudos">Sala de Estudos</h2>
-            <div class="split-layout">
-                <div class="texto-container">
-                    <p class="conteudo-texto texto-estudos">
-                        Nossa sala de estudos fica afastada de todo o restante da casa.<br>
-                        Equipada com mesas, cadeiras e uma rede para dar aquela descansada de vez em quando, aqui é o ambiente perfeito para fazer reuniões, estudar e dar uma deitada na rede nos momentos de cansaço.
-                    </p>
-                </div>
-                <div class="fotos-galeria fotos-estudos fade-in-element">
-                    <figure><img src="FOTOS_CASA/sala_de_estudos.jpeg" alt="Foto Sala Estudos" width="1280" height="960" loading="lazy" decoding="async"></figure>
-                </div>
+        <section id="cozinha" class="comodo">
+            <div class="comodo-texto fade-in-element">
+                <p class="rotulo">Fogão industrial</p>
+                <h2 class="titulo-secao">Cozinha</h2>
+                <p>
+                    Possuímos uma cozinha ampla, com diversos armários para a divisão entre os moradores e 1 fogão industrial.
+                </p>
+                <p>
+                    Também possuímos Air-Fryer, 2 geladeiras, microondas, forno elétrico e tudo que é necessário para fazermos nossas refeições aos finais de semana.
+                </p>
+            </div>
+            <div class="comodo-galeria comodo-galeria-dupla fade-in-element">
+                <figure><img src="FOTOS_CASA/foto_cozinha_2.jpeg" alt="Cozinha com fogão industrial" width="1280" height="960" loading="lazy" decoding="async"></figure>
+                <figure><img src="FOTOS_CASA/foto_cozinha.jpeg" alt="Armários e bancada da cozinha" width="1280" height="960" loading="lazy" decoding="async"></figure>
             </div>
         </section>
 
-        <section id="area_de_lazer" class="lazer-section">
-            <div class="lazer-item">
-                <h2 class="titulo-secao titulo-lazer fade-in-element">Área de Lazer e Piscina</h2>
-                <div class="split-layout">
-                    <div class="fotos-galeria fotos-lazer fade-in-element">
-                        <figure><img src="FOTOS_CASA/quintal_1.jpeg" alt="Foto Quintal" width="1280" height="960" loading="lazy" decoding="async"></figure>
-                        <figure><img src="FOTOS_CASA/varanda.jpeg" alt="Foto Varanda" width="1280" height="960" loading="lazy" decoding="async"></figure>
-                        <figure><img src="FOTOS_CASA/Escada (2) (2).jpg" alt="Escada de acesso a area da piscina" width="1920" height="894" loading="lazy" decoding="async"></figure>
-                        <figure><img src="FOTOS_CASA/piscina_2.jpeg" alt="Foto Piscina 2" width="1280" height="960" loading="lazy" decoding="async"></figure>
-                    </div>
-                    <div class="texto-container">
-                        <p class="conteudo-texto texto-lazer">
-                            Aqui é onde passamos a maior parte dos nossos finais de semana!<br>
-                            Nosso quintal é um dos maiores entre as Repúblicas de São Carlos, com mais de 1200m2!
-                            Nele, famos nossos Churrascos de Ex-Moradores e dos Pais, perfeito para um dia de churrasco, chopp e muita conversa.<br>
-                            Na nossa área de piscina nos reunimos quase todas os finais de semana para fazermos um churrasco entre nós nos dias ensolarados.
-                        </p>
-                    </div>
-                </div>
+        <section id="sala_de_estudos" class="comodo comodo-invertido">
+            <div class="comodo-texto fade-in-element">
+                <p class="rotulo">Longe do barulho</p>
+                <h2 class="titulo-secao">Sala de Estudos</h2>
+                <p>
+                    Nossa sala de estudos fica afastada de todo o restante da casa.
+                </p>
+                <p>
+                    Equipada com mesas, cadeiras e uma rede para dar aquela descansada de vez em quando, aqui é o ambiente perfeito para fazer reuniões, estudar e dar uma deitada na rede nos momentos de cansaço.
+                </p>
+            </div>
+            <div class="comodo-galeria comodo-galeria-unica fade-in-element">
+                <figure><img src="FOTOS_CASA/sala_de_estudos.jpeg" alt="Sala de estudos com mesas, cadeiras e rede" width="1280" height="960" loading="lazy" decoding="async"></figure>
             </div>
         </section>
-        <section id="entre-em-contato" class="contato-section">
-            <div class="contato-item">
-                <h2 class="titulo-contato fade-in-element">Quer viver essa experiência única na sua vida?</h2>
-                <a href="https://wa.me/5511943996754" class="botao-whats"
-                   target="_blank" rel="noopener">
-                    Vem ser feliz na Demorô!
-                </a>
+
+        <section id="area_de_lazer" class="comodo">
+            <div class="comodo-texto fade-in-element">
+                <p class="rotulo">Mais de 1200m²</p>
+                <h2 class="titulo-secao">Área de Lazer e Piscina</h2>
+                <p>
+                    Aqui é onde passamos a maior parte dos nossos finais de semana. Nosso quintal é um dos maiores entre as Repúblicas de São Carlos, com mais de 1200m².
+                </p>
+                <p>
+                    Nele, fazemos nossos Churrascos de Ex-Moradores e dos Pais, perfeito para um dia de churrasco, chopp e muita conversa. Na nossa área de piscina nos reunimos quase todos os finais de semana para fazermos um churrasco entre nós nos dias ensolarados.
+                </p>
             </div>
-            
+            <div class="comodo-galeria fade-in-element">
+                <figure><img src="FOTOS_CASA/quintal_1.jpeg" alt="Quintal amplo da república" width="1280" height="960" loading="lazy" decoding="async"></figure>
+                <figure><img src="FOTOS_CASA/varanda.jpeg" alt="Varanda com vista para o quintal" width="1280" height="960" loading="lazy" decoding="async"></figure>
+                <figure><img src="FOTOS_CASA/Escada (2) (2).jpg" alt="Escada de acesso à área da piscina" width="1920" height="894" loading="lazy" decoding="async"></figure>
+                <figure><img src="FOTOS_CASA/piscina_2.jpeg" alt="Área da piscina em dia ensolarado" width="1280" height="960" loading="lazy" decoding="async"></figure>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             CONTATO
+             ============================================================ -->
+        <section id="entre-em-contato" class="secao-contato">
+            <p class="rotulo rotulo-claro">Vagas abertas</p>
+            <h2 class="titulo-contato">Quer viver essa experiência única na sua vida?</h2>
+            <a href="https://wa.me/5511943996754" class="botao botao-claro" target="_blank" rel="noopener">
+                Vem ser feliz na Demorô
+            </a>
         </section>
 
     </main>
 
     <footer id="footer-demoro" class="demoro-footer">
-        <p>República Demorô</p>
-        <p>Desde 2005</p>
+        <p class="marca">República Demorô</p>
+        <p class="desde">Desde 2005 &middot; São Carlos</p>
     </footer>
 
     <script src="script.js"></script>

@@ -1,208 +1,248 @@
 /* =============================================================
    base.css — especifico do index.html
-   O que e compartilhado com casa.html mora em comum.css, que
-   deve ser carregado ANTES desta folha (e de onde vem a paleta).
+   O sistema de design (tokens, header, botoes, rodape) mora em
+   comum.css, que deve ser carregado ANTES desta folha.
    ============================================================= */
 
 /* =============================================
-   1. ESTILOS GERAIS
+   1. SEÇÕES
    ============================================= */
 
-html, body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Absolut', sans-serif;
-    background-image: url("Background/mobile_background_v2.jpg");
-    background-repeat: repeat;
-    color: var(--cor-texto);
-    scroll-behavior: smooth;
-    width: 100%;
-}
-
-html {
-    /* O header e fixo com 40px: sem isto o alvo de cada link ancora
-       (#sobre-nos, #eventos...) para escondido atras da barra. */
-    scroll-padding-top: 48px;
-}
-
-body {
-    padding-top: 40px;
-    /* 'clip' no lugar de 'hidden': contem qualquer vazamento lateral
-       sem criar um container de rolagem (que quebraria position:sticky
-       e a rolagem programatica). Auditado: hoje o unico elemento mais
-       largo que a tela e o carrossel, que ja se corta sozinho. */
-    overflow-x: clip;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    html, body { scroll-behavior: auto; }
-}
-
-/* =============================================
-   2. HERO BANNER (.CROP SECTION)
-   ============================================= */
-
-.foto-churrasco-ex {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-.titulo-rep-demoro .fonte-sobre { font-family: 'AbsolutHeadline'; }
-.titulo-rep-demoro .fonte-nos { font-family: 'AbsolutHandwritten'; }
-.titulo-rep-demoro .fonte-moderacao {
-    font-family: 'Absolut';
-    /* Antes: clamp(16px, 1vw, 3px) -- o maximo era MENOR que o minimo,
-       entao o valor travava em 16px e o 1vw nunca atuava. */
-    font-size: clamp(14px, 2.2vw, 20px);
-}
-
-.titulo-rep-demoro span { display: block; }
-.titulo-sobre-nos .fonte-sobre { font-family: 'AbsolutHeadline'; }
-.titulo-sobre-nos .fonte-nos { font-family: 'AbsolutHandwritten'; }
-.titulo-sobre-nos span { display: block; }
-
-/* =============================================
-   3. SEÇÃO SOBRE NÓS
-   ============================================= */
-
-.sobre-nos-section {
-    padding: 40px 20px;
+.secao {
+    padding: var(--e-6) var(--e-3);
     text-align: center;
 }
-.titulo-sobre-nos {
-    font-size: clamp(28px, 8vw, 40px);
-    margin-bottom: 1rem;
+
+.secao-escura {
+    background-color: var(--tinta);
+    color: var(--papel);
 }
-.sobre-nos {
-    /* Antes: clamp(20px, 3vw, 20px) -- minimo igual ao maximo, o que
-       anulava o clamp. Agora escala de verdade entre 17px e 21px. */
-    font-size: clamp(17px, 2.2vw, 21px);
-    color: var(--cor-texto-suave);
-    max-width: 900px;
-    margin: 0 auto;
-    line-height: 1.6;
+
+.titulo-secao {
+    font-family: 'AbsolutHeadline', Helvetica, Arial, sans-serif;
+    font-size: var(--t-titulo);
+    text-transform: uppercase;
+    margin-bottom: var(--e-4);
+}
+
+/* Paragrafo de abertura: maior, para dar entrada na secao */
+.texto-abertura {
+    font-size: clamp(19px, 1.9vw, 27px);
+    line-height: 1.45;
+    margin-bottom: var(--e-3);
+}
+
+.texto-corpo {
+    color: var(--cinza-texto);
+}
+.secao-escura .texto-corpo {
+    color: rgba(255, 255, 255, 0.72);
 }
 
 /* =============================================
-   4. SEÇÃO NOSSOS EVENTOS
+   2. HERO
    ============================================= */
 
-.titulo-nossos-eventos {
-    font-family: 'AbsolutHeadline';
-    text-align: center;
-    font-size: clamp(32px, 8vw, 45px);
-    margin-bottom: 2rem;
-    padding: 0 20px;
-}
-.conteudo-texto-festa {
-    order: 1;
+.hero-conteudo {
+    padding: var(--e-4) var(--e-3) var(--e-5);
+    color: var(--papel);
     text-align: left;
-    margin-bottom: 30px;
-    /* Sem cor fixa: herda --cor-texto, que ja e escura no desktop e
-       clara no mobile. Um 'color: black' aqui ficaria preto sobre o
-       fundo azul do celular. */
 }
-.fotos-interrep, .fotos-a-festa {
-    order: 2;
+
+.hero-titulo {
+    font-size: var(--t-display);
+    margin-bottom: var(--e-3);
+}
+.hero-linha {
+    display: block;
+    font-family: 'AbsolutHeadline', Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+}
+/* A manuscrita e o contraponto da display — mesmo par que a Absolut usa */
+.hero-linha-manuscrita {
+    font-family: 'AbsolutHandwritten', cursive;
+    text-transform: none;
+    font-size: 0.92em;
+    color: var(--acido);
+}
+
+.hero-nota {
+    font-size: var(--t-rotulo);
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+/* =============================================
+   3. EVENTOS
+   ============================================= */
+
+.evento {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 0px;
+    gap: var(--e-4);
+    max-width: 1240px;
+    margin: 0 auto var(--e-6);
+    text-align: left;
 }
-.fotos-interrep figure, .fotos-a-festa figure {
-    width: 100%;
-    max-width: 400px;
+.evento:last-child { margin-bottom: 0; }
+
+.evento-texto p {
+    color: rgba(255, 255, 255, 0.72);
+    margin-bottom: var(--e-2);
+    max-width: var(--medida);
+}
+.evento-texto p:last-child { margin-bottom: 0; }
+
+.evento-logo {
+    display: block;
+    width: 190px;
+    margin-bottom: var(--e-3);
+}
+.evento-logo-largo { width: 280px; }
+
+.galeria-evento {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--e-1);
+}
+.galeria-evento figure {
     margin: 0;
-    aspect-ratio: 4/3;
-    border-radius: 0px;
+    aspect-ratio: 4 / 5;
     overflow: hidden;
 }
-.fotos-interrep figure img, .fotos-a-festa figure img {
+.galeria-evento img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    /* Levemente dessaturada em repouso, cheia na interacao: dá unidade
+       a fotos de origens e qualidades diferentes. */
+    filter: grayscale(0.15);
+    transition: filter 0.4s ease, transform 0.6s ease;
+}
+.galeria-evento figure:hover img {
+    filter: grayscale(0);
+    transform: scale(1.04);
 }
 
-/* =============================================
-   5. CHURRASCO DOS PAIS E DE EX-MORADORES
-
-   As duas secoes sao o mesmo componente com nomes diferentes.
-   Os seletores estao agrupados: o que varia entre elas fica so
-   nas coordenadas dentro do @media de desktop.
-   ============================================= */
-
-.sobre-churras-dos-pais,
-.sobre-churras-ex-moradores {
-    padding: 0;
-    text-align: center;
-    background-color: var(--cor-superficie-clara);
-    color: var(--cor-texto-em-claro);
+/* --- Montagem: o cartaz de divulgação --- */
+.montagem {
+    display: flex;
+    flex-direction: column;
+    gap: var(--e-4);
+    margin-top: var(--e-5);
+    padding-top: var(--e-5);
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-.background-churras-pais img,
-.background-churras-ex-moradores img {
+.montagem-arte {
+    margin: 0;
+    flex: 0 0 auto;
+}
+.montagem-arte img {
+    display: block;
     width: 100%;
-    height: auto;
 }
 
-.titulo-churras-pais,
-.titulo-churras-ex-moradores {
-    font-family: 'AbsolutHeadline';
-    font-size: clamp(32px, 8vw, 50px);
+.montagem-texto p {
+    color: rgba(255, 255, 255, 0.72);
+    max-width: var(--medida);
 }
 
-.muito-mais-rep {
-    font-family: 'AbsolutHandwritten';
-    font-size: clamp(32px, 8vw, 60px);
-}
-
-.texto-churras-pais,
-.texto-churras-ex-moradores {
-    font-size: 18px;
-    max-width: 700px;
-    margin: 15px auto;
-    line-height: 1.6;
+.montagem-titulo {
+    font-family: 'AbsolutHeadline', Helvetica, Arial, sans-serif;
+    font-size: var(--t-secao);
+    text-transform: uppercase;
+    margin-bottom: var(--e-2);
 }
 
 /* =============================================
-   6. SEÇÃO MORADORES
+   4. DESTAQUES (foto sangrando + texto por cima)
+
+   Antes cada texto era posicionado por porcentagem calibrada a olho
+   (left: 19.5%, top: 20%...), o que dependia da largura do texto e
+   fazia o titulo sair da tela em 1280px. Agora e flexbox: funciona em
+   qualquer largura e com qualquer comprimento de texto.
    ============================================= */
 
-.moradores {
-    background: url('Background/white_background.jpg');
-    padding: 40px 0;
-    color: var(--cor-texto-em-claro);
+.destaque {
+    position: relative;
+    background-color: var(--tinta);
 }
 
-.titulo-moradores {
-    font-family: 'AbsolutHandwritten', sans-serif;
-    font-size: 40px;
-    text-align: center;
-    margin-bottom: 30px;
+.destaque-foto {
+    display: block;
+    width: 100%;
+    height: 78vh;
+    min-height: 460px;
+    object-fit: cover;
+    /* Escurece a foto para o texto branco ficar legivel sem precisar de
+       sombra em cada elemento. */
+    opacity: 0.5;
 }
 
-/* Controle de pausa do carrossel: a WCAG 2.2.2 pede um mecanismo
-   para parar conteudo em movimento. O :hover sozinho nao serve,
-   porque nao existe em tela de toque. O script.js revela o botao
-   apenas quando a animacao esta realmente ligada. */
+.destaque-conteudo {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--e-4) var(--e-3);
+    color: var(--papel);
+}
+
+.destaque-titulo {
+    font-family: 'AbsolutHeadline', Helvetica, Arial, sans-serif;
+    font-size: var(--t-titulo);
+    text-transform: uppercase;
+    margin-bottom: var(--e-3);
+}
+
+.destaque-texto {
+    max-width: 54ch;
+    margin-bottom: var(--e-3);
+}
+
+.destaque-assinatura {
+    font-family: 'AbsolutHandwritten', cursive;
+    font-size: var(--t-secao);
+    color: var(--acido);
+    line-height: 1.1;
+}
+
+/* =============================================
+   5. MORADORES
+   ============================================= */
+
+.secao-moradores {
+    padding-left: 0;
+    padding-right: 0;
+    background-color: var(--papel);
+}
+.secao-moradores .rotulo,
+.secao-moradores .titulo-secao {
+    padding-left: var(--e-3);
+    padding-right: var(--e-3);
+}
+
 .moradores-controles {
-    text-align: center;
-    margin-bottom: 16px;
+    margin-bottom: var(--e-4);
 }
 .botao-pausar {
-    font-family: 'Absolut', sans-serif;
-    font-size: 15px;
-    color: var(--cor-superficie-clara);
-    background-color: var(--cor-marca);
+    font-family: 'Absolut', Helvetica, Arial, sans-serif;
+    font-size: var(--t-rotulo);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--papel);
+    background-color: var(--tinta);
     border: 0;
-    border-radius: 999px;
-    padding: 8px 20px;
+    padding: var(--e-2) var(--e-4);
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.25s ease, color 0.25s ease;
 }
 .botao-pausar:hover {
-    background-color: var(--cor-marca-hover);
+    background-color: var(--acido);
+    color: var(--tinta);
 }
 
 .scrollbar-moradores {
@@ -211,46 +251,58 @@ body {
 
 .scrollbar-moradores[data-animated="true"] {
     overflow: hidden;
-    -webkit-mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
-    mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+    -webkit-mask: linear-gradient(90deg, transparent, white 12%, white 88%, transparent);
+    mask: linear-gradient(90deg, transparent, white 12%, white 88%, transparent);
 }
 
 .scrollbar-moradores[data-animated="true"] .scroller-inner {
     width: max-content; /* Garante que os itens fiquem em uma linha */
     display: flex;
     flex-wrap: nowrap;
-    gap: 16px;
+    gap: var(--e-2);
     /* O tempo da animação controla a velocidade */
-    animation: scroll 20s linear infinite;
+    animation: scroll 42s linear infinite;
 }
 
 /* A animação que move o conteúdo */
 @keyframes scroll {
     to {
         /* Move o conteúdo pela metade da sua largura total */
-        transform: translate(calc(-50% - 8px)); /* 8px é metade do gap */
+        transform: translate(calc(-50% - (var(--e-2) / 2)));
     }
 }
 
 .scrollbar-moradores figure {
-    flex: 0 0 150px;
-    text-align: center;
+    flex: 0 0 168px;
     margin: 0;
+    text-align: left;
 }
 .scrollbar-moradores figure img {
-    width: 150px;
-    height: 225px;
-    border-radius: 5%;
+    display: block;
+    width: 168px;
+    height: 224px;
     object-fit: cover;
+    filter: grayscale(1);
+    transition: filter 0.4s ease;
+}
+.scrollbar-moradores figure:hover img {
+    filter: grayscale(0);
 }
 .scrollbar-moradores figcaption {
-    margin-top: 8px;
-    font-size: 16px;
-    background-color: var(--cor-marca);
-    color: var(--cor-superficie-clara);
-    font-family: 'AbsolutHandwritten', sans-serif;
-    padding: 4px;
-    border-radius: 4px;
+    background-color: var(--azul);
+    color: var(--papel);
+    font-size: 12px;
+    line-height: 1.45;
+    letter-spacing: 0.04em;
+    padding: var(--e-2);
+    min-height: 74px;
+}
+.scrollbar-moradores figcaption b {
+    display: inline-block;
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-right: 4px;
 }
 
 /* Pausa no hover (mouse) e pela classe que o botao alterna (toque/teclado) */
@@ -260,240 +312,86 @@ body {
 }
 
 /* =============================================
-   7. SEÇÃO NOSSA CASA
+   6. NOSSA CASA (chamada final)
    ============================================= */
 
-.titulo-nossa-casa {
-    font-family: 'AbsolutHeadline';
-    text-align: center;
-    font-size: clamp(32px, 8vw, 45px);
-    margin-bottom: 2rem;
-    padding: 0 20px;
-}
-
-.sobre-casa{
-    display: flex;
-    justify-content: flex-end;
-    flex-direction: row;
-    align-items: center;
-}
-
-.conteudo-casa {
-    order: 2;
-    text-align: center;
-    background: url('Background/white_background.jpg');
-    flex: 1 1 50%;
-    padding: 1vw 2vw;
-    cursor: pointer;
-    /* Antes 5vw puro: 16px numa tela de 320px. Agora tem piso e teto. */
-    font-size: clamp(20px, 5vw, 34px);
-    font-family: 'AbsolutHandwritten';
-    text-decoration: none;
-    color: var(--cor-texto-em-claro);
-    transition-duration: 0.4s;
-}
-
-.conteudo-casa:hover{
-    background: url('Background/background_v4.jpg');
-    color: var(--cor-superficie-clara);
-    box-shadow: var(--sombra-cartao);
-}
-
-/* =============================================
-   8. ANIMAÇÃO DE ENTRADA (direção desta página)
-   O restante da regra esta em comum.css
-   ============================================= */
-.js .fade-in-element {
-    transform: translateY(30px);
-}
-
-/* =============================================
-   9. RODAPÉ
-   ============================================= */
-.demoro-footer {
-    font-family: 'AbsolutHandwritten';
-    font-size: clamp(16px, 2vw, 22px);
-    line-height: 1.4;
-    padding: 28px 20px;
-    margin: 0;
-    text-align: center;
-}
-.demoro-footer p {
-    margin: 2px 0;
+.secao-casa .texto-corpo {
+    margin-bottom: var(--e-4);
 }
 
 /* ===============================================================
-   10. ESTILOS DESKTOP (768px e maior — igual ao md: do Tailwind)
+   7. DESKTOP (768px e maior)
    =============================================================== */
 @media (min-width: 768px) {
 
-    /* Tema claro no desktop. Redefinir os tokens aqui faz o texto
-       acompanhar o fundo automaticamente -- era esse elo que faltava
-       quando o fundo virou branco e o texto continuou #f0f0f0. */
-    :root {
-        --cor-texto: #1a1a1a;
-        --cor-texto-suave: #333;
+    .secao {
+        padding: var(--e-7) var(--e-4);
     }
 
-    html, body {
-        background: var(--cor-superficie-clara);
-    }
+    /* --- Hero: texto sobre a foto --- */
+    .crop { position: relative; }
 
-    /* --- Hero Banner --- */
-    .titulo-rep-demoro {
+    .hero-conteudo {
         position: absolute;
-        bottom: 5%;
-        left: 50%;
-        transform: translate(-50%, 0);
-        width: 100%;
-        color: var(--cor-titulo-hero);
-        /* Antes 2.5vw puro */
-        font-size: clamp(20px, 2.5vw, 44px);
-        text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.7);
-    }
-    .titulo-rep-demoro span { display: inline; }
-
-    /* --- Seções de Eventos --- */
-    .fotos-interrep {
-        flex: 1 1 100%;
-        order: 2;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    .conteudo-texto-festa {
-        flex: 1 1 100%;
-        order: 1;
-    }
-    .fotos-a-festa {
-        flex: 1 1 100%;
-        order: 2;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
+        inset: auto 0 0 0;
+        padding: var(--e-7) var(--e-5) var(--e-5);
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0));
     }
 
-    /* Grids de fotos no desktop */
-    .fotos-interrep figure,
-    .fotos-a-festa figure {
-        flex: 1 1 calc(50% - 8px);
-        padding: 5px;
+    /* --- Eventos: texto e galeria lado a lado --- */
+    .evento {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--e-5);
+        align-items: center;
+        margin-bottom: var(--e-7);
     }
-    .fotos-interrep figure {
-        /* 'border: #09008a' sozinho nao pinta nada: o atalho precisa de
-           espessura e estilo, senao border-style fica 'none'. */
-        border: 2px solid var(--cor-marca);
+    /* A galeria do primeiro evento vai para a esquerda, a do segundo para
+       a direita: alterna o ritmo em vez de repetir o mesmo bloco. */
+    .evento:nth-of-type(odd) .galeria-evento { order: -1; }
+
+    .galeria-evento {
+        gap: var(--e-2);
     }
 
-    /* --- Churrasco dos Pais e de Ex-Moradores (estrutura comum) --- */
-    .sobre-churras-dos-pais,
-    .sobre-churras-ex-moradores {
-        position: relative; /* Mantém o contexto para o conteúdo flutuante */
-        color: var(--cor-superficie-clara);
-        padding: 0;
-        background-color: transparent;
+    /* A montagem ocupa a largura toda do artigo, abaixo das colunas */
+    .montagem {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: minmax(0, 380px) 1fr;
+        gap: var(--e-5);
+        align-items: center;
+        margin-top: 0;
+        padding-top: var(--e-6);
     }
 
-    .background-churras-pais img,
-    .background-churras-ex-moradores img {
-        display: block;
-        width: 100%;
-        height: 85vh; /* Define a altura da seção com base na altura da tela */
-        object-fit: cover;
+    /* --- Destaques --- */
+    .destaque-conteudo {
+        padding: var(--e-6) var(--e-7);
     }
-
-    .conteudo-churras-pais,
-    .conteudo-churras-ex-moradores {
-        position: absolute;
-        z-index: 3;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        padding: 0;
-        text-shadow: var(--sombra-texto-sobre-foto);
-    }
-
-    /* Todos os textos flutuantes das duas secoes.
-       ATENCAO: as coordenadas abaixo sao calibradas a olho sobre a
-       foto. Os max-width existem para o texto nao transbordar quando
-       o conteudo mudar. */
-    .conteudo-churras-pais > p,
-    .conteudo-churras-ex-moradores > p {
-        position: absolute;
-        transform: translate(-50%, -50%); /* Centraliza o elemento em suas coordenadas */
-        margin: 0;
-        width: auto;
-        max-width: 46%;
-    }
-
-    .conteudo-churras-pais .titulo-churras-pais,
-    .conteudo-churras-ex-moradores .titulo-churras-ex-moradores {
-        font-family: 'AbsolutHeadline';
-        font-size: clamp(40px, 5vw, 70px);
-        text-align: left;
-    }
-
-    .conteudo-churras-pais .texto-churras-pais,
-    .conteudo-churras-ex-moradores .texto-churras-ex-moradores {
-        text-align: left;
-        /* Antes clamp(20px, 1vw, 40px): 1vw so passa de 20px acima de
-           2000px de tela, ou seja, era 20px fixo na pratica. */
-        font-size: clamp(16px, 1.4vw, 22px);
-    }
-
-    .conteudo-churras-pais .muito-mais-rep,
-    .conteudo-churras-ex-moradores .muito-mais-rep {
+    .destaque-conteudo-fim {
+        align-items: flex-end;
         text-align: right;
     }
-
-    /* --- Coordenadas: o unico ponto onde as duas secoes divergem --- */
-    .conteudo-churras-pais .titulo-churras-pais {
-        /* Ancorado pela borda esquerda, nao pelo centro. Com left:19.5% +
-           translate(-50%) a posicao dependia da largura do texto, e o titulo
-           saia 10px para fora da tela em 1280px (pior ainda em 768px).
-           De quebra, agora alinha com o paragrafo logo abaixo. */
-        left: 5%;
-        top: 20%;
-        transform: translate(0, -50%);
-    }
-    .conteudo-churras-pais .texto-churras-pais {
-        left: 25%;
-        top: 31.5%;
-        max-width: 40%;
-    }
-    .conteudo-churras-pais .muito-mais-rep {
-        left: 80%;
-        top: 40%;
-    }
-
-    .conteudo-churras-ex-moradores .titulo-churras-ex-moradores {
-        left: 26.5%;
-        top: 68%;
-    }
-    .conteudo-churras-ex-moradores .texto-churras-ex-moradores {
-        left: 36.5%;
-        top: 85.5%;
-        max-width: 80%;
-    }
-    .conteudo-churras-ex-moradores .muito-mais-rep {
-        left: 80%;
-        top: 80%;
-    }
-
-    /* --- Nossa Casa --- */
-    .conteudo-casa {
-        padding: 1vw 2vw;
-        font-size: clamp(22px, 2vw, 32px);
+    .destaque-texto {
+        margin-bottom: var(--e-4);
     }
 
     /* --- Moradores --- */
+    .secao-moradores .rotulo,
+    .secao-moradores .titulo-secao {
+        padding-left: var(--e-4);
+        padding-right: var(--e-4);
+    }
     .scrollbar-moradores figure {
-        flex-basis: 200px;
+        flex-basis: 220px;
     }
     .scrollbar-moradores figure img {
-        width: 200px;
-        height: 300px;
+        width: 220px;
+        height: 294px;
     }
     .scrollbar-moradores figcaption {
-        font-size: 20px;
+        font-size: 13px;
+        min-height: 82px;
     }
 }

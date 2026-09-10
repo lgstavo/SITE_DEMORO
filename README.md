@@ -47,10 +47,25 @@ Pastas de mídia: `Background/`, `fonts/`, `images/`, `FOTOS_CASA/`,
 
 ## Decisões que valem saber antes de mexer
 
-**A paleta vive em `comum.css`, no `:root`.** Toda cor sai de uma variável
-(`--cor-texto`, `--cor-marca`, etc). Para mudar o visual, mexa lá — não
-espalhe `#hex` pelas folhas. O tema claro do desktop funciona redefinindo
-esses tokens dentro do `@media (min-width: 768px)` do `base.css`.
+**A paleta vive em `comum.css`, no `:root`.** A linguagem visual é
+inspirada no site da Absolut Vodka: preto e branco como base, azul
+saturado como acento, tipografia display em caixa alta, foto sangrando
+até a borda e nenhum ornamento (sem sombra, sem arredondamento).
+
+| Token | Valor | Uso |
+|---|---|---|
+| `--tinta` | `#000000` | texto e superfícies escuras |
+| `--papel` | `#ffffff` | fundo |
+| `--azul` | `#0000bd` | azul da marca |
+| `--acido` | `#eeff3d` | destaque e foco |
+| `--cinza-texto` | `#4a4a4a` | texto secundário |
+
+Há também escalas de tipografia (`--t-display` a `--t-rotulo`) e de
+espaçamento (`--e-1` a `--e-7`). Para mudar o visual, mexa nos tokens —
+não espalhe valores pelas folhas.
+
+O projeto usa as três famílias Absolut (Headline, Sans e Handwritten),
+que são as mesmas do site da marca.
 
 **O que é compartilhado fica em `comum.css`.** Fontes, menu, hambúrguer,
 hero e animações moravam duplicados em `base.css` e `casa.css`. As duas
@@ -68,6 +83,11 @@ que nunca vê. O `script.js` cria o player só no mobile, a partir do
 **As animações de entrada estão sob `.js`.** Um script no `<head>` adiciona
 essa classe. Sem JavaScript nada fica com `opacity: 0`, então o conteúdo
 continua visível.
+
+**Não há Tailwind.** Ele foi removido: sem passo de build, só existiria
+como Play CDN (que compila no navegador e avisa não ser para produção), e
+o design é customizado demais para a escala dele. Carregá-lo em só uma das
+páginas ainda dava resets de CSS diferentes entre elas.
 
 **Imagens são servidas em ~2× o tamanho de exibição.** Ao trocar uma foto,
 redimensione antes: as dos moradores aparecem a 200×300 (arquivo 400px de

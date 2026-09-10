@@ -1,41 +1,51 @@
 /* =================================================================
-   COMUM — regras compartilhadas por index.html e casa.html
+   COMUM — sistema de design + o que as duas paginas compartilham
 
-   Antes estas regras estavam duplicadas em base.css e casa.css. As
-   duas copias divergiram com o tempo e foi exatamente isso que criou
-   o bug do menu mobile (.menu estava certo numa folha e errado na
-   outra). Cada pagina carrega comum.css + a sua folha especifica.
+   Linguagem visual inspirada no site da Absolut Vodka: preto e branco
+   como base, azul saturado como acento, tipografia display enorme em
+   caixa alta, fotografia sangrando ate a borda e nenhum ornamento
+   (sem sombra, sem arredondamento, sem gradiente).
+
+   A coincidencia feliz: a Absolut usa Absolut Sans / Headline /
+   Handwritten -- exatamente as tres familias que este projeto ja tem.
+
+   Cada pagina carrega comum.css + a sua folha especifica.
    ================================================================= */
 
 /* -----------------------------------------------------------------
-   1. TOKENS DE COR
+   1. TOKENS
 
-   Toda cor do site sai daqui. Antes eram 16 literais espalhados por
-   tres arquivos, e era por isso que trocar o fundo para branco
-   deixava o texto invisivel: nao havia como o texto "saber" que o
-   fundo tinha mudado. Para mexer na paleta, mexa so nesta secao.
+   Toda cor, tamanho de fonte e espacamento sai daqui. Para mexer no
+   visual, mexa nesta secao -- nao espalhe valores pelas folhas.
    ----------------------------------------------------------------- */
 :root {
-    /* Texto */
-    --cor-texto: #f0f0f0;          /* corpo, sobre fundo escuro */
-    --cor-texto-suave: #eeeeee;    /* paragrafos longos */
-    --cor-texto-em-claro: #333;    /* texto dentro de blocos claros */
-    --cor-titulo-hero: #111;
+    /* Paleta — extraida do site da Absolut */
+    --tinta: #000000;           /* texto e superficies escuras */
+    --papel: #ffffff;           /* fundo */
+    --azul: #0000bd;            /* azul da marca */
+    --azul-escuro: #00008e;
+    --acido: #eeff3d;           /* destaque e foco */
+    --cinza-texto: #4a4a4a;     /* texto secundario sobre papel */
+    --cinza-linha: #dcdcdc;     /* filetes */
 
-    /* Marca */
-    --cor-marca: #09008a;
-    --cor-marca-hover: #0d0bb5;
-    --cor-foco: #ffd400;           /* contorno de foco por teclado */
+    /* Escala tipografica */
+    --t-display: clamp(40px, 8.5vw, 116px);  /* hero */
+    --t-titulo: clamp(34px, 5.5vw, 76px);    /* titulo de secao */
+    --t-secao: clamp(26px, 3.4vw, 46px);     /* subtitulo */
+    --t-corpo: clamp(16px, 1.15vw, 19px);
+    --t-rotulo: clamp(11px, 0.85vw, 13px);   /* eyebrow em caixa alta */
 
-    /* Superficies */
-    --cor-superficie-clara: #fff;
-    --cor-video-placeholder: #0d306d;
+    /* Escala de espacamento */
+    --e-1: 8px;
+    --e-2: 16px;
+    --e-3: 24px;
+    --e-4: 40px;
+    --e-5: 64px;
+    --e-6: 96px;
+    --e-7: 140px;
 
-    /* Sombras e sobreposicoes */
-    --sombra-cartao: 0 8px 16px 0 rgba(0, 0, 0, 0.6);
-    --sombra-texto-sobre-foto: 2px 2px 4px rgba(0, 0, 0, 0.7);
-    --overlay-menu: rgba(0, 0, 0, 0.9);
-    --overlay-menu-hover: rgba(255, 255, 255, 0.2);
+    --medida: 64ch;             /* largura maxima confortavel de leitura */
+    --altura-header: 56px;
 }
 
 *, *::before, *::after {
@@ -45,8 +55,7 @@
 /* Normalizacao de imagem. Os atributos width/height (que existem para
    reservar espaco e evitar salto de layout) tambem funcionam como dica
    de apresentacao: sem isto, um <img width="1196"> renderiza com 1196px
-   de largura de verdade. O index.html escapava porque o Preflight do
-   Tailwind ja fazia isso -- o casa.html nao, e o logo transbordava. */
+   de largura de verdade. */
 img {
     max-width: 100%;
     height: auto;
@@ -79,74 +88,141 @@ img {
 }
 
 /* -----------------------------------------------------------------
-   3. FOCO VISIVEL
-   Nenhuma das folhas tinha estilo de foco: quem navega por teclado
-   dependia do outline padrao, que some sobre o azul escuro.
+   3. BASE
+   ----------------------------------------------------------------- */
+html {
+    scroll-behavior: smooth;
+    /* O header e fixo: sem isto o alvo de cada link ancora para
+       escondido atras da barra. */
+    scroll-padding-top: calc(var(--altura-header) + var(--e-2));
+}
+
+body {
+    margin: 0;
+    padding-top: var(--altura-header);
+    font-family: 'Absolut', Helvetica, Arial, sans-serif;
+    font-size: var(--t-corpo);
+    line-height: 1.65;
+    color: var(--tinta);
+    background-color: var(--papel);
+    /* 'clip' no lugar de 'hidden': contem vazamento lateral sem criar
+       um container de rolagem (que quebraria position:sticky). */
+    overflow-x: clip;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+}
+
+h1, h2, h3 {
+    font-weight: normal;
+    margin: 0;
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+}
+
+p { margin: 0; }
+
+/* Eyebrow: rotulo pequeno em caixa alta acima dos titulos.
+   E o recurso editorial que mais define o ar da Absolut. */
+.rotulo {
+    font-size: var(--t-rotulo);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--azul);
+    margin-bottom: var(--e-2);
+}
+.rotulo-claro { color: var(--acido); }
+
+/* Medida de leitura */
+.medida {
+    max-width: var(--medida);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* -----------------------------------------------------------------
+   4. FOCO VISIVEL
    ----------------------------------------------------------------- */
 a:focus-visible,
 button:focus-visible,
 [tabindex]:focus-visible {
-    outline: 3px solid var(--cor-foco);
-    outline-offset: 2px;
-    border-radius: 4px;
-}
-
-/* -----------------------------------------------------------------
-   4. TITULOS
-   Os titulos viraram <h1>/<h2> por semantica. Estas regras impedem
-   que o negrito e as margens padrao do browser mudem a aparencia
-   que ja existia quando eles eram <p>.
-   ----------------------------------------------------------------- */
-h1, h2, h3 {
-    font-weight: normal;
-    margin-top: 0;
+    outline: 3px solid var(--acido);
+    outline-offset: 3px;
 }
 
 /* -----------------------------------------------------------------
    5. HEADER / MENU
+   Barra preta fixa, wordmark a esquerda, navegacao a direita.
    ----------------------------------------------------------------- */
+.barra-cima {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--altura-header);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--e-3);
+    background-color: var(--tinta);
+    z-index: 1000;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    padding: var(--e-1) 0;
+}
+.logo {
+    height: 22px;
+    width: auto;
+    display: block;
+}
+
 .menu {
     /* Mobile: fechado por padrao; o hamburger adiciona .active para abrir */
     display: none;
     position: absolute;
-    top: 40px;
+    top: var(--altura-header);
     right: 0;
-    width: 200px;
+    width: min(280px, 78vw);
     flex-direction: column;
-    background: var(--overlay-menu);
-    padding: 20px;
+    background-color: var(--tinta);
+    padding: var(--e-2) var(--e-3) var(--e-3);
     z-index: 30;
 }
 .menu.active {
     display: flex;
 }
 .menu a {
-    color: var(--cor-superficie-clara);
+    color: var(--papel);
     text-decoration: none;
-    padding: 10px;
-    text-align: center;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    padding: var(--e-2) 0;
+    font-size: var(--t-rotulo);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+    transition: color 0.2s ease;
 }
-.menu a:hover {
-    background-color: var(--overlay-menu-hover);
-}
+.menu a:last-child { border-bottom: 0; }
+.menu a:hover { color: var(--acido); }
 
 .hamburger {
     display: flex;
     flex-direction: column;
     gap: 5px;
     cursor: pointer;
-    /* reset do <button> para manter a aparencia original */
     background: none;
     border: 0;
-    padding: 0;
+    padding: var(--e-1);
+    margin-right: calc(var(--e-1) * -1);
 }
 .hamburger span {
-    width: 25px;
-    height: 3px;
-    background: var(--cor-superficie-clara);
-    border-radius: 2px;
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: var(--papel);
 }
 
 /* -----------------------------------------------------------------
@@ -158,9 +234,9 @@ h1, h2, h3 {
     padding-bottom: 177.78%; /* 9:16 vertical */
     height: 0;
     overflow: hidden;
-    /* Enquanto o player carrega o espaco fica coerente com o site,
-       em vez de um retangulo branco de quase uma tela. */
-    background-color: var(--cor-video-placeholder);
+    /* Enquanto o player carrega o espaco fica preto, coerente com o
+       header, em vez de um retangulo branco de quase uma tela. */
+    background-color: var(--tinta);
 }
 
 .video-container iframe {
@@ -172,30 +248,83 @@ h1, h2, h3 {
     border: 0;
 }
 
+/* Hero: foto sangrando ate a borda com a chamada por cima */
 .crop {
-    padding-bottom: 30px;
-    text-align: center;
-    background-color: var(--cor-superficie-clara);
+    position: relative;
+    background-color: var(--tinta);
 }
-
-.titulo-rep-demoro {
-    padding: 0 15px;
-    margin-bottom: 0;
-    font-size: clamp(28px, 8vw, 40px);
-    line-height: 1.2;
-    color: var(--cor-titulo-hero);
+.crop > img {
+    display: block;
+    width: 100%;
+    height: auto;
 }
 
 /* -----------------------------------------------------------------
-   7. ANIMACAO DE ENTRADA
+   7. BOTOES
+   Retangulo solido, caixa alta, sem arredondamento.
+   ----------------------------------------------------------------- */
+.botao {
+    display: inline-block;
+    font-family: 'Absolut', Helvetica, Arial, sans-serif;
+    font-size: var(--t-rotulo);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--papel);
+    background-color: var(--azul);
+    border: 0;
+    padding: var(--e-3) var(--e-5);
+    cursor: pointer;
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+.botao:hover {
+    background-color: var(--acido);
+    color: var(--tinta);
+}
+
+/* Variante sobre fundo escuro */
+.botao-claro {
+    background-color: var(--papel);
+    color: var(--tinta);
+}
+.botao-claro:hover {
+    background-color: var(--acido);
+    color: var(--tinta);
+}
+
+/* -----------------------------------------------------------------
+   8. RODAPE
+   ----------------------------------------------------------------- */
+.demoro-footer {
+    background-color: var(--tinta);
+    color: var(--papel);
+    padding: var(--e-6) var(--e-3);
+    text-align: center;
+}
+.demoro-footer .marca {
+    font-family: 'AbsolutHeadline', Helvetica, Arial, sans-serif;
+    font-size: var(--t-secao);
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    margin-bottom: var(--e-2);
+}
+.demoro-footer .desde {
+    font-size: var(--t-rotulo);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--acido);
+}
+
+/* -----------------------------------------------------------------
+   9. ANIMACAO DE ENTRADA
    Escopo .js de proposito: o <head> adiciona a classe .js no <html>.
    Sem JavaScript nada fica com opacity:0, entao o conteudo continua
    visivel em vez de sumir para sempre.
-   O transform inicial e por pagina (base.css / casa.css).
    ----------------------------------------------------------------- */
 .js .fade-in-element {
     opacity: 0;
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
 }
 .js .fade-in-element.is-visible {
     opacity: 1;
@@ -211,26 +340,35 @@ h1, h2, h3 {
 }
 
 /* =================================================================
-   8. DESKTOP (768px e maior — igual ao md: do Tailwind)
+   10. DESKTOP (768px e maior)
    ================================================================= */
 @media (min-width: 768px) {
+    :root {
+        --altura-header: 68px;
+    }
+
+    .barra-cima {
+        padding: 0 var(--e-4);
+    }
+    .logo { height: 26px; }
+
     .hamburger { display: none; }
 
     .menu {
         display: flex;
         position: static;
         flex-direction: row;
+        align-items: center;
+        gap: var(--e-4);
         background: transparent;
         width: auto;
         padding: 0;
     }
-    .menu a { padding: 8px 12px; }
+    .menu a {
+        padding: 0;
+        border-bottom: 0;
+    }
 
     /* O video e so para mobile; o script.js nem chega a criar o player */
     .video-container { display: none; }
-
-    .crop {
-        position: relative;
-        padding-bottom: 0;
-    }
 }

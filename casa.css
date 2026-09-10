@@ -1,334 +1,172 @@
 /* =============================================================
-   casa.css — especifico do casa.html
-   O que e compartilhado com index.html mora em comum.css, que
-   deve ser carregado ANTES desta folha.
+   casa.css — especifico do casa.html (e da 404.html)
+   O sistema de design (tokens, header, botoes, rodape) mora em
+   comum.css, que deve ser carregado ANTES desta folha.
    ============================================================= */
 
 /* =============================================
-    1. ESTILOS GERAIS
+    1. HERO
     ============================================= */
 
-html {
-    scroll-behavior: smooth;
-    /* O header e fixo com 40px: sem isto o alvo de cada link ancora
-       (#sala, #quartos...) para escondido atras da barra. */
-    scroll-padding-top: 48px;
+.hero-conteudo {
+    padding: var(--e-4) var(--e-3) var(--e-5);
+    background-color: var(--tinta);
+    color: var(--papel);
+    text-align: left;
 }
 
-body {
-    margin: 0;
-    padding: 40px 0 0 0; /* Apenas padding no topo para a barra fixa */
-    font-family: 'Absolut', sans-serif;
-    background-image: url("Background/mobile_background_v2.jpg");
-    background-repeat: repeat;
-    color: var(--cor-texto);
-    width: 100%;
-    /* 'clip' no lugar de 'hidden': contem vazamento lateral sem criar
-       um container de rolagem (que quebraria position:sticky). */
-    overflow-x: clip;
+.hero-titulo {
+    font-family: 'AbsolutHandwritten', cursive;
+    font-size: var(--t-display);
+    line-height: 1;
+    margin-bottom: var(--e-3);
 }
 
-@media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
+.hero-nota {
+    font-size: var(--t-rotulo);
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.65);
 }
 
 /* =============================================
-    2. HEADER / NAVBAR
+    2. CÔMODOS
+    Texto de um lado, galeria do outro. O modificador
+    .comodo-invertido troca os lados para alternar o ritmo.
     ============================================= */
-.barra-cima {
-    width: 100%;
-    height: 40px;
-    background: url("BARRA_CIMA.avif") center/cover no-repeat;
-    position: fixed;
-    top: 0;
-    left: 0;
+
+.comodo {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    z-index: 1000;
-}
-/* width:auto anula a dica de apresentacao do atributo width do <img>,
-   para a largura sair da proporcao real e nao dos 1196px declarados. */
-.logo { height: 30px; width: auto; }
-
-/* =============================================
-    3. HERO BANNER E TÍTULOS DE SEÇÃO
-    ============================================= */
-
-.foto-casa {
-    width: 100%;
-    height: auto;
-    display: block;
+    flex-direction: column;
+    gap: var(--e-4);
+    padding: var(--e-6) var(--e-3);
+    max-width: 1240px;
+    margin: 0 auto;
 }
 
-.titulo-rep-demoro .fonte-nos { font-family: 'AbsolutHandwritten'; }
+.comodo-texto p {
+    color: var(--cinza-texto);
+    margin-bottom: var(--e-2);
+    max-width: var(--medida);
+}
+.comodo-texto p:last-child { margin-bottom: 0; }
 
 .titulo-secao {
-    text-align: center;
-    width: 100%;
-    font-size: clamp(32px, 8vw, 45px);
-    margin-bottom: 2rem;
+    font-family: 'AbsolutHeadline', Helvetica, Arial, sans-serif;
+    font-size: var(--t-titulo);
+    text-transform: uppercase;
+    margin-bottom: var(--e-3);
 }
 
-.titulo-sala, .titulo-quarto, .titulo-estudos {
-    font-family: 'AbsolutHeadline';
+.comodo-galeria {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--e-1);
 }
-
-.titulo-cozinha, .titulo-lazer {
-    font-family: 'AbsolutHandwritten';
-}
-
-.quartos-section, .sala-section, .estudos-section, .cozinha-section, .lazer-section {
-    padding: 20px;
-}
-
-/* =============================================
-    4. LAYOUTS DAS SEÇÕES (MOBILE)
-    ============================================= */
-.split-layout, .sala-item, .cozinha-item, .lazer-item {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    margin-bottom: 40px;
-}
-
-.conteudo-texto {
-    font-size: clamp(16px, 4vw, 18px);
-    line-height: 1.6;
-    color: var(--cor-texto-suave);
-}
-
-.texto-sala, .texto-quartos, .texto-estudos {
-    text-align: center;
-}
-
-.texto-cozinha, .texto-lazer {
-    text-align: right;
-}
-
-.fotos-galeria {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-}
-
-.fotos-galeria figure {
-    width: 100%;
-    max-width: 700px;
+.comodo-galeria figure {
     margin: 0;
-    aspect-ratio: 4/3;
-    border-radius: 8px;
+    aspect-ratio: 4 / 3;
     overflow: hidden;
 }
-
-.fotos-galeria img {
+.comodo-galeria img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    filter: grayscale(0.3);
+    transition: filter 0.4s ease, transform 0.6s ease;
+}
+.comodo-galeria figure:hover img {
+    filter: grayscale(0);
+    transform: scale(1.04);
+}
+
+/* A sala tem 3 fotos: a primeira ocupa a linha inteira */
+#sala .comodo-galeria figure:first-child {
+    grid-column: 1 / -1;
+    aspect-ratio: 16 / 9;
+}
+
+.comodo-galeria-unica {
+    grid-template-columns: 1fr;
+}
+.comodo-galeria-unica figure {
+    aspect-ratio: 16 / 9;
 }
 
 /* =============================================
-    5. SEÇÃO ENTRE EM CONTATO
+    3. CONTATO
     ============================================= */
 
-.botao-whats {
-    order: 2;
+.secao-contato {
+    background-color: var(--tinta);
+    color: var(--papel);
+    padding: var(--e-7) var(--e-3);
     text-align: center;
-    background: url('Background/white_background.jpg');
-    flex: 1 1 80%;
-    margin-bottom: 1vw;
-    border: none;
-    cursor: pointer;
-    /* Antes 6vw puro: 57px numa tela larga, 19px numa estreita */
-    font-size: clamp(20px, 6vw, 34px);
-    font-family: 'AbsolutHandwritten';
-    transition-duration: 0.4s;
-}
-
-.botao-whats:hover{
-    background: url('Background/background_v4.jpg');
-    color: var(--cor-superficie-clara);
-    box-shadow: var(--sombra-cartao);
 }
 
 .titulo-contato {
-    font-family: 'AbsolutHandwritten';
-    text-align: center;
-    font-size: clamp(32px, 8vw, 45px);
-    margin-bottom: 2rem;
-    padding: 0 20px;
+    font-family: 'AbsolutHeadline', Helvetica, Arial, sans-serif;
+    font-size: var(--t-titulo);
+    text-transform: uppercase;
+    max-width: 18ch;
+    margin: 0 auto var(--e-5);
 }
 
-.contato-item{
+/* =============================================
+    4. PÁGINA 404
+    ============================================= */
+
+.pagina-erro {
+    min-height: 62vh;
     display: flex;
-    justify-content: flex-end;
     flex-direction: column;
     align-items: center;
-}
-
-/* =============================================
-    6. ANIMAÇÃO DE ENTRADA (direção desta página)
-    O restante da regra esta em comum.css
-    ============================================= */
-.js .fade-in-element {
-    transform: translateX(-30px); /* Começa um pouco à esquerda */
-}
-
-/* =============================================
-    7. RODAPÉ
-    ============================================= */
-.demoro-footer{
-    font-family: 'AbsolutHandwritten';
-    /* Antes: font-size 2vw + line-height 0.5, o que dava 7.8px de fonte
-       e 4px de altura por paragrafo numa tela de 390px. */
-    font-size: clamp(16px, 2vw, 22px);
-    line-height: 1.4;
-    padding: 28px 20px;
-    margin: 0;
+    justify-content: center;
     text-align: center;
+    padding: var(--e-6) var(--e-3);
 }
-.demoro-footer p {
-    margin: 2px 0;
+.titulo-erro {
+    font-family: 'AbsolutHeadline', Helvetica, Arial, sans-serif;
+    font-size: var(--t-titulo);
+    text-transform: uppercase;
+    margin-bottom: var(--e-3);
+}
+.texto-erro {
+    color: var(--cinza-texto);
+    max-width: 46ch;
+    margin-bottom: var(--e-5);
 }
 
 /* ===============================================================
-    8. ESTILOS DESKTOP (768px e maior)
+    5. DESKTOP (768px e maior)
     =============================================================== */
 @media (min-width: 768px) {
-    body {
-        background-image: url("Background/background_v4.jpg");
-    }
 
-    /* --- Header / Navbar --- */
-    .menu { gap: 10px; }
+    /* --- Hero: texto sobre a foto --- */
+    .crop { position: relative; }
 
-    /* --- Hero Banner --- */
-    .titulo-rep-demoro {
-        font-family: 'AbsolutHandwritten';
+    .hero-conteudo {
         position: absolute;
-        bottom: 5%;
-        left: 50%;
-        transform: translate(-50%, 0);
-        width: 100%;
-        color: var(--cor-titulo-hero);
-        /* Antes 2.5vw puro */
-        font-size: clamp(20px, 2.5vw, 44px);
+        inset: auto 0 0 0;
+        padding: var(--e-7) var(--e-5) var(--e-5);
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0));
     }
 
-    /* --- Layouts de Seção --- */
-    .titulo-quarto, .titulo-estudos {
-        text-align: center;
-    }
-
-    .titulo-sala, .titulo-cozinha, .titulo-lazer {
-        text-align: center;
-    }
-
-    .split-layout {
-        flex-direction: row;
+    /* --- Cômodos lado a lado --- */
+    .comodo {
+        display: grid;
+        grid-template-columns: 1fr 1.15fr;
+        gap: var(--e-5);
         align-items: center;
-        gap: 40px;
+        padding: var(--e-7) var(--e-4);
+    }
+    .comodo-invertido .comodo-texto { order: 2; }
+
+    .comodo-galeria {
+        gap: var(--e-2);
     }
 
-    .texto-container {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+    .secao-contato {
+        padding: var(--e-7) var(--e-4);
     }
-
-    .fotos-galeria {
-        flex: 1.2;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 15px;
-    }
-
-    .conteudo-texto {
-       font-size: clamp(16px, 1.5vw, 20px);
-    }
-
-    .texto-quartos, .texto-estudos {
-        text-align: left;
-    }
-    .texto-sala, .texto-cozinha, .texto-lazer {
-        text-align: left;
-    }
-
-    /* Layout da seção QUARTOS */
-    .fotos-quartos figure {
-        width: calc(33.333% - 10px);
-    }
-
-    /* Layout da seção SALA */
-    #sala .split-layout .fotos-galeria {
-        order: 2; /* Coloca fotos da sala na esquerda */
-    }
-    .fotos-sala figure {
-        width: calc(33.333% - 10px);
-    }
-
-    /* Layout da seção COZINHA */
-    #cozinha .split-layout .fotos-galeria {
-        order: -1; /* Coloca fotos da cozinha na esquerda */
-    }
-    .fotos-cozinha figure {
-        width: calc(50% - 8px);
-    }
-
-    /* Layout da seção ESTUDOS */
-    .fotos-estudos figure {
-        width: 100%;
-    }
-
-    /* Layout da seção LAZER */
-    .fotos-lazer figure {
-        width: calc(40% - 12px);
-    }
-
-    /* --- Contato --- */
-    .botao-whats {
-        /* Antes 3vw puro: 57px numa tela de 1920 */
-        font-size: clamp(22px, 3vw, 40px);
-    }
-}
-
-/* =============================================
-    9. PÁGINA 404
-    ============================================= */
-.pagina-erro {
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 18vh 20px 10vh;
-    text-align: center;
-}
-.titulo-erro {
-    font-family: 'AbsolutHeadline';
-    font-size: clamp(32px, 8vw, 52px);
-    margin-bottom: 1rem;
-}
-.texto-erro {
-    font-size: clamp(17px, 2.2vw, 21px);
-    line-height: 1.6;
-    color: var(--cor-texto-suave);
-    margin-bottom: 2.5rem;
-}
-.botao-voltar {
-    display: inline-block;
-    font-family: 'AbsolutHandwritten';
-    font-size: clamp(20px, 4vw, 28px);
-    text-decoration: none;
-    color: var(--cor-texto-em-claro);
-    background: url('Background/white_background.jpg');
-    padding: 12px 32px;
-    border-radius: 8px;
-    transition-duration: 0.4s;
-}
-.botao-voltar:hover {
-    background: url('Background/background_v4.jpg');
-    color: var(--cor-superficie-clara);
-    box-shadow: var(--sombra-cartao);
 }
