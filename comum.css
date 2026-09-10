@@ -29,7 +29,7 @@
     --cinza-linha: #dcdcdc;     /* filetes */
 
     /* Escala tipografica */
-    --t-display: clamp(40px, 8.5vw, 116px);  /* hero */
+    --t-display: clamp(40px, 5.5vw, 116px);  /* hero */
     --t-titulo: clamp(34px, 5.5vw, 76px);    /* titulo de secao */
     --t-secao: clamp(26px, 3.4vw, 46px);     /* subtitulo */
     --t-corpo: clamp(16px, 1.15vw, 19px);
@@ -43,6 +43,7 @@
     --e-5: 64px;
     --e-6: 96px;
     --e-7: 140px;
+    --e-8: 320px;
 
     --medida: 64ch;             /* largura maxima confortavel de leitura */
     --altura-header: 56px;

@@ -57,13 +57,14 @@
     display: block;
     font-family: 'AbsolutHeadline', Helvetica, Arial, sans-serif;
     text-transform: uppercase;
+    font-size: 0.90em;
 }
 /* A manuscrita e o contraponto da display — mesmo par que a Absolut usa */
 .hero-linha-manuscrita {
     font-family: 'AbsolutHandwritten', cursive;
     text-transform: none;
-    font-size: 0.92em;
-    color: var(--acido);
+    font-size: 0.52em;
+    color: var(--papel);
 }
 
 .hero-nota {
@@ -117,7 +118,7 @@
     object-fit: cover;
     /* Levemente dessaturada em repouso, cheia na interacao: dá unidade
        a fotos de origens e qualidades diferentes. */
-    filter: grayscale(0.15);
+    filter: grayscale(0.35);
     transition: filter 0.4s ease, transform 0.6s ease;
 }
 .galeria-evento figure:hover img {
@@ -125,35 +126,9 @@
     transform: scale(1.04);
 }
 
-/* --- Montagem: o cartaz de divulgação --- */
-.montagem {
-    display: flex;
-    flex-direction: column;
-    gap: var(--e-4);
-    margin-top: var(--e-5);
-    padding-top: var(--e-5);
-    border-top: 1px solid rgba(255, 255, 255, 0.18);
-}
-
-.montagem-arte {
-    margin: 0;
-    flex: 0 0 auto;
-}
-.montagem-arte img {
-    display: block;
-    width: 100%;
-}
-
-.montagem-texto p {
-    color: rgba(255, 255, 255, 0.72);
-    max-width: var(--medida);
-}
-
-.montagem-titulo {
-    font-family: 'AbsolutHeadline', Helvetica, Arial, sans-serif;
-    font-size: var(--t-secao);
-    text-transform: uppercase;
-    margin-bottom: var(--e-2);
+.galeria-com-cartaz .galeria-cartaz {
+    grid-column: 1 / -1;
+    aspect-ratio: auto;   /* anula o 4/5 herdado de .galeria-evento figure */
 }
 
 /* =============================================
@@ -354,15 +329,25 @@
         gap: var(--e-2);
     }
 
-    /* A montagem ocupa a largura toda do artigo, abaixo das colunas */
-    .montagem {
-        grid-column: 1 / -1;
-        display: grid;
-        grid-template-columns: minmax(0, 380px) 1fr;
-        gap: var(--e-5);
-        align-items: center;
-        margin-top: 0;
-        padding-top: var(--e-6);
+    /* Este artigo cede largura do texto para a galeria, porque ela tem
+       3 colunas em vez de 2. */
+    .evento-com-cartaz {
+        grid-template-columns: 0.85fr 1.6fr;
+    }
+    /* 2.07fr nao e chute: o cartaz e 4:5 e precisa cobrir a altura de
+       duas fotos 4:5 mais o gap. Resolvendo P = 0,8 x (2,5W + gap),
+       chega-se em P ~ 2,1W qualquer que seja a largura da galeria. */
+    .galeria-com-cartaz {
+        grid-template-columns: 1fr 1fr 2.1fr;
+    }
+    .galeria-com-cartaz .galeria-cartaz {
+        grid-column: 3;
+        grid-row: 1 / span 2;
+        aspect-ratio: auto;
+    }
+    .galeria-com-cartaz .galeria-cartaz img {
+        height: 100%;
+        width: 100%;
     }
 
     /* --- Destaques --- */
