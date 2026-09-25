@@ -166,6 +166,15 @@
     color: var(--papel);
 }
 
+.destaque-conteudo-fim {
+    justify-content: flex-end;
+}
+
+.destaque-conteudo-inicio {
+    justify-content: flex-start;
+}
+
+
 .destaque-titulo {
     font-family: 'AbsolutHeadline', Helvetica, Arial, sans-serif;
     font-size: var(--t-titulo);
@@ -346,14 +355,14 @@
 
     /* --- Destaques --- */
     .destaque-conteudo {
-        padding: var(--e-6) var(--e-7);
+        padding: var(--e-1) var(--e-1);
     }
     .destaque-conteudo-fim {
         align-items: flex-end;
         text-align: right;
     }
     .destaque-texto {
-        margin-bottom: var(--e-4);
+        margin-bottom: var(--e-1);
     }
 
     /* --- Moradores --- */
