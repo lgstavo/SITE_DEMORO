@@ -6,13 +6,11 @@ html, body {
     margin: 0;
     padding: 0;
     font-family: 'Absolut', sans-serif;
-    background-image: url("Background/mobile_background_v2.png");
-    background-repeat: repeat;
+    background-color: #000000;
     color: #f0f0f0;
     scroll-behavior: smooth;
     width: 100%;
-    overflow-x: hidden; /* <-- ADICIONE: Impede a rolagem horizontal */
-
+    overflow-x: hidden; 
 
 }
 
@@ -32,7 +30,7 @@ body {
 .barra_cima {
     width: 100%;
     height: 40px;
-    background: url("BARRA_CIMA.avif") center/cover no-repeat;
+    background-color: #000;
     position: fixed;
     top: 0;
     left: 0;
@@ -117,11 +115,23 @@ body {
     text-align: center;
     background-color: #fff;
 }
-.foto_churrasco_ex {
+
+.foto-churrasco-ex img {
     width: 100%;
     height: auto;
+    object-fit: cover;
     display: block;
+    background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 75%);
 }
+
+.foto-churrasco-ex::before {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 75%);
+}
+
 .titulo-rep-demoro {
     padding: 0 15px;
     margin-bottom: 0px;
@@ -148,6 +158,12 @@ body {
 .sobre-nos-section {
     padding: 40px 20px;
     text-align: center;
+    width: 50%;
+    margin: 0 25% auto 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .titulo-sobre-nos {
     font-size: clamp(28px, 8vw, 40px);
@@ -155,10 +171,10 @@ body {
     
 }
 .sobre-nos {
-    /* CORREÇÃO: O valor mínimo do clamp deve ser menor que o máximo */
+    width: fit-content;
     font-size: clamp(20px, 3vw, 20px);
     color: #eeeeee;
-    max-width: 900px;
+
     margin: 0 auto;
     line-height: 1.6;
 }
@@ -179,27 +195,26 @@ body {
 .sobre-torneio-interrep, .sobre-a-festa {
     display: flex;
     flex-direction: column;
-    padding: 0 20px;
+    padding: 0 0px;
     margin-bottom: 40px;
 }
 .conteudo-texto, .conteudo-texto-festa {
     order: 1;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 0px;
 }
 .fotos-interrep, .fotos-a-festa {
     order: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: 0px;
 }
 .fotos-interrep figure, .fotos-a-festa figure {
     width: 100%;
-    max-width: 400px;
+    max-width: 100%;
     margin: 0;
-    aspect-ratio: 4/3;
-    border-radius: 8px;
+    aspect-ratio: 3/4;
     overflow: hidden;
 }
 .fotos-interrep figure img, .fotos-a-festa figure img {
@@ -209,7 +224,7 @@ body {
 }
 .logo-torneio-interrep, .logo-a-festa {
     max-width: 250px;
-    margin: 0 auto 20px auto;
+    margin: 0 0px 0px 0px;
 }
 .texto-torneio-interrep, .texto-a-festa {
     font-size: clamp(16px, 4vw, 18px);
@@ -395,12 +410,11 @@ body {
         margin: 0;
         padding: 0;
         font-family: 'Absolut', sans-serif;
-        background-image: url("Background/background_v4.png");
-        background-repeat: repeat;
+        background-color: #000000;
         color: #f0f0f0;
         scroll-behavior: smooth;
         width: 100%;
-        overflow-x: hidden; /* <-- ADICIONE: Impede a rolagem horizontal */
+        overflow-x: hidden;
 
 
     }
@@ -411,7 +425,7 @@ body {
         display: flex;
         position: static;
         flex-direction: row;
-        background: transparent;
+        /* background: transparent; */
         width: auto;
         padding: 0;
     }
@@ -439,43 +453,46 @@ body {
     .titulo-rep-demoro {
         position: absolute;
         bottom: 5%;
-        left: 50%;
-        transform: translate(-50%, 0);
+        left: 0%;
         width: 100%;
-        color: #101010;
-        font-size: 2.5vw;
-        text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.7);
+        color: #ffffff;
+        font-size: 4vw;
+        text-align: left;
     }
-    .titulo-rep-demoro span { display: inline; }
+    .titulo-rep-demoro span { display: block; }
 
     /* --- Seções de Eventos --- */
     .sobre-torneio-interrep, .sobre-a-festa {
         flex-direction: row;
-        max-width: 100%;
-        margin: 40px auto;
+        max-width: 50%;
+        margin: 5% auto 5% 20%;
         align-items: center;
-        gap: 30px;
+        gap: 0px;
     }
     .conteudo-texto {
-        flex: 1 1 100%;
+        flex: 1 1 25%;
         order: 2;
     }
     .fotos-interrep {
-        flex: 1 1 100%;
+        flex: 1 1 25%;
         order: 1;
         flex-direction: row;
         flex-wrap: wrap;
+        gap: 6px;
+        padding: 0 40px;
     }
     .conteudo-texto-festa {
-        flex: 1 1 100%;
+        flex: 1 1 25%;
         order: 1;
     }
     .fotos-a-festa {
-        flex: 1 1 100%;
+        flex: 1 1 25%;
         order: 2;
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: center; /* <-- Adicione esta linha */
+        justify-content: center; 
+        gap: 6px;
+        padding: 0 40px;
 
     }
 
@@ -484,11 +501,11 @@ body {
       ======================================================
     */
     .texto-torneio-interrep{
-        font-size: clamp(18px, 1.2vw, 21px); /* Fonte maior para desktop */
-        text-align: right;
+        font-size: clamp(10px, 1.2vw, 21px); /* Fonte maior para desktop */
+        text-align: left;
     }
     .texto-a-festa {
-        font-size: clamp(18px, 1.2vw, 21px); /* Fonte maior para desktop */
+        font-size: clamp(10px, 1.2vw, 21px); /* Fonte maior para desktop */
         text-align: left;
     }
 
@@ -515,13 +532,13 @@ body {
         object-fit: cover;
     }
 
-    /* CORREÇÃO: O gradiente foi adicionado de volta à sobreposição */
     .background-churras-pais::before {
         content: '';
         position: absolute;
         top: 0; left: 0;
         width: 100%; height: 100%;
         z-index: 2;
+        background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 75%);
     }
 
     .conteudo-churras-pais {
@@ -580,13 +597,13 @@ body {
         object-fit: cover;
     }
 
-    /* CORREÇÃO: O gradiente foi adicionado de volta à sobreposição */
     .background-churras-ex-moradores::before {
         content: '';
         position: absolute;
         top: 0; left: 0;
         width: 100%; height: 100%;
         z-index: 2;
+        background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 75%);
     }
 
     .conteudo-churras-ex-moradores {
