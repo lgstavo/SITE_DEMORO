@@ -115,6 +115,19 @@ body {
     display: block;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+
+.hero-conteudo {
+    padding: var(--e-4) var(--e-3) var(--e-5);
+    color: var(--papel);
+    text-align: left;
+}
+
 .crop {
     position: relative;
     background-color: #000000;
@@ -123,23 +136,6 @@ body {
     display: block;
     width: 100%;
     height: auto;
-}
-
-
-.foto-churrasco-ex img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    display: block;
-    background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 75%);
-}
-
-.foto-churrasco-ex::before {
-    width: 1600px;
-    height: 730px;
-    object-fit: cover;
-    display: block;
-    background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 75%);
 }
 
 .titulo-rep-demoro {
