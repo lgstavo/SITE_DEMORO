@@ -123,8 +123,8 @@ img {
 
 
 .hero-conteudo {
-    padding: var(--e-4) var(--e-3) var(--e-5);
-    color: var(--papel);
+    padding: 40px 24px 64px;
+    color: #ffffff;
     text-align: left;
 }
 
@@ -460,7 +460,7 @@ img {
     .hero-conteudo {
         position: absolute;
         inset: auto 0 0 0;
-        padding: var(--e-7) var(--e-5) var(--e-5);
+        padding: 140px 64px 64px;
         background: linear-gradient(to top, rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0));
     }
 
