@@ -10,12 +10,12 @@ html, body {
     color: #f0f0f0;
     scroll-behavior: smooth;
     width: 100%;
-    overflow-x: hidden; 
+    overflow-x: hidden;
 
 }
 
 body {
-    padding-top: 40px;
+    padding-top: 60px; /* igual à altura real de .barra_cima (60px) */
 }
 
 
@@ -23,10 +23,10 @@ body {
     box-sizing: border-box;
 }
 
-@font-face { font-family: 'AbsolutHeadline'; src: url('fonts/absolut-headline.woff2') format('woff2'); }
-@font-face { font-family: 'Absolut'; src: url('fonts/absolut-regular.woff') format('woff'); }
-@font-face { font-family: 'AbsolutHandwritten'; src: url('fonts/absolut-handwritten-regular.woff') format('woff'); }
-@font-face { font-family: "EdwardianScript"; src: url("fonts/Edwardian Script ITC V1.woff2") format("woff2"); }
+@font-face { font-family: 'AbsolutHeadline'; src: url('fonts/absolut-headline.woff2') format('woff2'); font-display: swap; }
+@font-face { font-family: 'Absolut'; src: url('fonts/absolut-regular.woff') format('woff'); font-display: swap; }
+@font-face { font-family: 'AbsolutHandwritten'; src: url('fonts/absolut-handwritten-regular.woff') format('woff'); font-display: swap; }
+@font-face { font-family: "EdwardianScript"; src: url("fonts/Edwardian Script ITC V1.woff2") format("woff2"); font-display: swap; }
 
 /* =============================================
    2. HEADER / NAVBAR
@@ -55,11 +55,11 @@ body {
     position: absolute;
     flex-direction: column;
     background: rgba(0, 0, 0, 0.9);
-    top: 40px;
+    top: 60px;
     right: 0;
     width: 200px;
     padding: 20px;
-    gap:40px;
+    gap: 12px;
 }
 .menu.active {
     display: flex;
@@ -77,10 +77,8 @@ body {
 }
 
 .fonte-menu{
-    font-family: 'Absolut';
-    src: url(fonts/absolut-regular.woff) format("woff");
-    font-display: swap;
-    font-size:clamp(11px, 0.85vw, 13px);
+    font-family: 'Absolut', sans-serif;
+    font-size: clamp(11px, 0.85vw, 13px);
     letter-spacing: 0.18em;
     line-height: 1.65;
 }
@@ -104,7 +102,7 @@ body {
 .video-container {
     position: relative;
     width: 100%;
-    padding-bottom: 177.78%; /* ANTES: 56.25% */
+    padding-bottom: 177.78%;
     height: 0;
     overflow: hidden;
 }
@@ -130,8 +128,6 @@ img {
     height: auto;
 }
 
-
-
 .hero-conteudo {
     padding: 40px 24px 64px;
     color: #ffffff;
@@ -149,26 +145,29 @@ img {
 }
 
 .titulo-rep-demoro {
-    padding: 0 15px;
     margin-bottom: 0px;
-    font-size: clamp(28px, 8vw, 40px);
-    line-height: 1.2;
+    /* Um único clamp cobrindo mobile -> telas grandes, sem precisar
+       repetir/alterar o font-size em cada breakpoint (mesmo espírito
+       de um "token" de tipografia, só que escrito direto aqui). */
+    font-size: clamp(28px, 6vw, 116px);
+    line-height: 1.1;
     text-align: left;
-    color: #111;
+    color: #FAF9F6;
 }
-.titulo-rep-demoro .fonte-sobre { font-family: 'AbsolutHeadline'; }
-.titulo-rep-demoro .fonte-nos { 
+.titulo-rep-demoro .fonte-sobre { font-family: 'AbsolutHeadline';}
+.titulo-rep-demoro .fonte-nos {
     font-family: 'AbsolutHandwritten'; }
-.titulo-rep-demoro .fonte-moderacao { 
+.titulo-rep-demoro .fonte-moderacao {
     font-family: 'Absolut';
-    font-size: clamp(11px, 1vw, 13px); 
+    font-size: clamp(11px, 1vw, 13px);
     letter-spacing: 0.28em;
+    text-transform: uppercase;
     color: rgba(255, 255, 255, 0.65);
 }
 
 .titulo-rep-demoro span { display: block; }
-.titulo-sobre-nos .fonte-sobre { font-family: 'AbsolutHeadline'; }
-.titulo-sobre-nos .fonte-nos { font-family: 'AbsolutHandwritten'; }
+.titulo-sobre-nos .fonte-sobre { font-family: 'AbsolutHeadline'; display:inline; }
+.titulo-sobre-nos .fonte-nos { font-family: 'AbsolutHandwritten'; display:inline;}
 .titulo-sobre-nos span { display: block; }
 
 /* =============================================
@@ -176,7 +175,7 @@ img {
    ============================================= */
 
 .sobre-nos-section {
-    padding: 140px 40px;
+    padding: 80px 24px; /* cresce para 140px/40px a partir do tablet, lá embaixo */
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -185,13 +184,14 @@ img {
     background-color: #FAF9F6;
 }
 .titulo-sobre-nos {
-    font-size:clamp(34px, 5.5vw, 76px);
-    margin: 0 0 1rem;
+    font-size: clamp(34px, 5.5vw, 76px);
+    margin-block: 0 1rem;
     color: #000;
 }
 .rotulo{
-    font-size: clamp(11px, 0.85vw, 13px);;
+    font-size: clamp(11px, 0.85vw, 13px);
     letter-spacing: 0.22em;
+    text-transform: uppercase;
     color: #0000bd;
     margin-bottom: 16px;
 }
@@ -201,7 +201,8 @@ img {
     font-size: clamp(19px, 1.9vw, 27px);
     color: #000;
     max-width: 64ch;
-    margin: 0 auto;
+    margin-block: 0;
+    margin-inline: auto;
     line-height: 1.45;
 }
 
@@ -216,10 +217,12 @@ img {
 
 .eventos-section {
 }
-.titulo-nossos-eventos {
+.titulo-nossos-eventos,
+.titulo-nossa-casa {
     font-family: 'AbsolutHeadline';
     text-align: center;
-    font-size: clamp(32px, 8vw, 45px);
+    text-transform: uppercase;
+    font-size: clamp(32px, 7vw, 48px);
     margin-bottom: 2rem;
     padding: 0 20px;
 }
@@ -234,28 +237,44 @@ img {
     text-align: center;
     margin-bottom: 0px;
 }
+.conteudo-texto p, .conteudo-texto-festa p {
+    max-width: 64ch;
+    margin: 0 auto 16px;
+}
+.conteudo-texto p:last-child, .conteudo-texto-festa p:last-child {
+    margin-bottom: 0;
+}
 .fotos-interrep, .fotos-a-festa {
     order: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
 }
 .fotos-interrep figure, .fotos-a-festa figure {
     width: 100%;
-    max-width: 100%;
     margin: 0;
-    aspect-ratio: 3/4;
+    aspect-ratio: 9/16;
     overflow: hidden;
 }
 .fotos-interrep figure img, .fotos-a-festa figure img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    /* Levemente dessaturada em repouso, cheia na interação: dá unidade
+       a fotos de origens e qualidades diferentes. */
+    filter: grayscale(0.35);
+    transition: filter 0.4s ease, transform 0.6s ease;
+}
+.fotos-interrep figure:hover img, .fotos-a-festa figure:hover img {
+    filter: grayscale(0);
+    transform: scale(1.04);
 }
 .logo-torneio-interrep, .logo-a-festa {
-    max-width: 250px;
-    margin: 0 0px 0px 0px;
+    max-width: 190px;
+    margin: 0 0 16px;
+}
+.logo-torneio-interrep.logo-largo, .logo-a-festa.logo-largo {
+    max-width: 280px;
 }
 .texto-torneio-interrep, .texto-a-festa {
     font-size: clamp(16px, 4vw, 18px);
@@ -264,7 +283,13 @@ img {
 }
 
 /* =============================================
-   6. SEÇÃO CHURRASCO DOS PAIS
+   6. SEÇÃO CHURRASCO DOS PAIS / EX-MORADORES
+
+   No mobile cada seção é um cartão simples (foto em cima, texto
+   embaixo). A partir do tablet (seção 8) a foto passa a ocupar a
+   tela toda e o texto é um overlay em flexbox — por isso aqui em
+   cima ainda não existe position/left/top: isso só nasce lá embaixo,
+   junto com o modo "foto cheia".
    ============================================= */
 
 .sobre-churras-dos-pais {
@@ -274,23 +299,30 @@ img {
     color: #333;
 }
 .background-churras-pais img {
+    display: block;
     width: 100%;
     height: auto;
 }
 .conteudo-churras-pais {
+    padding: 24px;
 }
-.conteudo-churras-pais .titulo-churras-pais{
+.conteudo-churras-pais .titulo-churras-pais,
+.conteudo-churras-ex-moradores .titulo-churras-ex-moradores {
   font-family: 'AbsolutHeadline';
-  font-size: clamp(32px, 8vw, 50px);
+  font-size: clamp(32px, 6vw, 70px);
+  margin: 0 0 16px;
 }
-.conteudo-churras-pais .muito-mais-rep {
+.conteudo-churras-pais .muito-mais-rep,
+.conteudo-churras-ex-moradores .muito-mais-rep {
+    margin: 16px 0 0;
     font-family: 'AbsolutHandwritten';
-    font-size: clamp(32px, 8vw, 60px);
+    font-size: clamp(28px, 5vw, 48px);
 }
-.conteudo-churras-pais .texto-churras-pais {
-    font-size: 18px;
-    max-width: 700px;
-    margin: 15px auto;
+.conteudo-churras-pais .texto-churras-pais,
+.conteudo-churras-ex-moradores .texto-churras-ex-moradores {
+    font-size: clamp(16px, 1.3vw, 22px);
+    max-width: 54ch;
+    margin: 0;
     line-height: 1.6;
 }
 
@@ -302,24 +334,12 @@ img {
     color: #333;
 }
 .background-churras-ex-moradores img {
+    display: block;
     width: 100%;
     height: auto;
 }
 .conteudo-churras-ex-moradores {
-}
-.conteudo-churras-ex-moradores .titulo-churras-ex-moradores{
-  font-family: 'AbsolutHeadline';
-  font-size: clamp(32px, 8vw, 50px);
-}
-.conteudo-churras-ex-moradores .muito-mais-rep {
-    font-family: 'AbsolutHandwritten';
-    font-size: clamp(32px, 8vw, 60px);
-}
-.conteudo-churras-ex-moradores .texto-churras-ex-moradores {
-    font-size: 18px;
-    max-width: 700px;
-    margin: 15px auto;
-    line-height: 1.6;
+    padding: 24px;
 }
 
 /* =============================================
@@ -328,72 +348,68 @@ img {
 
 .moradores {
     background: #FAF9F6;
-    padding: 140px 40px;
+    padding: 80px 24px; /* cresce para 140px/40px a partir do tablet, lá embaixo */
     color: #333;
     text-align: center;
 }
 
 .titulo-moradores {
     font-family: 'AbsolutHeadline', sans-serif;
-    font-size: 40px;
     text-align: center;
+    text-transform: uppercase;
     margin: 0 0 30px;
-    font-size: clamp(34px, 5.5vw, 76px);
+    font-size: clamp(32px, 7vw, 48px);
     color: #000;
 }
 
 .scrollbar-moradores {
-    max-width: 100%; /* Garante que o container não ultrapasse a tela */
+    max-width: 100%;
 }
 
 .scrollbar-moradores[data-animated="true"] {
     overflow: hidden;
-    -webkit-mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
-    mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+    -webkit-mask: linear-gradient(90deg, transparent, white 12%, white 88%, transparent);
+    mask: linear-gradient(90deg, transparent, white 12%, white 88%, transparent);
 }
 
 .scrollbar-moradores[data-animated="true"] .scroller__inner {
-    width: max-content; /* Garante que os itens fiquem em uma linha */
+    width: max-content;
     display: flex;
     flex-wrap: nowrap;
     gap: 16px;
-    /* O tempo da animação (ex: 40s) controla a velocidade */
-    animation: scroll 40s linear infinite;
+    animation: scroll 42s linear infinite;
 }
 
-/* A animação que move o conteúdo */
 @keyframes scroll {
     to {
-        /* Move o conteúdo pela metade da sua largura total */
         transform: translate(calc(-50% - 8px)); /* 8px é metade do gap */
     }
 }
 
-/* Estilos da figura e legenda (sem alterações) */
 .scrollbar-moradores figure {
     text-align: left;
     flex: 0 0 168px;
     margin: 0;
-    flex-basis: 220px;
 }
 .scrollbar-moradores figure img {
-    width: 220px;
-    height: 294px;
+    display: block;
+    width: 168px;
+    height: 224px;
     object-fit: cover;
-    filter: grayscale(80%);
+    filter: grayscale(1);
     transition: filter 0.4s ease;
 }
-.scrollbar-moradores figure img:hover{
-    filter: grayscale(0%);
+.scrollbar-moradores figure:hover img {
+    filter: grayscale(0);
 }
 .scrollbar-moradores figcaption {
     background-color: #0000bd;
     color: #FAF9F6;
+    font-size: 12px;
     line-height: 1.45;
-    font-size: 13px;
     letter-spacing: 0.04em;
-    min-height: 74px;
     padding: 16px;
+    min-height: 74px;
 }
 .scrollbar-moradores figcaption b {
     display: inline-block;
@@ -409,336 +425,38 @@ img {
 
 
 .casa-section {
-}
-
-.titulo-nossa-casa {
-    font-family: 'AbsolutHeadline';
-    text-align: center;
-    font-size: clamp(32px, 8vw, 45px);
-    margin-bottom: 2rem;
-    padding: 0 20px;
+    background: #0000bd;
+    padding: 140px 40px;
 }
 
 .sobre-casa{
+    flex-direction: column; /* título em cima, botão embaixo */
+    align-items: center;
     display: flex;
     justify-content: flex-end;
-    flex-direction: row; 
-    align-items: center;
+    
 }
 
 .conteudo-casa {
     order: 2;
     text-align: center;
-    background: url('Background/white_background.png');
+    background: #FAF9F6;
     flex: 1 1 50%;
-    padding: 1vw 2vw;
+    padding: 24px 64px;
     border: black;
     cursor: pointer;
-    font-size: 5vw;
-    font-family: 'AbsolutHandwritten';
+    font-size: clamp(11px, 0.85vw, 13px);
+    letter-spacing: 0.2em;
+    font-family: 'Absolut';
     transition-duration: 0.4s;
+    max-width: 40%;
+    display:flex;
+    justify-content: center;
 }
 
 .conteudo-casa:hover{
-    background: url('Background/background_v4.png');
+    background: #000;
     color: white;
-    box-shadow:0 8px 16px 0 rgba(0,0,0,0.6);
-}
-
-
-/* ===============================================================
-   8. ESTILOS DESKTOP (769px e maior)
-   =============================================================== */
-@media (min-width: 769px) {
-
-    html, body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Absolut', sans-serif;
-        background-color: #000000;
-        color: #f0f0f0;
-        scroll-behavior: smooth;
-        width: 100%;
-        overflow-x: hidden;
-
-
-    }
-
-    /* --- Header / Navbar --- */
-    .hamburger { display: none; }
-    .menu {
-        display: flex;
-        position: static;
-        flex-direction: row;
-        /* background: transparent; */
-        width: auto;
-        padding: 0;
-    }
-    .menu a { padding: 8px 12px; }
-    .video-container {
-        position: relative;
-        width: 100%;
-        padding-bottom: 56.25%; 
-        height: 0;
-        overflow: hidden;
-        display: none;
-    }
-    .video_demolimpiadas{
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: none;
-    }
-
-    /* --- Hero Banner --- */
-    .crop {
-        position: relative;
-    }
-
-
-    .hero-conteudo {
-        position: absolute;
-        inset: auto 0px 0px;
-        padding: 140px 64px 64px;
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0));
-    }
-    
-
-
-    .titulo-rep-demoro {
-        position: absolute;
-        bottom: 5%;
-        width: 100%;
-        color: #ffffff;
-        font-size: clamp(40px, 4.5vw, 116px);
-        margin-bottom: 48px;
-        line-height: 1.02;
-        letter-spacing: -0.02em;
-        font-weight: normal;
-        text-align: left;
-    }
-    
-    .titulo-rep-demoro span { display: block; }
-
-    /* --- Seções de Eventos --- */
-    .sobre-torneio-interrep, .sobre-a-festa {
-        flex-direction: row;
-        max-width: 50%;
-        margin: 5% auto 5% 20%;
-        align-items: center;
-        gap: 0px;
-    }
-    .conteudo-texto {
-        flex: 1 1 25%;
-        order: 2;
-    }
-    .fotos-interrep {
-        flex: 1 1 25%;
-        order: 1;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 6px;
-        padding: 0 40px;
-    }
-    .conteudo-texto-festa {
-        flex: 1 1 25%;
-        order: 1;
-    }
-    .fotos-a-festa {
-        flex: 1 1 25%;
-        order: 2;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center; 
-        gap: 6px;
-        padding: 0 40px;
-
-    }
-
-    /* ======================================================
-      ===> AJUSTE 1: Aumentando o tamanho da fonte aqui <===
-      ======================================================
-    */
-    .texto-torneio-interrep{
-        font-size: clamp(10px, 1.2vw, 21px); /* Fonte maior para desktop */
-        text-align: left;
-    }
-    .texto-a-festa {
-        font-size: clamp(10px, 1.2vw, 21px); /* Fonte maior para desktop */
-        text-align: left;
-    }
-
-    /* Grids de fotos no desktop */
-    .fotos-interrep figure {
-        flex: 1 1 calc(50% - 8px); /* De 4 para 2 colunas (fotos maiores) */
-    }
-    .fotos-a-festa figure {
-        flex: 1 1 calc(50% - 8px); /* Grid de 2 colunas */
-    }
-
-    /* --- Churrasco dos Pais --- */
-    .sobre-churras-dos-pais {
-        position: relative; /* Mantém o contexto para o conteúdo flutuante */
-        color: white;
-        padding: 0;
-        background-color: transparent;
-    }
-
-    .background-churras-pais img {
-        display: block;
-        width: 100%;
-        height: 85vh; /* Define a altura da seção com base na altura da tela */
-        object-fit: cover;
-    }
-
-    .background-churras-pais::before {
-        content: '';
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        z-index: 2;
-        background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 75%);
-    }
-
-    .conteudo-churras-pais {
-        position: absolute;
-        z-index: 3;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        padding: 0;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
-    }
-
-    /* CORREÇÃO: Regra unificada para posicionar TODOS os textos */
-    .conteudo-churras-pais .titulo-churras-pais,
-    .conteudo-churras-pais .texto-churras-pais,
-    .conteudo-churras-pais .muito-mais-rep {
-        position: absolute;
-        transform: translate(-50%, -50%); /* Centraliza o elemento em suas coordenadas */
-        margin: 0;
-        width: auto;
-    }
-
-    /* CORREÇÃO: Estilos individuais e posicionamento corrigidos */
-    .conteudo-churras-pais .titulo-churras-pais {
-        font-family: 'AbsolutHeadline';
-        font-size: clamp(40px, 5vw, 70px);
-        left: 19.5%;
-        top: 20%;
-        text-align: left;
-    }
-
-    .conteudo-churras-pais .texto-churras-pais {
-        left: 25%;
-        top: 31.5%;
-        text-align: left;
-        max-width: 40%;
-        font-size: clamp(20px,1vw, 40px);
-    }
-
-    .conteudo-churras-pais .muito-mais-rep {
-        left: 80%;
-        top: 40%;
-        text-align: right;
-    }
-
-    .sobre-churras-ex-moradores {
-        position: relative; /* Mantém o contexto para o conteúdo flutuante */
-        color: white;
-        padding: 0;
-        background-color: transparent;
-    }
-
-    .background-churras-ex-moradores img {
-        display: block;
-        width: 100%;
-        height: 85vh; /* Define a altura da seção com base na altura da tela */
-        object-fit: cover;
-    }
-
-    .background-churras-ex-moradores::before {
-        content: '';
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        z-index: 2;
-        background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 75%);
-    }
-
-    .conteudo-churras-ex-moradores {
-        position: absolute;
-        z-index: 3;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        padding: 0;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
-    }
-
-    /* CORREÇÃO: Regra unificada para posicionar TODOS os textos */
-    .conteudo-churras-ex-moradores .titulo-churras-ex-moradores,
-    .conteudo-churras-ex-moradores .texto-churras-ex-moradores,
-    .conteudo-churras-ex-moradores .muito-mais-rep {
-        position: absolute;
-        transform: translate(-50%, -50%); /* Centraliza o elemento em suas coordenadas */
-        margin: 0;
-        width: auto;
-    }
-
-    /* CORREÇÃO: Estilos individuais e posicionamento corrigidos */
-    .conteudo-churras-ex-moradores .titulo-churras-ex-moradores {
-        font-family: 'AbsolutHeadline';
-        font-size: clamp(40px, 5vw, 70px);
-        left: 26.5%;
-        top: 68%;
-        text-align: left;
-    }
-
-    .conteudo-churras-ex-moradores .texto-churras-ex-moradores {
-        left: 36.5%;
-        top: 85.5%;
-        text-align: left;
-        max-width: 80%;
-        font-size: clamp(20px,1vw, 40px);
-    }
-
-    .conteudo-churras-ex-moradores .muito-mais-rep {
-        left: 80%;
-        top: 80%;
-        text-align: right;
-    }
-
-    
-    .conteudo-casa {
-        order: 2;
-        text-align: center;
-        background: url('Background/white_background.png');
-        flex: 1 1 50%;
-        padding: 1vw 2vw;
-        border: black;
-        cursor: pointer;
-        font-size: 2vw;
-        font-family: 'AbsolutHandwritten';
-        transition-duration: 0.4s;
-    }
-
-    .conteudo-casa:hover{
-        background: url('Background/background_v4.png');
-        color: white;
-        box-shadow:0 8px 16px 0 rgba(0,0,0,0.6);
-    }
-
-
-    /* --- Moradores --- */
-    .scrollbar-moradores figure {
-        flex-basis: 200px;
-    }
-    .scrollbar-moradores figure img {
-        width: 200px;
-        height: 300px;
-    }
-    .scrollbar-moradores figcaption {
-        font-size: 20px;
-    }
 }
 
 .fade-in-element {
@@ -747,7 +465,6 @@ img {
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
-/* Estado final: O elemento fica visível na sua posição original */
 .fade-in-element.is-visible {
   opacity: 1;
   transform: translateY(0);
@@ -760,10 +477,183 @@ img {
     width: 100%;
     max-width: 1000px;
     margin: 0;
-    overflow: auto;
+    overflow: hidden;
     box-shadow:0 8px 16px 0 rgba(0,0,0,1)
 }
 .foto-casa figure img{
     width: 100%;
     height: auto;
 }
+
+/* ===============================================================
+   TABLET (768px até 1023px)
+
+   Aqui mora a mudança mais importante: o título/texto do churrasco
+   não usa mais left/top/transform calibrados a olho (que saíam do
+   lugar a cada largura de tela). Agora é um overlay em flexbox:
+   justify-content decide se o bloco de texto fica no topo ou na
+   base da foto, e ele se adapta sozinho a qualquer largura e a
+   qualquer tamanho de texto.
+   =============================================================== */
+@media (min-width: 768px) {
+
+    .sobre-nos-section,
+    .moradores {
+        padding: 140px 40px;
+    }
+
+    /* --- Hero: a partir daqui usamos a imagem de fundo + texto sobreposto --- */
+    .video-container,
+    .video_demolimpiadas {
+        display: none;
+    }
+
+    .crop {
+        position: relative;
+    }
+
+    .hero-conteudo {
+        position: absolute;
+        inset: auto 0 0 0;
+        padding: 100px 40px 48px;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0));
+    }
+
+    /* --- Nossos Eventos: lado a lado --- */
+    .sobre-torneio-interrep, .sobre-a-festa {
+        flex-direction: row;
+        max-width: 86%;
+        margin: 6% auto;
+        align-items: center;
+        gap: 24px;
+    }
+    .conteudo-texto {
+        flex: 1 1 50%;
+        order: 2;
+    }
+    .fotos-interrep {
+        flex: 1 1 50%;
+        order: 1;
+    }
+    .conteudo-texto-festa {
+        flex: 1 1 50%;
+        order: 1;
+    }
+    .fotos-a-festa {
+        flex: 1 1 50%;
+        order: 2;
+    }
+    .texto-torneio-interrep, .texto-a-festa {
+        font-size: clamp(14px, 1.6vw, 18px);
+        text-align: left;
+    }
+
+    /* --- Churrasco: foto cheia + overlay flexbox --- */
+    .sobre-churras-dos-pais,
+    .sobre-churras-ex-moradores {
+        position: relative;
+        color: #fff;
+        padding: 0;
+        background-color: transparent;
+    }
+    .background-churras-pais img,
+    .background-churras-ex-moradores img {
+        height: 70vh;
+        min-height: 420px;
+        object-fit: cover;
+    }
+    .conteudo-churras-pais,
+    .conteudo-churras-ex-moradores {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        padding: 48px;
+        background: linear-gradient(180deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.55) 100%);
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    }
+    /* título perto do topo da foto, como no desenho original (~20%) */
+    .conteudo-churras-pais {
+        justify-content: flex-start;
+    }
+    /* título perto da base da foto, como no desenho original (~68-85%) */
+    .conteudo-churras-ex-moradores {
+        justify-content: flex-end;
+    }
+    .conteudo-churras-pais .titulo-churras-pais,
+    .conteudo-churras-ex-moradores .titulo-churras-ex-moradores,
+    .conteudo-churras-pais .texto-churras-pais,
+    .conteudo-churras-ex-moradores .texto-churras-ex-moradores {
+        text-align: left;
+    }
+    .conteudo-churras-pais .muito-mais-rep,
+    .conteudo-churras-ex-moradores .muito-mais-rep {
+        align-self: flex-end;
+        text-align: right;
+    }
+
+    .conteudo-casa {
+        font-size: clamp(11px, 0.85vw, 13px);
+    }
+}
+
+/* ===============================================================
+   8. ESTILOS DESKTOP (1024px e maior)
+   =============================================================== */
+@media (min-width: 1024px) {
+
+    /* --- Header / Navbar --- */
+    .hamburger { display: none; }
+    .menu {
+        display: flex;
+        position: static;
+        flex-direction: row;
+        width: auto;
+        padding: 0;
+        gap: 0;
+    }
+    .menu a { padding: 8px 12px; }
+
+    /* --- Hero Banner --- */
+    .hero-conteudo {
+        padding: 140px 64px 64px;
+    }
+
+    /* --- Seções de Eventos --- */
+    .sobre-torneio-interrep, .sobre-a-festa {
+        max-width: 50%;
+        margin: 5% auto 5% 20%;
+        gap: 0px;
+    }
+    .fotos-interrep, .fotos-a-festa {
+        padding: 0 40px;
+    }
+    .texto-torneio-interrep, .texto-a-festa {
+        font-size: clamp(13px, 1.2vw, 21px);
+    }
+
+    /* --- Churrasco: só a foto cresce um pouco mais; posição e fonte
+       do texto já são as mesmas definidas lá em cima (768px+) --- */
+    .background-churras-pais img,
+    .background-churras-ex-moradores img {
+        height: 85vh;
+    }
+
+    .conteudo-casa {
+        
+        font-size: clamp(11px, 0.85vw, 13px);
+    }
+
+    /* --- Moradores --- */
+    .scrollbar-moradores figure {
+        flex: 0 0 220px;
+    }
+    .scrollbar-moradores figure img {
+        width: 220px;
+        height: 294px;
+    }
+    .scrollbar-moradores figcaption {
+        font-size: 13px;
+    }
+}
+
