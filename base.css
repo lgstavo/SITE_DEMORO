@@ -247,13 +247,13 @@ img {
 .fotos-interrep, .fotos-a-festa {
     order: 2;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: 8px;
 }
 .fotos-interrep figure, .fotos-a-festa figure {
     width: 100%;
     margin: 0;
-    aspect-ratio: 9/16;
+    aspect-ratio: 4/5;
     overflow: hidden;
 }
 .fotos-interrep figure img, .fotos-a-festa figure img {
@@ -426,7 +426,7 @@ img {
 
 .casa-section {
     background: #0000bd;
-    padding: 140px 40px;
+    padding: 80px 24px;
 }
 
 .sobre-casa{
@@ -434,22 +434,20 @@ img {
     align-items: center;
     display: flex;
     justify-content: flex-end;
-    
+
 }
 
 .conteudo-casa {
     order: 2;
     text-align: center;
     background: #FAF9F6;
-    flex: 1 1 50%;
-    padding: 24px 64px;
-    border: black;
+    padding: 20px 32px;
+    max-width: 100%;
     cursor: pointer;
     font-size: clamp(11px, 0.85vw, 13px);
     letter-spacing: 0.2em;
     font-family: 'Absolut';
     transition-duration: 0.4s;
-    max-width: 40%;
     display:flex;
     justify-content: center;
 }
@@ -486,7 +484,7 @@ img {
 }
 
 /* ===============================================================
-   TABLET (768px até 1023px)
+   TABLET E DESKTOP (768px e maior)
 
    Aqui mora a mudança mais importante: o título/texto do churrasco
    não usa mais left/top/transform calibrados a olho (que saíam do
@@ -498,7 +496,8 @@ img {
 @media (min-width: 768px) {
 
     .sobre-nos-section,
-    .moradores {
+    .moradores,
+    .casa-section {
         padding: 140px 40px;
     }
 
@@ -542,6 +541,12 @@ img {
     .fotos-a-festa {
         flex: 1 1 50%;
         order: 2;
+    }
+    .fotos-interrep, .fotos-a-festa {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .fotos-interrep figure, .fotos-a-festa figure {
+        aspect-ratio: 9/16;
     }
     .texto-torneio-interrep, .texto-a-festa {
         font-size: clamp(14px, 1.6vw, 18px);
@@ -593,6 +598,7 @@ img {
     }
 
     .conteudo-casa {
+        padding: 24px 64px;
         font-size: clamp(11px, 0.85vw, 13px);
     }
 }
@@ -632,16 +638,10 @@ img {
         font-size: clamp(13px, 1.2vw, 21px);
     }
 
-    /* --- Churrasco: só a foto cresce um pouco mais; posição e fonte
-       do texto já são as mesmas definidas lá em cima (768px+) --- */
+
     .background-churras-pais img,
     .background-churras-ex-moradores img {
         height: 85vh;
-    }
-
-    .conteudo-casa {
-        
-        font-size: clamp(11px, 0.85vw, 13px);
     }
 
     /* --- Moradores --- */
@@ -656,4 +656,3 @@ img {
         font-size: 13px;
     }
 }
-
