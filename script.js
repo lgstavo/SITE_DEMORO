@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- Código para o Menu Hambúrguer (que você já tem) ---
     const hamburger = document.querySelector('.hamburger');
     const menu = document.querySelector('.menu');
 
@@ -20,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
         menu.classList.toggle('active');
     });
 
-    // 1. Seleciona todos os elementos que você quer animar
+    // 1. Seleciona todos os elementos que serão animados
     const elementsToFadeIn = document.querySelectorAll('.fade-in-element');
 
     // 2. Opções para o Intersection Observer
@@ -36,16 +35,13 @@ document.addEventListener('DOMContentLoaded', function() {
             if (entry.isIntersecting) {
                 // Adiciona a classe '.is-visible' para ativar a animação
                 entry.target.classList.add('is-visible');
-                // Opcional: Para de "observar" o elemento depois que a animação já aconteceu
                 observer.unobserve(entry.target);
             }
         });
     };
 
-    // 4. Cria o observador
     const observer = new IntersectionObserver(observerCallback, observerOptions);
 
-    // 5. Diz ao observador para "observar" cada um dos nossos elementos
     elementsToFadeIn.forEach(element => {
         observer.observe(element);
     });
