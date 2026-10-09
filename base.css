@@ -327,16 +327,19 @@ img {
    ============================================= */
 
 .moradores {
-    background: url('Background/white_background.png');
-    padding: 40px 0;
+    background: #FAF9F6;
+    padding: 140px 40px;
     color: #333;
+    text-align: center;
 }
 
 .titulo-moradores {
-    font-family: 'AbsolutHandwritten', sans-serif;
+    font-family: 'AbsolutHeadline', sans-serif;
     font-size: 40px;
     text-align: center;
-    margin-bottom: 30px;
+    margin: 0 0 30px;
+    font-size: clamp(34px, 5.5vw, 76px);
+    color: #000;
 }
 
 .scrollbar-moradores {
@@ -355,7 +358,7 @@ img {
     flex-wrap: nowrap;
     gap: 16px;
     /* O tempo da animação (ex: 40s) controla a velocidade */
-    animation: scroll 20s linear infinite;
+    animation: scroll 40s linear infinite;
 }
 
 /* A animação que move o conteúdo */
@@ -368,26 +371,37 @@ img {
 
 /* Estilos da figura e legenda (sem alterações) */
 .scrollbar-moradores figure {
-    flex: 0 0 150px;
-    text-align: center;
+    text-align: left;
+    flex: 0 0 168px;
     margin: 0;
+    flex-basis: 220px;
 }
 .scrollbar-moradores figure img {
-    width: 150px;
-    height: 225px;
-    border-radius: 5%;
+    width: 220px;
+    height: 294px;
     object-fit: cover;
+    filter: grayscale(80%);
+    transition: filter 0.4s ease;
+}
+.scrollbar-moradores figure img:hover{
+    filter: grayscale(0%);
 }
 .scrollbar-moradores figcaption {
-    margin-top: 8px;
-    font-size: 16px;
-    background-color: #09008a;
-    color: white;
-    font-family: 'AbsolutHandwritten', sans-serif;
-    padding: 4px;
-    border-radius: 4px;
+    background-color: #0000bd;
+    color: #FAF9F6;
+    line-height: 1.45;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    min-height: 74px;
+    padding: 16px;
 }
-
+.scrollbar-moradores figcaption b {
+    display: inline-block;
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-right: 4px;
+}
 /* Pausa a animação no hover */
 .scrollbar-moradores:hover .scroller__inner {
     animation-play-state: paused;
