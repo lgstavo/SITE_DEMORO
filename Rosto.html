@@ -8,44 +8,38 @@
     <title>República Demorô</title>
     <link rel="icon" href="images/Logo_Aba.ico">
     <link rel="stylesheet" href="base.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
 
 </head>
 
 <body>
 
-    <header class="barra_cima">
-        <a href="#"><img class="logo" src="images/Logos/LOGO_DEMORO_SITE.png" alt="Logo Demorô"></a>
+    <header class="px-5 fixed top-0 left-0 flex items-center justify-between  w-full h-15 z-1000 bg-black">
+        <a href="#"><img class="h-[25px] flex" src="images/Logos/LOGO_DEMORO_SITE.png" alt="Logo Demorô"></a>
 
-        <nav class="menu">
-            <a class="fonte-menu" href="#sobre-nos">SOBRE NÓS</a>
-            <a class="fonte-menu" href="#eventos">EVENTOS</a>
-            <a class="fonte-menu" href="#moradores">MORADORES</a>
-            <a class="fonte-menu" href="casa.html">NOSSA CASA</a>
+        <nav class="hidden absolute flex-col bg-[#000000e6] top-15 right-0 width-50 p-5 gap-3 lg:flex lg:static lg:w-auto lg:p-0 lg:gap-0 lg:flex-row">
+            <a class="text-center transition-colors hover:bg-[#ffffff33] delay-300 lg:px-3 lg:py-2 font-['Absolut',sans-serif] text-[clamp(11px,0.85vw,13px)] tracking-[0.18em] leading-[1.65]" href="#sobre-nos">SOBRE NÓS</a>
+            <a class="text-center transition-colors hover:bg-[#ffffff33] delay-300 lg:px-3 lg:py-2 font-['Absolut',sans-serif] text-[clamp(11px,0.85vw,13px)] tracking-[0.18em] leading-[1.65]" href="#eventos">EVENTOS</a>
+            <a class="text-center transition-colors hover:bg-[#ffffff33] delay-300 lg:px-3 lg:py-2 font-['Absolut',sans-serif] text-[clamp(11px,0.85vw,13px)] tracking-[0.18em] leading-[1.65]" href="#moradores">MORADORES</a>
+            <a class="text-center transition-colors hover:bg-[#ffffff33] delay-300 lg:px-3 lg:py-2 font-['Absolut',sans-serif] text-[clamp(11px,0.85vw,13px)] tracking-[0.18em] leading-[1.65]" href="casa.html">NOSSA CASA</a>
         </nav>
 
-        <div class="hamburger">
-            <div></div>
-            <div></div>
-            <div></div>
+        <div class="flex flex-col gap-[5px] cursor-pointer lg:hidden">
+            <div class="w-6 h-[3px] bg-white rounded-[2px]"></div>
+            <div class="w-6 h-[3px] bg-white rounded-[2px]"></div>
+            <div class="w-6 h-[3px] bg-white rounded-[2px]"></div>
         </div>
     </header>
 
     <main>
-        <section class="crop">
-            <div class="video-container">
-                <div class="video-slot"
-                     data-youtube-id="ZyaM1rqH4c8"
-                     data-scroll-para="#rep_section"></div>
-            </div>
-
-            <img src="FOTO_REENCONTRO/foto_churrasco_ex_cortada.png" alt="Moradores e ex-moradores reunidos no churrasco da república" id="rep_section" fetchpriority="high" width="1600" height="730">
+        <section class="relative bg-black">
+            <img class="block w-full h-auto lg:relative" src="FOTO_REENCONTRO/foto_churrasco_ex_cortada.png" alt="Moradores e ex-moradores reunidos no churrasco da república" id="rep_section" fetchpriority="high" width="1600" height="730">
             
-            <div class = "hero-conteudo">
-                <span class="titulo-rep-demoro">
-                    <span class="fonte-sobre">Aprecie a Graduação,</span> 
-                    <span class="fonte-nos">Deguste a Faculdade.</span>
-                    <span class="fonte-moderacao">SEM MODERAÇÃO</span>
+            <div class="px-6 pt-10 pb-16 text-white text-left md:absolute md:inset-x-0 md:bottom-0 md:px-10 md:pt-25 md:pb-12 md:bg-linear-to-t md:from-black/82 md:to-transparent lg:px-16 lg:pt-35 lg:pb-16">                <span class="titulo-rep-demoro">
+                    <span class="font-['AbsolutHeadline']">Aprecie a Graduação,</span> 
+                    <span class="font-['AbsolutHandwritten']">Deguste a Faculdade.</span>
+                    <span class="font-['Absolut'] tracking-[.25em] text-[clamp(11px,1vw,13px)] uppercase">SEM MODERAÇÃO</span>
                 </span>
             </div>
         </section>
