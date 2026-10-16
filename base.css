@@ -549,7 +549,7 @@ body {
         object-fit: cover;
     }
     .conteudo-churras-pais,
-    .conteudo-churras-ex-moradores {
+    .conteudo-churras-ex-moradores { 
         position: absolute;
         inset: 0;
         display: flex;
