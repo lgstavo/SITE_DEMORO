@@ -15,7 +15,7 @@
 
 <body>
 
-    <header class="px-5 fixed top-0 left-0 flex items-center justify-between  w-full h-15 z-1000 bg-black">
+    <header class="px-5 fixed top-0 left-0 flex items-center justify-between  w-full h-15 z-1 lg:z-1 bg-black">
         <a href="#"><img class="h-[25px] flex" src="images/Logos/LOGO_DEMORO_SITE.png" alt="Logo Demorô"></a>
 
         <nav class="hidden absolute flex-col bg-[#000000e6] top-15 right-0 width-50 p-5 gap-3 lg:flex lg:static lg:w-auto lg:p-0 lg:gap-0 lg:flex-row">
@@ -44,65 +44,65 @@
             </div>
         </section>
 
-        <section id="sobre-nos" class="sobre-nos-section">
-            <p class="rotulo ">
+        <section id="sobre-nos" class="py-20 px-6 text-center flex flex-col items-center bg-[#FAF9F6] md:py-35 md:px-10">
+            <p class="text-[clamp(11px,0.85vw,13px)] tracking-[0.22em] uppercase text-[#0000bd] bottom-4">
                 <span class="fonte-moderacao">SÃO CARLOS - DESDE 2005</span>
             </p>
-            <p class="titulo-sobre-nos">
-                <span class="fonte-sobre">Sobre</span><span class="fonte-nos"> Nós</span>
+            <p class="text-[clamp(34px,5.5vw,76px)] text-black mb-4">
+                <span class="font-['AbsolutHeadline'] inline">Sobre</span><span class="font-['AbsolutHandwritten'] inline"> Nós</span>
             </p>
-            <p class="sobre-nos">
+            <p class="size-fit text-[clamp(19px,1.9vw,27px)] text-black mb-4 leading-[1.5] m-auto max-w-[64ch]">
                 Fundada em 2005 por estudantes das Engenharias da USP, a República Demorô é uma das mais tradicionais
                 repúblicas universitárias de São Carlos.
             </p>
-            <p class ="sobre-nos-texto-medio">
+            <p class ="text-[#4a4a4a] max-w-[64ch]">
                 Hoje em dia, com moradores dos mais diversos cursos tanto da UFSCar quanto da USP, prezamos pela amizade e
                 por partilhar os bons momentos da vida universitária entre nós!
             </p>
         </section>
 
-        <section id="eventos" class="eventos-section z-3">
-            <p class="titulo-nossos-eventos fade-in-element">
+        <section id="eventos">
+            <p class="font-['AbsolutHeadline'] text-center uppercase text-[clamp(32px,7vw,48px)] mb-8 py-0 px-5  fade-in-element opacity-0 translate-y-[30px] transition-[opacity,transform] duration-[600ms] ease-out">
                 Nossos Eventos
             </p>
 
-            <div class="sobre-torneio-interrep fade-in-element">
-                <div class="conteudo-texto">
-                    <img class="logo-torneio-interrep" src="images/Logos/Logo_InterREP.png" alt="Logo InterREP">
-                    <p class="texto-torneio-interrep">
-                        Organizado desde 2005, o Torneio InterREP se trata da maior competição entre Repúblicas de São Carlos. Organizada anualmente por nós, atualmente estamos na XIX Edição do Torneio, que conta com mais de 80 Repúblicas e 750 Atletas, o InterREP se divide em diversas áreas, como Marketing, Financeiro, Patrocínios, Operacional e Presidência.
+            <div class="flex flex-col p-4 mb-10 md:flex-row md:items-center md:max-w-[86%] md:gap-6 lg:max-w-[50%] lg:my-[5%] lg:mr-auto lg:ml-[20%] fade-in-element opacity-0 translate-y-[30px] transition-[opacity,transform] duration-[600ms] ease-out">
+                <div class="order-1 text-center mb-0">
+                    <img class="max-w-[190px] py-2 mx-auto lg:mx-0" src="images/Logos/Logo_InterREP.png" alt="Logo InterREP">
+                    <p class="text-[clamp(16px,4vw,18px)] leading-[1.5] text-[#e0e0e0] md:text-left md:text-[clamp(14px,1.6vw,18px)] lg:text-[clamp(13px,1.2vw,21px)]">
+                        Organizado desde 2005, o Torneio InterREP se trata da maior competiçã o entre Repúblicas de São Carlos. Organizada anualmente por nós, atualmente estamos na XIX Edição do Torneio, que conta com mais de 80 Repúblicas e 750 Atletas, o InterREP se divide em diversas áreas, como Marketing, Financeiro, Patrocínios, Operacional e Presidência.
                     </p>
                 </div>
-                <div class="fotos-interrep fade-in-element">
-                    <figure><img src="Fotos_InterREP/Fotos Final 2/FOTO_DTV.jpg" alt="Foto DTV"></figure>
-                    <figure><img src="Fotos_InterREP/Fotos Final 2/FOTO_TROFEU.jpg" alt="Foto TROFEU"></figure>
-                    <figure><img src="Fotos_InterREP/Fotos Final 2/FOTO_BORA_BORA.jpg" alt="Foto Bora Bora"></figure>
-                    <figure><img src="Fotos_InterREP/Fotos Final 2/FOTO_ARTILHEIRO.jpg" alt="Foto Artilheiro"></figure>
+                <div class="grid order-2 gap-[8px] grid-cols-1 md:grid-cols-2 lg:grid-cols-2 lg:py-0 lg:px-10 fade-in-element">
+                    <figure class="w-full m-0 aspect-[4/5] md:aspect-[9/16] overflow-hidden"><img class="w-full h-full object-cover grayscale-[35%] transition-[filter,transform] duration-[400ms,600ms] ease-[ease,ease] hover:grayscale-0 hover:scale-1.04" src="Fotos_InterREP/Fotos Final 2/FOTO_DTV.jpg" alt="Foto DTV"></figure>
+                    <figure class="w-full m-0 aspect-[4/5] md:aspect-[9/16] overflow-hidden"><img class="w-full h-full object-cover grayscale-[35%] transition-[filter,transform] duration-[400ms,600ms] ease-[ease,ease] hover:grayscale-0 hover:scale-1.04" src="Fotos_InterREP/Fotos Final 2/FOTO_TROFEU.jpg" alt="Foto TROFEU"></figure>
+                    <figure class="w-full m-0 aspect-[4/5] md:aspect-[9/16] overflow-hidden"><img class="w-full h-full object-cover grayscale-[35%] transition-[filter,transform] duration-[400ms,600ms] ease-[ease,ease] hover:grayscale-0 hover:scale-1.04" src="Fotos_InterREP/Fotos Final 2/FOTO_BORA_BORA.jpg" alt="Foto Bora Bora"></figure>
+                    <figure class="w-full m-0 aspect-[4/5] md:aspect-[9/16] overflow-hidden"><img class="w-full h-full object-cover grayscale-[35%] transition-[filter,transform] duration-[400ms,600ms] ease-[ease,ease] hover:grayscale-0 hover:scale-1.04" src="Fotos_InterREP/Fotos Final 2/FOTO_ARTILHEIRO.jpg" alt="Foto Artilheiro"></figure>
                 </div>
             </div>
 
-            <div class="sobre-a-festa fade-in-element">
-                <div class="conteudo-texto-festa">
-                    <img class="logo-a-festa" src="images/Logos/LOGO_INTERREP_A_FESTA.png" alt="Logo InterREP A FESTA">
-                    <p class="texto-a-festa">
-                        Ao final do Torneio, sempre organizamos um evento de finalização do campeonato. O InterREP - A Festa se trata de um momento de comemoração, feito tanto para os ganhadores da competição, quanto feito para nós mesmos, com o objetivo de comemorarmos a finalização de um torneio trabalhoso para nós. Na última edição, contamos com a participação de 300 pessoas, com direito a entrega dos troféus para os campeões num clima perfeito de tardezinha, cerveja e piscina.
+            <div class="flex flex-col p-4 mb-10 md:flex-row md:items-center md:max-w-[86%] md:gap-6 lg:max-w-[50%] lg:my-[5%] lg:mr-auto lg:ml-[20%] fade-in-element opacity-0 translate-y-[30px] transition-[opacity,transform] duration-[600ms] ease-out">
+                <div class="order-2 text-center mb-0">
+                    <img class="max-w-[190px] py-2 mx-auto lg:mx-0" src="images/Logos/LOGO_INTERREP_A_FESTA.png" alt="Logo InterREP A FESTA">
+                    <p class="text-[clamp(16px,4vw,18px)] leading-[1.5] text-[#e0e0e0] md:text-left md:text-[clamp(14px,1.6vw,18px)] lg:text-[clamp(13px,1.2vw,21px)]">
+                        Ao final do Torneio, sempre organizamos um evento de finalização do campeonato.<br> O InterREP - A Festa se trata de um momento de comemoração, feito tanto para os ganhadores da competição, quanto feito para nós mesmos, com o objetivo de comemorarmos a finalização de um torneio trabalhoso para nós. Na última edição, contamos com a participação de 300 pessoas, com direito a entrega dos troféus para os campeões num clima perfeito de tardezinha, cerveja e piscina.
                     </p>
                 </div>
-                <div class="fotos-a-festa">
-                    <figure><img src="Fotos InterREP A Festa/PLACA.jpeg" alt="Foto Placa"></figure>
-                    <figure><img src="Fotos InterREP A Festa/DTV.jpeg" alt="Foto DTV"></figure>
-                    <figure><img src="Fotos InterREP A Festa/VDN.jpeg" alt="Foto VDN"></figure>
-                    <figure><img src="Fotos InterREP A Festa/TPD.jpeg" alt="Foto TPD"></figure>
+                <div class="grid order-1 gap-[8px] grid-cols-1 md:grid-cols-2 lg:grid-cols-2 lg:py-0 lg:px-10 fade-in-element">
+                    <figure class="w-full m-0 aspect-[4/5] md:aspect-[9/16] overflow-hidden"><img class="w-full h-full object-cover grayscale-[35%] transition-[filter,transform] duration-[400ms,600ms] ease-[ease,ease] hover:grayscale-0 hover:scale-1.04" src="Fotos InterREP A Festa/PLACA.jpeg" alt="Foto Placa"></figure>
+                    <figure class="w-full m-0 aspect-[4/5] md:aspect-[9/16] overflow-hidden"><img class="w-full h-full object-cover grayscale-[35%] transition-[filter,transform] duration-[400ms,600ms] ease-[ease,ease] hover:grayscale-0 hover:scale-1.04" src="Fotos InterREP A Festa/DTV.jpeg" alt="Foto DTV"></figure>
+                    <figure class="w-full m-0 aspect-[4/5] md:aspect-[9/16] overflow-hidden"><img class="w-full h-full object-cover grayscale-[35%] transition-[filter,transform] duration-[400ms,600ms] ease-[ease,ease] hover:grayscale-0 hover:scale-1.04" src="Fotos InterREP A Festa/VDN.jpeg" alt="Foto VDN"></figure>
+                    <figure class="w-full m-0 aspect-[4/5] md:aspect-[9/16] overflow-hidden"><img class="w-full h-full object-cover grayscale-[35%] transition-[filter,transform] duration-[400ms,600ms] ease-[ease,ease] hover:grayscale-0 hover:scale-1.04" src="Fotos InterREP A Festa/TPD.jpeg" alt="Foto TPD"></figure>
                 </div>
             </div>
 
-            <div class="sobre-churras-dos-pais">
-                <div class="background-churras-pais">
+            <div class="p-0px text-center bg-white md:relative md:p-0 md:bg-transparent">
+                <div class="block w-full h-auto md:h-[70vh] min-h-[420px] object-cover">
                     <img src="FOTOS_CHURRAS_PAIS/FOTO_CHURRAS_PAIS.jpeg" alt="Foto do Churrasco dos Pais">
                 </div>
 
-                <div class="conteudo-churras-pais">
-                    <p class="titulo-churras-pais">Churrasco dos Pais</p>
+                <div class="p-6">
+                    <p class="font-['AbsolutHeadline'] text-[clamp(32px,4vw,70px)] md:absolut md:flex md:flex-col md:p-12">Churrasco dos Pais</p>
                     <p class="texto-churras-pais">
                         Muito mais que uma República, a Demorô também é uma família. Por isso, todo ano organizamos nosso Churrasco de Pais aqui! Com a presença dos pais dos moradores, esse é um momento de extrema importância entre nós, estreitando os laços entre nossas famílias e nossa República!
                     </p>

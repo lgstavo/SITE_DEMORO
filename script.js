@@ -15,9 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const hamburger = document.querySelector('.hamburger');
     const menu = document.querySelector('.menu');
 
-    hamburger.addEventListener('click', function() {
-        menu.classList.toggle('active');
-    });
+    // hamburger.addEventListener('click', function() {
+    //     menu.classList.toggle('active');
+    // });
 
     // 1. Seleciona todos os elementos que serão animados
     const elementsToFadeIn = document.querySelectorAll('.fade-in-element');

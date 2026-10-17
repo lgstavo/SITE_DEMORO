@@ -44,7 +44,7 @@ body {
     justify-content: space-between;
     padding: 0 20px;
     box-sizing: border-box;
-    z-index: 1000;
+    z-index: 1;
 }
 .logo {
     height: 25px;
@@ -183,13 +183,6 @@ body {
     margin-block: 0 1rem;
     color: #000;
 }
-.rotulo{
-    font-size: clamp(11px, 0.85vw, 13px);
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: #0000bd;
-    margin-bottom: 16px;
-}
 
 .sobre-nos {
     width: fit-content;
@@ -240,7 +233,7 @@ body {
     margin-bottom: 0;
 }
 .fotos-interrep, .fotos-a-festa {
-    order: 2;
+    order: 1;
     display: grid;
     grid-template-columns: 1fr;
     gap: 8px;
@@ -490,7 +483,6 @@ body {
    =============================================================== */
 @media (min-width: 768px) {
 
-    .sobre-nos-section,
     .moradores,
     .casa-section {
         padding: 140px 40px;
@@ -557,7 +549,7 @@ body {
         object-fit: cover;
     }
     .conteudo-churras-pais,
-    .conteudo-churras-ex-moradores {
+    .conteudo-churras-ex-moradores { 
         position: absolute;
         inset: 0;
         display: flex;
