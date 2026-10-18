@@ -1,200 +1,232 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="motion-safe:scroll-smooth overflow-x-hidden">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <title>República Demorô</title>
     <link rel="icon" href="images/Logo_Aba.ico">
     <link rel="stylesheet" href="base.css">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
+    <style type="text/tailwindcss">
+        @theme {
+            --color-azul-demoro: #0000bd;
+            --color-creme: #faf9f6;
 
+            --font-absolut: 'Absolut', sans-serif;
+            --font-headline: 'AbsolutHeadline', sans-serif;
+            --font-manuscrita: 'AbsolutHandwritten', sans-serif;
+
+            --text-rotulo: clamp(0.6875rem, 0.85vw, 0.8125rem);
+            --text-titulo-secao: clamp(2rem, 7vw, 3rem);
+            --text-titulo-churras: clamp(2rem, 6vw, 4.375rem);
+            --text-churras: clamp(1rem, 1.3vw, 1.375rem);
+            --text-assinatura: clamp(1.75rem, 5vw, 3rem);
+
+            --animate-scroll: scroll 42s linear infinite;
+
+            @keyframes scroll {
+                to { transform: translate(calc(-50% - 8px)); }
+            }
+        }
+
+        @layer components {
+            .fade-in-element {
+                @apply opacity-0 translate-y-[30px] transition-[opacity,translate] duration-600 ease-out;
+                @apply motion-reduce:opacity-100 motion-reduce:translate-y-0 motion-reduce:transition-none;
+            }
+            .fade-in-element.is-visible {
+                @apply opacity-100 translate-y-0;
+            }
+        }
+    </style>
 </head>
 
-<body>
+<body class="w-full overflow-x-hidden bg-black text-[#f0f0f0] font-absolut pt-15">
 
-    <header class="px-5 fixed top-0 left-0 flex items-center justify-between  w-full h-15 z-1 lg:z-1 bg-black">
+    <header class="fixed top-0 left-0 z-1 flex items-center justify-between w-full h-15 px-5 bg-black">
         <a href="#"><img class="h-[25px] flex" src="images/Logos/LOGO_DEMORO_SITE.png" alt="Logo Demorô"></a>
 
-        <nav class="hidden absolute flex-col bg-[#000000e6] top-15 right-0 width-50 p-5 gap-3 lg:flex lg:static lg:w-auto lg:p-0 lg:gap-0 lg:flex-row">
-            <a class="text-center transition-colors hover:bg-[#ffffff33] delay-300 lg:px-3 lg:py-2 font-['Absolut',sans-serif] text-[clamp(11px,0.85vw,13px)] tracking-[0.18em] leading-[1.65]" href="#sobre-nos">SOBRE NÓS</a>
-            <a class="text-center transition-colors hover:bg-[#ffffff33] delay-300 lg:px-3 lg:py-2 font-['Absolut',sans-serif] text-[clamp(11px,0.85vw,13px)] tracking-[0.18em] leading-[1.65]" href="#eventos">EVENTOS</a>
-            <a class="text-center transition-colors hover:bg-[#ffffff33] delay-300 lg:px-3 lg:py-2 font-['Absolut',sans-serif] text-[clamp(11px,0.85vw,13px)] tracking-[0.18em] leading-[1.65]" href="#moradores">MORADORES</a>
-            <a class="text-center transition-colors hover:bg-[#ffffff33] delay-300 lg:px-3 lg:py-2 font-['Absolut',sans-serif] text-[clamp(11px,0.85vw,13px)] tracking-[0.18em] leading-[1.65]" href="casa.html">NOSSA CASA</a>
+        <nav id="menu" class="menu hidden absolute top-15 right-0 w-50 flex-col gap-3 p-5 bg-black/90 text-center text-white font-absolut text-rotulo tracking-[0.18em] leading-[1.65] *:p-2.5 *:rounded-[5px] *:transition-colors *:duration-300 *:hover:bg-white/20 *:focus-visible:outline-2 *:focus-visible:outline-white [&.active]:flex lg:static lg:flex lg:w-auto lg:flex-row lg:gap-0 lg:p-0 lg:*:px-3 lg:*:py-2">
+            <a href="#sobre-nos">SOBRE NÓS</a>
+            <a href="#eventos">EVENTOS</a>
+            <a href="#moradores">MORADORES</a>
+            <a href="casa.html">NOSSA CASA</a>
         </nav>
 
-        <div class="flex flex-col gap-[5px] cursor-pointer lg:hidden">
-            <div class="w-6 h-[3px] bg-white rounded-[2px]"></div>
-            <div class="w-6 h-[3px] bg-white rounded-[2px]"></div>
-            <div class="w-6 h-[3px] bg-white rounded-[2px]"></div>
-        </div>
+        <button type="button" class="hamburger flex flex-col gap-[5px] p-2.5 -mr-2.5 cursor-pointer focus-visible:outline-2 focus-visible:outline-white lg:hidden" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">
+            <span class="block w-[25px] h-[3px] bg-white rounded-[2px]"></span>
+            <span class="block w-[25px] h-[3px] bg-white rounded-[2px]"></span>
+            <span class="block w-[25px] h-[3px] bg-white rounded-[2px]"></span>
+        </button>
     </header>
 
     <main>
         <section class="relative bg-black">
-            <img class="block w-full h-auto lg:relative" src="FOTO_REENCONTRO/foto_churrasco_ex_cortada.png" alt="Moradores e ex-moradores reunidos no churrasco da república" id="rep_section" fetchpriority="high" width="1600" height="730">
-            
-            <div class="px-6 pt-10 pb-16 text-white text-left md:absolute md:inset-x-0 md:bottom-0 md:px-10 md:pt-25 md:pb-12 md:bg-linear-to-t md:from-black/82 md:to-transparent lg:px-16 lg:pt-35 lg:pb-16">                <span class="titulo-rep-demoro">
-                    <span class="font-['AbsolutHeadline']">Aprecie a Graduação,</span> 
-                    <span class="font-['AbsolutHandwritten']">Deguste a Faculdade.</span>
-                    <span class="font-['Absolut'] tracking-[.25em] text-[clamp(11px,1vw,13px)] uppercase">SEM MODERAÇÃO</span>
-                </span>
+            <img class="block w-full h-auto aspect-[4/3] object-cover md:aspect-auto" src="FOTO_REENCONTRO/foto_churrasco_ex_cortada.png" alt="Moradores e ex-moradores reunidos no churrasco da república" id="rep_section" fetchpriority="high" width="1600" height="730">
+
+            <div class="px-6 pt-10 pb-16 text-white text-left md:absolute md:inset-x-0 md:bottom-0 md:px-10 md:pt-25 md:pb-12 md:bg-linear-to-t md:from-black/82 md:to-transparent lg:px-16 lg:pt-35 lg:pb-16">
+                <h1 class="text-[clamp(1.75rem,0.5rem_+_5.5vw,7.25rem)] leading-[1.1] text-creme">
+                    <span class="block font-headline">Aprecie a Graduação,</span>
+                    <span class="block font-manuscrita">Deguste a Faculdade.</span>
+                    <span class="block font-absolut text-[clamp(0.6875rem,1vw,0.8125rem)] tracking-[0.28em] uppercase text-white/65">SEM MODERAÇÃO</span>
+                </h1>
             </div>
         </section>
 
-        <section id="sobre-nos" class="py-20 px-6 text-center flex flex-col items-center bg-[#FAF9F6] md:py-35 md:px-10">
-            <p class="text-[clamp(11px,0.85vw,13px)] tracking-[0.22em] uppercase text-[#0000bd] bottom-4">
-                <span class="fonte-moderacao">SÃO CARLOS - DESDE 2005</span>
+        <section id="sobre-nos" class="scroll-mt-15 flex flex-col justify-center items-center py-20 px-6 md:py-35 md:px-10 text-center bg-creme">
+            <p class="mb-4 text-rotulo tracking-[0.22em] uppercase text-azul-demoro">
+                SÃO CARLOS - DESDE 2005
             </p>
-            <p class="text-[clamp(34px,5.5vw,76px)] text-black mb-4">
-                <span class="font-['AbsolutHeadline'] inline">Sobre</span><span class="font-['AbsolutHandwritten'] inline"> Nós</span>
-            </p>
-            <p class="size-fit text-[clamp(19px,1.9vw,27px)] text-black mb-4 leading-[1.5] m-auto max-w-[64ch]">
+            <h2 class="mb-4 text-[clamp(2.125rem,5.5vw,4.75rem)] text-black">
+                <span class="font-headline">Sobre</span><span class="font-manuscrita"> Nós</span>
+            </h2>
+            <p class="w-fit mx-auto max-w-[64ch] text-[clamp(1.1875rem,1.9vw,1.6875rem)] leading-[1.45] text-black">
                 Fundada em 2005 por estudantes das Engenharias da USP, a República Demorô é uma das mais tradicionais
                 repúblicas universitárias de São Carlos.
             </p>
-            <p class ="text-[#4a4a4a] max-w-[64ch]">
+            <p class="max-w-[64ch] text-[#4a4a4a]">
                 Hoje em dia, com moradores dos mais diversos cursos tanto da UFSCar quanto da USP, prezamos pela amizade e
                 por partilhar os bons momentos da vida universitária entre nós!
             </p>
         </section>
 
-        <section id="eventos">
-            <p class="font-['AbsolutHeadline'] text-center uppercase text-[clamp(32px,7vw,48px)] mb-8 py-0 px-5  fade-in-element opacity-0 translate-y-[30px] transition-[opacity,transform] duration-[600ms] ease-out">
+        <section id="eventos" class="scroll-mt-15">
+            <h2 class="fade-in-element mb-8 px-5 font-headline text-center uppercase text-titulo-secao">
                 Nossos Eventos
-            </p>
+            </h2>
 
-            <div class="flex flex-col p-4 mb-10 md:flex-row md:items-center md:max-w-[86%] md:gap-6 lg:max-w-[50%] lg:my-[5%] lg:mr-auto lg:ml-[20%] fade-in-element opacity-0 translate-y-[30px] transition-[opacity,transform] duration-[600ms] ease-out">
-                <div class="order-1 text-center mb-0">
-                    <img class="max-w-[190px] py-2 mx-auto lg:mx-0" src="images/Logos/Logo_InterREP.png" alt="Logo InterREP">
-                    <p class="text-[clamp(16px,4vw,18px)] leading-[1.5] text-[#e0e0e0] md:text-left md:text-[clamp(14px,1.6vw,18px)] lg:text-[clamp(13px,1.2vw,21px)]">
-                        Organizado desde 2005, o Torneio InterREP se trata da maior competiçã o entre Repúblicas de São Carlos. Organizada anualmente por nós, atualmente estamos na XIX Edição do Torneio, que conta com mais de 80 Repúblicas e 750 Atletas, o InterREP se divide em diversas áreas, como Marketing, Financeiro, Patrocínios, Operacional e Presidência.
+            <div class="fade-in-element flex flex-col gap-6 mb-10 md:flex-row md:items-center md:max-w-[min(86%,64rem)] md:my-[6%] md:mx-auto lg:my-[5%] lg:gap-10">
+                <div class="order-1 px-6 text-center md:order-2 md:flex-[1_1_50%] md:px-0">
+                    <img class="mx-auto mb-4 max-w-[150px] md:mx-0 md:max-w-[170px] lg:max-w-[190px]" src="images/Logos/Logo_InterREP.png" alt="Logo InterREP" loading="lazy">
+                    <p class="mx-auto max-w-[64ch] text-[clamp(1rem,4vw,1.125rem)] leading-[1.6] text-[#e0e0e0] md:text-left md:text-[clamp(1rem,1.6vw,1.125rem)] lg:text-[clamp(1rem,1.2vw,1.3125rem)]">
+                        Organizado desde 2005, o Torneio InterREP se trata da maior competição entre Repúblicas de São Carlos. Organizada anualmente por nós, atualmente estamos na XIX Edição do Torneio, que conta com mais de 80 Repúblicas e 750 Atletas, o InterREP se divide em diversas áreas, como Marketing, Financeiro, Patrocínios, Operacional e Presidência.
                     </p>
                 </div>
-                <div class="grid order-2 gap-[8px] grid-cols-1 md:grid-cols-2 lg:grid-cols-2 lg:py-0 lg:px-10 fade-in-element">
-                    <figure class="w-full m-0 aspect-[4/5] md:aspect-[9/16] overflow-hidden"><img class="w-full h-full object-cover grayscale-[35%] transition-[filter,transform] duration-[400ms,600ms] ease-[ease,ease] hover:grayscale-0 hover:scale-1.04" src="Fotos_InterREP/Fotos Final 2/FOTO_DTV.jpg" alt="Foto DTV"></figure>
-                    <figure class="w-full m-0 aspect-[4/5] md:aspect-[9/16] overflow-hidden"><img class="w-full h-full object-cover grayscale-[35%] transition-[filter,transform] duration-[400ms,600ms] ease-[ease,ease] hover:grayscale-0 hover:scale-1.04" src="Fotos_InterREP/Fotos Final 2/FOTO_TROFEU.jpg" alt="Foto TROFEU"></figure>
-                    <figure class="w-full m-0 aspect-[4/5] md:aspect-[9/16] overflow-hidden"><img class="w-full h-full object-cover grayscale-[35%] transition-[filter,transform] duration-[400ms,600ms] ease-[ease,ease] hover:grayscale-0 hover:scale-1.04" src="Fotos_InterREP/Fotos Final 2/FOTO_BORA_BORA.jpg" alt="Foto Bora Bora"></figure>
-                    <figure class="w-full m-0 aspect-[4/5] md:aspect-[9/16] overflow-hidden"><img class="w-full h-full object-cover grayscale-[35%] transition-[filter,transform] duration-[400ms,600ms] ease-[ease,ease] hover:grayscale-0 hover:scale-1.04" src="Fotos_InterREP/Fotos Final 2/FOTO_ARTILHEIRO.jpg" alt="Foto Artilheiro"></figure>
+                <div class="fade-in-element order-1 grid grid-cols-2 gap-2 md:flex-[1_1_50%]">
+                    <figure class="group aspect-[4/5] overflow-hidden md:aspect-[9/16]"><img class="size-full object-cover [@media(hover:hover)]:grayscale-[0.35] transition-[filter,scale] duration-[400ms,600ms] group-hover:grayscale-0 group-hover:scale-[1.04]" src="Fotos_InterREP/Fotos Final 2/FOTO_DTV.jpg" alt="Foto DTV" loading="lazy"></figure>
+                    <figure class="group aspect-[4/5] overflow-hidden md:aspect-[9/16]"><img class="size-full object-cover [@media(hover:hover)]:grayscale-[0.35] transition-[filter,scale] duration-[400ms,600ms] group-hover:grayscale-0 group-hover:scale-[1.04]" src="Fotos_InterREP/Fotos Final 2/FOTO_TROFEU.jpg" alt="Foto TROFEU" loading="lazy"></figure>
+                    <figure class="group aspect-[4/5] overflow-hidden md:aspect-[9/16]"><img class="size-full object-cover [@media(hover:hover)]:grayscale-[0.35] transition-[filter,scale] duration-[400ms,600ms] group-hover:grayscale-0 group-hover:scale-[1.04]" src="Fotos_InterREP/Fotos Final 2/FOTO_BORA_BORA.jpg" alt="Foto Bora Bora" loading="lazy"></figure>
+                    <figure class="group aspect-[4/5] overflow-hidden md:aspect-[9/16]"><img class="size-full object-cover [@media(hover:hover)]:grayscale-[0.35] transition-[filter,scale] duration-[400ms,600ms] group-hover:grayscale-0 group-hover:scale-[1.04]" src="Fotos_InterREP/Fotos Final 2/FOTO_ARTILHEIRO.jpg" alt="Foto Artilheiro" loading="lazy"></figure>
                 </div>
             </div>
 
-            <div class="flex flex-col p-4 mb-10 md:flex-row md:items-center md:max-w-[86%] md:gap-6 lg:max-w-[50%] lg:my-[5%] lg:mr-auto lg:ml-[20%] fade-in-element opacity-0 translate-y-[30px] transition-[opacity,transform] duration-[600ms] ease-out">
-                <div class="order-2 text-center mb-0">
-                    <img class="max-w-[190px] py-2 mx-auto lg:mx-0" src="images/Logos/LOGO_INTERREP_A_FESTA.png" alt="Logo InterREP A FESTA">
-                    <p class="text-[clamp(16px,4vw,18px)] leading-[1.5] text-[#e0e0e0] md:text-left md:text-[clamp(14px,1.6vw,18px)] lg:text-[clamp(13px,1.2vw,21px)]">
+            <div class="fade-in-element flex flex-col gap-6 mb-10 md:flex-row md:items-center md:max-w-[min(86%,64rem)] md:my-[6%] md:mx-auto lg:my-[5%] lg:gap-10">
+                <div class="order-1 px-6 text-center md:flex-[1_1_50%] md:px-0">
+                    <img class="mx-auto mb-4 max-w-[150px] md:mx-0 md:max-w-[170px] lg:max-w-[190px]" src="images/Logos/LOGO_INTERREP_A_FESTA.png" alt="Logo InterREP A FESTA" loading="lazy">
+                    <p class="mx-auto max-w-[64ch] text-[clamp(1rem,4vw,1.125rem)] leading-[1.6] text-[#e0e0e0] md:text-left md:text-[clamp(1rem,1.6vw,1.125rem)] lg:text-[clamp(1rem,1.2vw,1.3125rem)]">
                         Ao final do Torneio, sempre organizamos um evento de finalização do campeonato.<br> O InterREP - A Festa se trata de um momento de comemoração, feito tanto para os ganhadores da competição, quanto feito para nós mesmos, com o objetivo de comemorarmos a finalização de um torneio trabalhoso para nós. Na última edição, contamos com a participação de 300 pessoas, com direito a entrega dos troféus para os campeões num clima perfeito de tardezinha, cerveja e piscina.
                     </p>
                 </div>
-                <div class="grid order-1 gap-[8px] grid-cols-1 md:grid-cols-2 lg:grid-cols-2 lg:py-0 lg:px-10 fade-in-element">
-                    <figure class="w-full m-0 aspect-[4/5] md:aspect-[9/16] overflow-hidden"><img class="w-full h-full object-cover grayscale-[35%] transition-[filter,transform] duration-[400ms,600ms] ease-[ease,ease] hover:grayscale-0 hover:scale-1.04" src="Fotos InterREP A Festa/PLACA.jpeg" alt="Foto Placa"></figure>
-                    <figure class="w-full m-0 aspect-[4/5] md:aspect-[9/16] overflow-hidden"><img class="w-full h-full object-cover grayscale-[35%] transition-[filter,transform] duration-[400ms,600ms] ease-[ease,ease] hover:grayscale-0 hover:scale-1.04" src="Fotos InterREP A Festa/DTV.jpeg" alt="Foto DTV"></figure>
-                    <figure class="w-full m-0 aspect-[4/5] md:aspect-[9/16] overflow-hidden"><img class="w-full h-full object-cover grayscale-[35%] transition-[filter,transform] duration-[400ms,600ms] ease-[ease,ease] hover:grayscale-0 hover:scale-1.04" src="Fotos InterREP A Festa/VDN.jpeg" alt="Foto VDN"></figure>
-                    <figure class="w-full m-0 aspect-[4/5] md:aspect-[9/16] overflow-hidden"><img class="w-full h-full object-cover grayscale-[35%] transition-[filter,transform] duration-[400ms,600ms] ease-[ease,ease] hover:grayscale-0 hover:scale-1.04" src="Fotos InterREP A Festa/TPD.jpeg" alt="Foto TPD"></figure>
+                <div class="order-1 grid grid-cols-2 gap-2 md:order-2 md:flex-[1_1_50%]">
+                    <figure class="group aspect-[4/5] overflow-hidden md:aspect-[9/16]"><img class="size-full object-cover [@media(hover:hover)]:grayscale-[0.35] transition-[filter,scale] duration-[400ms,600ms] group-hover:grayscale-0 group-hover:scale-[1.04]" src="Fotos InterREP A Festa/PLACA.jpeg" alt="Foto Placa" loading="lazy"></figure>
+                    <figure class="group aspect-[4/5] overflow-hidden md:aspect-[9/16]"><img class="size-full object-cover [@media(hover:hover)]:grayscale-[0.35] transition-[filter,scale] duration-[400ms,600ms] group-hover:grayscale-0 group-hover:scale-[1.04]" src="Fotos InterREP A Festa/DTV.jpeg" alt="Foto DTV" loading="lazy"></figure>
+                    <figure class="group aspect-[4/5] overflow-hidden md:aspect-[9/16]"><img class="size-full object-cover [@media(hover:hover)]:grayscale-[0.35] transition-[filter,scale] duration-[400ms,600ms] group-hover:grayscale-0 group-hover:scale-[1.04]" src="Fotos InterREP A Festa/VDN.jpeg" alt="Foto VDN" loading="lazy"></figure>
+                    <figure class="group aspect-[4/5] overflow-hidden md:aspect-[9/16]"><img class="size-full object-cover [@media(hover:hover)]:grayscale-[0.35] transition-[filter,scale] duration-[400ms,600ms] group-hover:grayscale-0 group-hover:scale-[1.04]" src="Fotos InterREP A Festa/TPD.jpeg" alt="Foto TPD" loading="lazy"></figure>
                 </div>
             </div>
 
-            <div class="p-0px text-center bg-white md:relative md:p-0 md:bg-transparent">
-                <div class="block w-full h-auto md:h-[70vh] min-h-[420px] object-cover">
-                    <img src="FOTOS_CHURRAS_PAIS/FOTO_CHURRAS_PAIS.jpeg" alt="Foto do Churrasco dos Pais">
+            <div class="text-center bg-white text-[#333] md:relative md:flex md:min-h-[max(70svh,420px)] md:text-white md:bg-transparent lg:min-h-[85svh]">
+                <div class="md:absolute md:inset-0">
+                    <img class="block w-full h-auto md:h-full md:object-cover" src="FOTOS_CHURRAS_PAIS/FOTO_CHURRAS_PAIS.jpeg" alt="Foto do Churrasco dos Pais" loading="lazy">
                 </div>
 
-                <div class="p-6">
-                    <p class="font-['AbsolutHeadline'] text-[clamp(32px,4vw,70px)] md:absolut md:flex md:flex-col md:p-12">Churrasco dos Pais</p>
-                    <p class="texto-churras-pais">
+                <div class="p-6 md:relative md:flex md:flex-col md:justify-start md:w-full md:p-12 md:bg-linear-to-b md:from-black/75 md:via-black/10 md:via-40% md:to-black/55 md:[text-shadow:2px_2px_4px_rgba(0,0,0,0.7)]">
+                    <h3 class="mb-4 font-headline text-titulo-churras md:text-left">Churrasco dos Pais</h3>
+                    <p class="max-w-[54ch] text-churras leading-[1.6] md:text-left">
                         Muito mais que uma República, a Demorô também é uma família. Por isso, todo ano organizamos nosso Churrasco de Pais aqui! Com a presença dos pais dos moradores, esse é um momento de extrema importância entre nós, estreitando os laços entre nossas famílias e nossa República!
                     </p>
-                    <p class="muito-mais-rep">Muito mais que uma República</p>
+                    <p class="mt-4 font-manuscrita text-assinatura md:self-end md:text-right">Muito mais que uma República</p>
                 </div>
             </div>
 
-            <div class="sobre-churras-ex-moradores">
-                <div class="background-churras-ex-moradores">
-                    <img src="FOTO_REENCONTRO/foto_churrasco_ex.jpeg" alt="Foto do nosso Reencontro 2025">
+            <div class="text-center bg-white text-[#333] md:relative md:flex md:min-h-[max(70svh,420px)] md:text-white md:bg-transparent lg:min-h-[85svh]">
+                <div class="md:absolute md:inset-0">
+                    <img class="block w-full h-auto md:h-full md:object-cover" src="FOTO_REENCONTRO/foto_churrasco_ex.jpeg" alt="Foto do nosso Reencontro 2025" loading="lazy">
                 </div>
 
-                <div class="conteudo-churras-ex-moradores">
-                    <p class="titulo-churras-ex-moradores">Churrasco de Ex-Moradores</p>
-                    <p class="texto-churras-ex-moradores">
+                <div class="p-6 md:relative md:flex md:flex-col md:justify-end md:w-full md:p-12 md:bg-linear-to-b md:from-black/75 md:via-black/10 md:via-40% md:to-black/55 md:[text-shadow:2px_2px_4px_rgba(0,0,0,0.7)]">
+                    <h3 class="mb-4 font-headline text-titulo-churras md:text-left">Churrasco de Ex-Moradores</h3>
+                    <p class="max-w-[54ch] text-churras leading-[1.6] md:text-left">
                         Anualmente, realizamos nosso tradicional Reencontro de Ex-Moradores. Aqui é onde percebemos a importância e a história da nossa República.<br>
                         Compartilhando experiências, conhecendo melhor quem nós somos, nosso legado e como surgimos, nosso Reencontro é um momento extremamente especial e fundamental para nossa formação como Demorônios.<br>
                         Regado à chopp, churrasco de alta qualidade e muita resenha, definitivamente é uma oportunidade única na vida de um universitário.
                     </p>
-                    <p class="muito-mais-rep">Uma família</p>
+                    <p class="mt-4 font-manuscrita text-assinatura md:self-end md:text-right">Uma família</p>
                 </div>
             </div>
         </section>
 
-        <section id="moradores" class="moradores">
-            <p class="rotulo">QUEM MORA AQUI</p>
-            <p class="titulo-moradores">Moradores</p>
-            <div class="scrollbar-moradores">
-                <figure>
-                    <img src="Fotos_Moradores/FOTO_FAXINA.jpeg" alt="Faxina">
-                    <figcaption><b>Faxina</b> 021<br>Educação Física<br>UFSCar</figcaption>
+        <section id="moradores" class="scroll-mt-15 py-20 px-6 md:py-35 md:px-10 bg-creme text-[#333] text-center">
+            <p class="mb-4 text-rotulo tracking-[0.22em] uppercase text-azul-demoro">QUEM MORA AQUI</p>
+            <h2 class="mb-[30px] font-headline uppercase text-titulo-secao text-black">Moradores</h2>
+            <div class="scrollbar-moradores group/scroller flex flex-wrap justify-center gap-4 max-w-full data-[animated=true]:block data-[animated=true]:overflow-hidden data-[animated=true]:[mask:linear-gradient(90deg,transparent,white_12%,white_88%,transparent)]">
+                <figure class="group flex-[0_0_168px] text-left lg:flex-[0_0_220px]">
+                    <img class="block w-42 h-56 object-cover [@media(hover:hover)]:grayscale transition-[filter] duration-400 group-hover:grayscale-0 lg:w-55 lg:h-73.5" src="Fotos_Moradores/FOTO_FAXINA.jpeg" alt="Faxina">
+                    <figcaption class="min-h-[74px] p-4 bg-azul-demoro text-creme text-xs leading-[1.45] tracking-[0.04em] lg:text-[0.8125rem]"><b class="inline-block mr-1 font-normal uppercase tracking-[0.12em]">Faxina</b> 021<br>Educação Física<br>UFSCar</figcaption>
                 </figure>
-                <figure>
-                    <img src="Fotos_Moradores/FOTO_TRANCADO.jpeg" alt="Trancado">
-                    <figcaption><b>Trancado</b> 022<br>Engenharia de Produção<br>USP</figcaption>
+                <figure class="group flex-[0_0_168px] text-left lg:flex-[0_0_220px]">
+                    <img class="block w-42 h-56 object-cover [@media(hover:hover)]:grayscale transition-[filter] duration-400 group-hover:grayscale-0 lg:w-55 lg:h-73.5" src="Fotos_Moradores/FOTO_TRANCADO.jpeg" alt="Trancado">
+                    <figcaption class="min-h-[74px] p-4 bg-azul-demoro text-creme text-xs leading-[1.45] tracking-[0.04em] lg:text-[0.8125rem]"><b class="inline-block mr-1 font-normal uppercase tracking-[0.12em]">Trancado</b> 022<br>Engenharia de Produção<br>USP</figcaption>
                 </figure>
-                <figure>
-                    <img src="Fotos_Moradores/FOTO_WHISKY.jpeg" alt="Whisky">
-                    <figcaption><b>Whisky</b> 022<br>Engenharia Mecânica<br>UFSCar</figcaption>
+                <figure class="group flex-[0_0_168px] text-left lg:flex-[0_0_220px]">
+                    <img class="block w-42 h-56 object-cover [@media(hover:hover)]:grayscale transition-[filter] duration-400 group-hover:grayscale-0 lg:w-55 lg:h-73.5" src="Fotos_Moradores/FOTO_WHISKY.jpeg" alt="Whisky">
+                    <figcaption class="min-h-[74px] p-4 bg-azul-demoro text-creme text-xs leading-[1.45] tracking-[0.04em] lg:text-[0.8125rem]"><b class="inline-block mr-1 font-normal uppercase tracking-[0.12em]">Whisky</b> 022<br>Engenharia Mecânica<br>UFSCar</figcaption>
                 </figure>
-                <figure>
-                    <img src="Fotos_Moradores/FOTO_DESISTO.jpeg" alt="Desisto">
-                    <figcaption><b>Desisto</b> 022<br>Biologia<br>UFSCar</figcaption>
+                <figure class="group flex-[0_0_168px] text-left lg:flex-[0_0_220px]">
+                    <img class="block w-42 h-56 object-cover [@media(hover:hover)]:grayscale transition-[filter] duration-400 group-hover:grayscale-0 lg:w-55 lg:h-73.5" src="Fotos_Moradores/FOTO_DESISTO.jpeg" alt="Desisto">
+                    <figcaption class="min-h-[74px] p-4 bg-azul-demoro text-creme text-xs leading-[1.45] tracking-[0.04em] lg:text-[0.8125rem]"><b class="inline-block mr-1 font-normal uppercase tracking-[0.12em]">Desisto</b> 022<br>Biologia<br>UFSCar</figcaption>
                 </figure>
-                <figure>
-                    <img src="Fotos_Moradores/FOTO_DOBBY.jpg" alt="Dobby">
-                    <figcaption><b>Dobby</b> 022<br>Ciência da Computação<br>UFSCar</figcaption>
+                <figure class="group flex-[0_0_168px] text-left lg:flex-[0_0_220px]">
+                    <img class="block w-42 h-56 object-cover [@media(hover:hover)]:grayscale transition-[filter] duration-400 group-hover:grayscale-0 lg:w-55 lg:h-73.5" src="Fotos_Moradores/FOTO_DOBBY.jpg" alt="Dobby">
+                    <figcaption class="min-h-[74px] p-4 bg-azul-demoro text-creme text-xs leading-[1.45] tracking-[0.04em] lg:text-[0.8125rem]"><b class="inline-block mr-1 font-normal uppercase tracking-[0.12em]">Dobby</b> 022<br>Ciência da Computação<br>UFSCar</figcaption>
                 </figure>
-                <figure>
-                    <img src="Fotos_Moradores/FOTO_LIMITADO.jpeg" alt="Limitado">
-                    <figcaption><b>Limitado</b> 023<br>Engenharia Civil<br>USP</figcaption>
+                <figure class="group flex-[0_0_168px] text-left lg:flex-[0_0_220px]">
+                    <img class="block w-42 h-56 object-cover [@media(hover:hover)]:grayscale transition-[filter] duration-400 group-hover:grayscale-0 lg:w-55 lg:h-73.5" src="Fotos_Moradores/FOTO_LIMITADO.jpeg" alt="Limitado">
+                    <figcaption class="min-h-[74px] p-4 bg-azul-demoro text-creme text-xs leading-[1.45] tracking-[0.04em] lg:text-[0.8125rem]"><b class="inline-block mr-1 font-normal uppercase tracking-[0.12em]">Limitado</b> 023<br>Engenharia Civil<br>USP</figcaption>
                 </figure>
-                <figure>
-                    <img src="Fotos_Moradores/FOTO_JORGE.jpeg" alt="Jorge">
-                    <figcaption><b>Jorge</b> 023<br>Mestrado em Eng. Química<br>UFSCar</figcaption>
+                <figure class="group flex-[0_0_168px] text-left lg:flex-[0_0_220px]">
+                    <img class="block w-42 h-56 object-cover [@media(hover:hover)]:grayscale transition-[filter] duration-400 group-hover:grayscale-0 lg:w-55 lg:h-73.5" src="Fotos_Moradores/FOTO_JORGE.jpeg" alt="Jorge">
+                    <figcaption class="min-h-[74px] p-4 bg-azul-demoro text-creme text-xs leading-[1.45] tracking-[0.04em] lg:text-[0.8125rem]"><b class="inline-block mr-1 font-normal uppercase tracking-[0.12em]">Jorge</b> 023<br>Mestrado em Eng. Química<br>UFSCar</figcaption>
                 </figure>
-                <figure>
-                    <img src="Fotos_Moradores/Foto_Quack.jpg" alt="Quack">
-                    <figcaption><b>Quack</b> 024<br>Engenharia de Materiais<br>UFSCar</figcaption>
+                <figure class="group flex-[0_0_168px] text-left lg:flex-[0_0_220px]">
+                    <img class="block w-42 h-56 object-cover [@media(hover:hover)]:grayscale transition-[filter] duration-400 group-hover:grayscale-0 lg:w-55 lg:h-73.5" src="Fotos_Moradores/Foto_Quack.jpg" alt="Quack">
+                    <figcaption class="min-h-[74px] p-4 bg-azul-demoro text-creme text-xs leading-[1.45] tracking-[0.04em] lg:text-[0.8125rem]"><b class="inline-block mr-1 font-normal uppercase tracking-[0.12em]">Quack</b> 024<br>Engenharia de Materiais<br>UFSCar</figcaption>
                 </figure>
-                <figure>
-                    <img src="Fotos_Moradores/Foto_Lactea.jpeg" alt="Lactea">
-                    <figcaption><b>Lactea</b> 024<br>Ciência da Computação<br>UFSCar</figcaption>
+                <figure class="group flex-[0_0_168px] text-left lg:flex-[0_0_220px]">
+                    <img class="block w-42 h-56 object-cover [@media(hover:hover)]:grayscale transition-[filter] duration-400 group-hover:grayscale-0 lg:w-55 lg:h-73.5" src="Fotos_Moradores/Foto_Lactea.jpeg" alt="Lactea">
+                    <figcaption class="min-h-[74px] p-4 bg-azul-demoro text-creme text-xs leading-[1.45] tracking-[0.04em] lg:text-[0.8125rem]"><b class="inline-block mr-1 font-normal uppercase tracking-[0.12em]">Lactea</b> 024<br>Ciência da Computação<br>UFSCar</figcaption>
                 </figure>
-                <figure>
-                    <img src="Fotos_Moradores/FOTO_CUPIM.jpeg" alt="Cupim">
-                    <figcaption><b>Cupim</b> 025<br>Engenharia Mecatrônica<br>USP</figcaption>
+                <figure class="group flex-[0_0_168px] text-left lg:flex-[0_0_220px]">
+                    <img class="block w-42 h-56 object-cover [@media(hover:hover)]:grayscale transition-[filter] duration-400 group-hover:grayscale-0 lg:w-55 lg:h-73.5" src="Fotos_Moradores/FOTO_CUPIM.jpeg" alt="Cupim">
+                    <figcaption class="min-h-[74px] p-4 bg-azul-demoro text-creme text-xs leading-[1.45] tracking-[0.04em] lg:text-[0.8125rem]"><b class="inline-block mr-1 font-normal uppercase tracking-[0.12em]">Cupim</b> 025<br>Engenharia Mecatrônica<br>USP</figcaption>
                 </figure>
-                <figure>
-                    <img src="Fotos_Moradores/FOTO_PATATA.jpeg" alt="Patata">
-                    <figcaption><b>Patatá</b> 025<br>Arquitetura e Urbanismo<br>USP</figcaption>
+                <figure class="group flex-[0_0_168px] text-left lg:flex-[0_0_220px]">
+                    <img class="block w-42 h-56 object-cover [@media(hover:hover)]:grayscale transition-[filter] duration-400 group-hover:grayscale-0 lg:w-55 lg:h-73.5" src="Fotos_Moradores/FOTO_PATATA.jpeg" alt="Patata">
+                    <figcaption class="min-h-[74px] p-4 bg-azul-demoro text-creme text-xs leading-[1.45] tracking-[0.04em] lg:text-[0.8125rem]"><b class="inline-block mr-1 font-normal uppercase tracking-[0.12em]">Patatá</b> 025<br>Arquitetura e Urbanismo<br>USP</figcaption>
                 </figure>
-                <figure>
-                    <img src="Fotos_Moradores/FOTO_MEGA.jpeg" alt="Mega">
-                    <figcaption><b>Mega</b> 025<br>Engenharia Elétrica<br>USP</figcaption>
+                <figure class="group flex-[0_0_168px] text-left lg:flex-[0_0_220px]">
+                    <img class="block w-42 h-56 object-cover [@media(hover:hover)]:grayscale transition-[filter] duration-400 group-hover:grayscale-0 lg:w-55 lg:h-73.5" src="Fotos_Moradores/FOTO_MEGA.jpeg" alt="Mega">
+                    <figcaption class="min-h-[74px] p-4 bg-azul-demoro text-creme text-xs leading-[1.45] tracking-[0.04em] lg:text-[0.8125rem]"><b class="inline-block mr-1 font-normal uppercase tracking-[0.12em]">Mega</b> 025<br>Engenharia Elétrica<br>USP</figcaption>
                 </figure>
-                <figure>
-                    <img src="Fotos_Moradores/FOTO_SUSSURRO.jpeg" alt="Sussurro">
-                    <figcaption><b>Sussurro</b> 025<br>Engenharia Elétrica<br>USP</figcaption>
+                <figure class="group flex-[0_0_168px] text-left lg:flex-[0_0_220px]">
+                    <img class="block w-42 h-56 object-cover [@media(hover:hover)]:grayscale transition-[filter] duration-400 group-hover:grayscale-0 lg:w-55 lg:h-73.5" src="Fotos_Moradores/FOTO_SUSSURRO.jpeg" alt="Sussurro">
+                    <figcaption class="min-h-[74px] p-4 bg-azul-demoro text-creme text-xs leading-[1.45] tracking-[0.04em] lg:text-[0.8125rem]"><b class="inline-block mr-1 font-normal uppercase tracking-[0.12em]">Sussurro</b> 025<br>Engenharia Elétrica<br>USP</figcaption>
                 </figure>
             </div>
         </section>
 
-        <section id="casa" class="casa-section">
-            <p class="titulo-nossa-casa fade-in-element">
+        <section id="casa" class="scroll-mt-15 py-20 px-6 md:py-35 md:px-10 bg-azul-demoro">
+            <h2 class="fade-in-element mb-8 px-5 font-headline text-center uppercase text-titulo-secao">
                 Nossa Casa
-            </p>
-            
-            <div class="sobre-casa fade-in-element">
-                <button onclick="location.href='casa.html'" class="conteudo-casa">
+            </h2>
+
+            <div class="fade-in-element flex flex-col items-center justify-end">
+                <a href="casa.html" class="order-2 flex justify-center max-w-full px-8 py-5 bg-creme text-black text-center font-absolut text-rotulo tracking-[0.2em] transition-colors duration-400 hover:bg-black hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:px-16 md:py-6">
                     CONHEÇA MAIS
-                </button>
+                </a>
             </div>
 
         </section>

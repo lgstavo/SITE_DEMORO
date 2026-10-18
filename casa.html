@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="motion-safe:scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
@@ -7,14 +7,52 @@
     <meta name="description" content="Conheça a casa da República Demorô: sala, quartos, cozinha, sala de estudos e área de lazer com piscina em São Carlos.">
     <title>Nossa Casa | República Demorô</title>
     <link rel="icon" href="images/Logo_Aba.ico">
-    <link rel="stylesheet" href="casa.css">
+    <link rel="stylesheet" href="base.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style type="text/tailwindcss">
+        @theme {
+            --color-azul-demoro: #0000bd;
+            --color-creme: #faf9f6;
+
+            --font-absolut: 'Absolut', sans-serif;
+            --font-headline: 'AbsolutHeadline', sans-serif;
+            --font-manuscrita: 'AbsolutHandwritten', sans-serif;
+
+            --text-rotulo: clamp(0.6875rem, 0.85vw, 0.8125rem);
+            --text-titulo-secao: clamp(2rem, 7vw, 3rem);
+        }
+
+        @layer components {
+            /* Nesta página o fade-in é horizontal (vem da esquerda) */
+            .fade-in-element {
+                @apply opacity-0 -translate-x-[30px] transition-[opacity,translate] duration-600 ease-out;
+                @apply motion-reduce:opacity-100 motion-reduce:translate-x-0 motion-reduce:transition-none;
+            }
+            .fade-in-element.is-visible {
+                @apply opacity-100 translate-x-0;
+            }
+
+            /* Foto das galerias: usada 17 vezes na página */
+            .foto-galeria {
+                @apply aspect-[3/4] overflow-hidden;
+            }
+            .foto-galeria img {
+                @apply block size-full object-cover transition-[filter,scale] duration-[400ms,600ms];
+                @apply [@media(hover:hover)]:grayscale-[0.35] motion-reduce:transition-none;
+            }
+            .foto-galeria:hover img {
+                @apply grayscale-0 motion-safe:scale-[1.04];
+            }
+        }
+    </style>
 </head>
 
-<body>
+<body class="w-full overflow-x-hidden pt-15 bg-creme text-black font-absolut">
 
-    <header class="barra_cima">
-        <a href="Rosto.html"><img class="logo" src="images/Logos/LOGO_DEMORO_SITE.png" alt="Logo Demorô"></a>
-        <nav class="menu" aria-label="Menu principal">
+    <header class="fixed top-0 left-0 z-1000 flex items-center justify-between w-full h-15 px-5 bg-black">
+        <a href="Rosto.html"><img class="h-[25px] flex" src="images/Logos/LOGO_DEMORO_SITE.png" alt="Logo Demorô"></a>
+        <nav id="menu" class="menu hidden absolute top-15 right-0 w-50 flex-col gap-3 p-5 bg-black/90 text-center text-white font-absolut text-rotulo tracking-[0.18em] leading-[1.65] *:p-2.5 *:rounded-[5px] *:transition-colors *:duration-300 *:hover:bg-white/20 *:focus-visible:outline-2 *:focus-visible:outline-offset-2 *:focus-visible:outline-white [&.active]:flex lg:static lg:flex lg:w-auto lg:flex-row lg:p-0 lg:*:px-3 lg:*:py-2" aria-label="Menu principal">
             <a href="#sala">Sala</a>
             <a href="#quartos">Quartos</a>
             <a href="#cozinha">Cozinha</a>
@@ -22,18 +60,19 @@
             <a href="#area_de_lazer">Lazer</a>
             <a href="#entre-em-contato">Entre em Contato</a>
         </nav>
-        <div class="hamburger">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
+        <button type="button" class="hamburger flex flex-col gap-[5px] p-2.5 -mr-2.5 cursor-pointer focus-visible:outline-2 focus-visible:outline-white lg:hidden" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">
+            <span class="block w-[25px] h-[3px] bg-white rounded-[2px]"></span>
+            <span class="block w-[25px] h-[3px] bg-white rounded-[2px]"></span>
+            <span class="block w-[25px] h-[3px] bg-white rounded-[2px]"></span>
+        </button>
     </header>
 
     <main>
 
-        <section class="crop">
-            <div class="video-container">
+        <section class="pb-7.5 text-center bg-creme md:relative md:pb-0">
+            <div class="relative w-full aspect-[9/16] overflow-hidden md:hidden">
                 <iframe
+                    class="absolute inset-0 size-full"
                     src="https://www.youtube.com/embed/oga8HZO6ivw"
                     title="Vídeo da República Demorô"
                     loading="lazy"
@@ -43,96 +82,96 @@
                 </iframe>
             </div>
 
-            <img class="foto_casa" src="FOTOS_CASA/Escada%20(2)%20(2).jpg" alt="Foto da fachada da casa">
-            <h1 class="titulo-rep-demoro fonte-nos">Nossa Casa</h1>
+            <img class="block w-full h-auto" src="FOTOS_CASA/Escada%20(2)%20(2).jpg" alt="Foto da fachada da casa" fetchpriority="high">
+            <h1 class="mt-6 px-[15px] font-manuscrita text-[clamp(1.75rem,8vw,2.5rem)] leading-[1.2] text-[#111] md:absolute md:bottom-[5%] md:w-full md:mt-0 md:text-[clamp(1.25rem,2.5vw,2.25rem)] md:text-[#101010]">Nossa Casa</h1>
         </section>
 
-        <section id="sala" class="sala-section">
-            <h2 class="titulo-secao titulo-sala fade-in-element">Sala</h2>
-            <div class="split-layout">
-                <div class="fotos-galeria fotos-sala fade-in-element">
-                    <figure><img src="FOTOS_CASA/foto_sala.jpeg" alt="Sala principal da república" loading="lazy" decoding="async"></figure>
-                    <figure><img src="FOTOS_CASA/foto_sala_2.jpeg" alt="Sala da república, outro ângulo" loading="lazy" decoding="async"></figure>
-                    <figure><img src="FOTOS_CASA/foto_sala_recente.jpeg" alt="Sala da república, foto recente" loading="lazy" decoding="async"></figure>
+        <section id="sala" class="scroll-mt-15 py-20 px-6 md:py-35 md:px-10">
+            <h2 class="fade-in-element mx-auto max-w-6xl mb-8 font-headline uppercase text-titulo-secao leading-[1.1] md:text-left">Sala</h2>
+            <div class="mx-auto max-w-6xl flex flex-col gap-7.5 md:flex-row md:items-center md:gap-10">
+                <div class="fade-in-element grid grid-cols-2 gap-2 w-full md:flex-[1.2] md:grid-cols-3">
+                    <figure class="foto-galeria col-span-full aspect-[4/3] md:col-auto md:aspect-[3/4]"><img src="FOTOS_CASA/foto_sala.jpeg" alt="Sala principal da república" loading="lazy" decoding="async"></figure>
+                    <figure class="foto-galeria"><img src="FOTOS_CASA/foto_sala_2.jpeg" alt="Sala da república, outro ângulo" loading="lazy" decoding="async"></figure>
+                    <figure class="foto-galeria"><img src="FOTOS_CASA/foto_sala_recente.jpeg" alt="Sala da república, foto recente" loading="lazy" decoding="async"></figure>
                 </div>
-                <div class="texto-container">
-                    <p class="conteudo-texto texto-sala">Temos 2 salas bem espaçosas!</p>
-                    <p class="conteudo-texto texto-sala">Na sala principal, possuímos uma TV de 50 polegadas e é onde nos reunimos todos os dias para almoçarmos juntos, fazer aquela resenha e assistir a alguns filmes!</p>
-                    <p class="conteudo-texto texto-sala">Na salinha é onde tiramos um tempo para relaxar dos estudos e nos divertimos um pouco. Nela, temos mais uma TV de 45 polegadas, PS4 com inúmeros jogos e 3 sofás!</p>
+                <div class="flex flex-col gap-4 text-[clamp(1rem,4vw,1.125rem)] leading-[1.6] md:flex-1 md:justify-center md:text-[clamp(1rem,1.5vw,1.25rem)]">
+                    <p>Temos 2 salas bem espaçosas!</p>
+                    <p>Na sala principal, possuímos uma TV de 50 polegadas e é onde nos reunimos todos os dias para almoçarmos juntos, fazer aquela resenha e assistir a alguns filmes!</p>
+                    <p>Na salinha é onde tiramos um tempo para relaxar dos estudos e nos divertimos um pouco. Nela, temos mais uma TV de 45 polegadas, PS4 com inúmeros jogos e 3 sofás!</p>
                 </div>
             </div>
         </section>
 
-        <section id="quartos" class="quartos-section">
-            <h2 class="titulo-secao titulo-quarto fade-in-element">Quartos</h2>
-            <div class="split-layout">
-                <div class="texto-container">
-                    <p class="conteudo-texto texto-quartos">Nossa casa possui 8 quartos amplos, todos equipados com armários e mesas de estudo para garantir conforto e praticidade.</p>
+        <section id="quartos" class="scroll-mt-15 py-20 px-6 md:py-35 md:px-10">
+            <h2 class="fade-in-element mx-auto max-w-6xl mb-8 font-headline uppercase text-titulo-secao leading-[1.1]">Quartos</h2>
+            <div class="mx-auto max-w-6xl flex flex-col gap-7.5 md:flex-row md:items-center md:gap-10">
+                <div class="flex flex-col gap-4 text-[clamp(1rem,4vw,1.125rem)] leading-[1.6] md:flex-1 md:justify-center md:text-[clamp(1rem,1.5vw,1.25rem)]">
+                    <p>Nossa casa possui 8 quartos amplos, todos equipados com armários e mesas de estudo para garantir conforto e praticidade.</p>
                 </div>
-                <div class="fotos-galeria fotos-quartos fade-in-element">
-                    <figure><img src="FOTOS_CASA/quarto_bixos.jpeg" alt="Quarto dos bixos" loading="lazy" decoding="async"></figure>
-                    <figure><img src="FOTOS_CASA/quarto_corredor.jpeg" alt="Quarto do corredor" loading="lazy" decoding="async"></figure>
-                    <figure><img src="FOTOS_CASA/quarto-cozinha.jpeg" alt="Quarto da cozinha" loading="lazy" decoding="async"></figure>
-                    <figure><img src="FOTOS_CASA/quarto_bixos_2.jpeg" alt="Quarto dos bixos, outro ângulo" loading="lazy" decoding="async"></figure>
-                    <figure><img src="FOTOS_CASA/quarto_corredor_2.jpeg" alt="Quarto do corredor, outro ângulo" loading="lazy" decoding="async"></figure>
-                </div>
-            </div>
-        </section>
-
-        <section id="cozinha" class="cozinha-section">
-            <h2 class="titulo-secao titulo-cozinha fade-in-element">Cozinha</h2>
-            <div class="split-layout">
-                <div class="fotos-galeria fotos-cozinha fade-in-element">
-                    <figure><img src="FOTOS_CASA/foto_cozinha_2.jpeg" alt="Cozinha da república, outro ângulo" loading="lazy" decoding="async"></figure>
-                    <figure><img src="FOTOS_CASA/foto_cozinha.jpeg" alt="Cozinha da república" loading="lazy" decoding="async"></figure>
-                </div>
-                <div class="texto-container">
-                    <p class="conteudo-texto texto-cozinha">Possuímos uma cozinha ampla, com diversos armários para a divisão entre os moradores e 1 fogão industrial.</p>
-                    <p class="conteudo-texto texto-cozinha">Também possuímos Air-Fryer, 2 geladeiras, microondas, forno elétrico e tudo que é necessário para fazermos nossas refeições aos finais de semana.</p>
+                <div class="fade-in-element grid grid-cols-2 gap-2 w-full md:flex-[1.2] md:grid-cols-3">
+                    <figure class="foto-galeria col-span-full aspect-[4/3] md:relative md:col-span-2 md:aspect-auto"><img class="md:absolute md:inset-0" src="FOTOS_CASA/quarto_bixos.jpeg" alt="Quarto dos bixos" loading="lazy" decoding="async"></figure>
+                    <figure class="foto-galeria"><img src="FOTOS_CASA/quarto_corredor.jpeg" alt="Quarto do corredor" loading="lazy" decoding="async"></figure>
+                    <figure class="foto-galeria"><img src="FOTOS_CASA/quarto-cozinha.jpeg" alt="Quarto da cozinha" loading="lazy" decoding="async"></figure>
+                    <figure class="foto-galeria"><img src="FOTOS_CASA/quarto_bixos_2.jpeg" alt="Quarto dos bixos, outro ângulo" loading="lazy" decoding="async"></figure>
+                    <figure class="foto-galeria"><img src="FOTOS_CASA/quarto_corredor_2.jpeg" alt="Quarto do corredor, outro ângulo" loading="lazy" decoding="async"></figure>
                 </div>
             </div>
         </section>
 
-        <section id="sala_de_estudos" class="estudos-section">
-            <h2 class="titulo-secao titulo-estudos fade-in-element">Sala de Estudos</h2>
-            <div class="split-layout">
-                <div class="texto-container">
-                    <p class="conteudo-texto texto-estudos">Nossa sala de estudos fica afastada de todo o restante da casa.</p>
-                    <p class="conteudo-texto texto-estudos">Equipada com mesas, cadeiras e uma rede para dar aquela descansada de vez em quando, aqui é o ambiente perfeito para fazer reuniões, estudar e dar uma deitada na rede nos momentos de cansaço.</p>
+        <section id="cozinha" class="scroll-mt-15 py-20 px-6 md:py-35 md:px-10">
+            <h2 class="fade-in-element mx-auto max-w-6xl mb-8 font-manuscrita uppercase text-titulo-secao leading-[1.1] md:text-left">Cozinha</h2>
+            <div class="mx-auto max-w-6xl flex flex-col gap-7.5 md:flex-row md:items-center md:gap-10">
+                <div class="fade-in-element grid grid-cols-2 gap-2 w-full md:flex-[1.2]">
+                    <figure class="foto-galeria"><img src="FOTOS_CASA/foto_cozinha_2.jpeg" alt="Cozinha da república, outro ângulo" loading="lazy" decoding="async"></figure>
+                    <figure class="foto-galeria"><img src="FOTOS_CASA/foto_cozinha.jpeg" alt="Cozinha da república" loading="lazy" decoding="async"></figure>
                 </div>
-                <div class="fotos-galeria fotos-estudos fade-in-element">
-                    <figure><img src="FOTOS_CASA/sala_de_estudos.jpeg" alt="Sala de estudos da república" loading="lazy" decoding="async"></figure>
-                </div>
-            </div>
-        </section>
-
-        <section id="area_de_lazer" class="lazer-section">
-            <h2 class="titulo-secao titulo-lazer fade-in-element">Área de Lazer e Piscina</h2>
-            <div class="split-layout">
-                <div class="fotos-galeria fotos-lazer fade-in-element">
-                    <figure><img src="FOTOS_CASA/quintal_1.jpeg" alt="Quintal da república" loading="lazy" decoding="async"></figure>
-                    <figure><img src="FOTOS_CASA/varanda.jpeg" alt="Varanda da república" loading="lazy" decoding="async"></figure>
-                    <figure><img src="FOTOS_CASA/Escada%20(2)%20(2).jpg" alt="Piscina da república" loading="lazy" decoding="async"></figure>
-                    <figure><img src="FOTOS_CASA/piscina_2.jpeg" alt="Piscina da república, outro ângulo" loading="lazy" decoding="async"></figure>
-                </div>
-                <div class="texto-container">
-                    <p class="conteudo-texto texto-lazer">Aqui é onde passamos a maior parte dos nossos finais de semana!</p>
-                    <p class="conteudo-texto texto-lazer">Nosso quintal é um dos maiores entre as Repúblicas de São Carlos, com mais de 1200 m²! Nele, fazemos nossos Churrascos de Ex-Moradores e dos Pais, perfeito para um dia de churrasco, chopp e muita conversa.</p>
-                    <p class="conteudo-texto texto-lazer">Na nossa área de piscina nos reunimos quase todos os finais de semana para fazermos um churrasco entre nós nos dias ensolarados.</p>
+                <div class="flex flex-col gap-4 text-left text-[clamp(1rem,4vw,1.125rem)] leading-[1.6] md:flex-1 md:justify-center md:text-left md:text-[clamp(1rem,1.5vw,1.25rem)]">
+                    <p>Possuímos uma cozinha ampla, com diversos armários para a divisão entre os moradores e 1 fogão industrial.</p>
+                    <p>Também possuímos Air-Fryer, 2 geladeiras, microondas, forno elétrico e tudo que é necessário para fazermos nossas refeições aos finais de semana.</p>
                 </div>
             </div>
         </section>
 
-        <section id="entre-em-contato" class="contato-section">
-            <div class="contato-item">
-                <h2 class="titulo-contato fade-in-element">Quer viver essa experiência única na sua vida?</h2>
-                <a class="botao-whats" href="https://wa.me/5511943996754" target="_blank" rel="noopener noreferrer">Vem ser feliz na Demorô!</a>
+        <section id="sala_de_estudos" class="scroll-mt-15 py-20 px-6 md:py-35 md:px-10">
+            <h2 class="fade-in-element mx-auto max-w-6xl mb-8 font-headline uppercase text-titulo-secao leading-[1.1]">Sala de Estudos</h2>
+            <div class="mx-auto max-w-6xl flex flex-col gap-7.5 md:flex-row md:items-center md:gap-10">
+                <div class="flex flex-col gap-4 text-[clamp(1rem,4vw,1.125rem)] leading-[1.6] md:flex-1 md:justify-center md:text-[clamp(1rem,1.5vw,1.25rem)]">
+                    <p>Nossa sala de estudos fica afastada de todo o restante da casa.</p>
+                    <p>Equipada com mesas, cadeiras e uma rede para dar aquela descansada de vez em quando, aqui é o ambiente perfeito para fazer reuniões, estudar e dar uma deitada na rede nos momentos de cansaço.</p>
+                </div>
+                <div class="fade-in-element grid grid-cols-1 gap-2 w-full md:flex-[1.2]">
+                    <figure class="foto-galeria"><img src="FOTOS_CASA/sala_de_estudos.jpeg" alt="Sala de estudos da república" loading="lazy" decoding="async"></figure>
+                </div>
+            </div>
+        </section>
+
+        <section id="area_de_lazer" class="scroll-mt-15 py-20 px-6 md:py-35 md:px-10">
+            <h2 class="fade-in-element mx-auto max-w-6xl mb-8 font-manuscrita uppercase text-titulo-secao leading-[1.1] md:text-left">Área de Lazer e Piscina</h2>
+            <div class="mx-auto max-w-6xl flex flex-col gap-7.5 md:flex-row md:items-center md:gap-10">
+                <div class="fade-in-element grid grid-cols-2 gap-2 w-full md:flex-[1.2]">
+                    <figure class="foto-galeria"><img src="FOTOS_CASA/quintal_1.jpeg" alt="Quintal da república" loading="lazy" decoding="async"></figure>
+                    <figure class="foto-galeria"><img src="FOTOS_CASA/varanda.jpeg" alt="Varanda da república" loading="lazy" decoding="async"></figure>
+                    <figure class="foto-galeria"><img src="FOTOS_CASA/Escada%20(2)%20(2).jpg" alt="Piscina da república" loading="lazy" decoding="async"></figure>
+                    <figure class="foto-galeria"><img src="FOTOS_CASA/piscina_2.jpeg" alt="Piscina da república, outro ângulo" loading="lazy" decoding="async"></figure>
+                </div>
+                <div class="flex flex-col gap-4 text-left text-[clamp(1rem,4vw,1.125rem)] leading-[1.6] md:flex-1 md:justify-center md:text-left md:text-[clamp(1rem,1.5vw,1.25rem)]">
+                    <p>Aqui é onde passamos a maior parte dos nossos finais de semana!</p>
+                    <p>Nosso quintal é um dos maiores entre as Repúblicas de São Carlos, com mais de 1200 m²! Nele, fazemos nossos Churrascos de Ex-Moradores e dos Pais, perfeito para um dia de churrasco, chopp e muita conversa.</p>
+                    <p>Na nossa área de piscina nos reunimos quase todos os finais de semana para fazermos um churrasco entre nós nos dias ensolarados.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="entre-em-contato" class="scroll-mt-15 py-20 px-6 md:py-35 md:px-10">
+            <div class="flex flex-col items-center">
+                <h2 class="fade-in-element mb-8 font-manuscrita text-center uppercase text-titulo-secao leading-[1.1]">Quer viver essa experiência única na sua vida?</h2>
+                <a class="inline-block max-w-full px-8 py-5 bg-azul-demoro text-creme text-center font-absolut text-[0.8125rem] leading-[1.4] tracking-[0.2em] uppercase transition-colors duration-400 hover:bg-black hover:text-white focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-black md:px-16 md:py-6 md:text-[clamp(0.8125rem,1vw,0.9375rem)]" href="https://wa.me/5511943996754" target="_blank" rel="noopener noreferrer">Vem ser feliz na Demorô!</a>
             </div>
         </section>
 
     </main>
 
-    <footer id="footer-demoro" class="demoro-footer">
+    <footer id="footer-demoro" class="p-6 font-manuscrita text-[clamp(0.875rem,2vw,1.25rem)] leading-[1.4]">
         <p>República Demorô</p>
         <p>Desde 2005</p>
     </footer>

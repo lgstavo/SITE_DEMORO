@@ -15,9 +15,44 @@ document.addEventListener('DOMContentLoaded', function() {
     const hamburger = document.querySelector('.hamburger');
     const menu = document.querySelector('.menu');
 
-    // hamburger.addEventListener('click', function() {
-    //     menu.classList.toggle('active');
-    // });
+    if (hamburger && menu) {
+        // Abre ou fecha o menu e mantém o aria-expanded sincronizado
+        const alternarMenu = (abrir) => {
+            menu.classList.toggle('active', abrir);
+            hamburger.setAttribute('aria-expanded', abrir);
+            hamburger.setAttribute('aria-label', abrir ? 'Fechar menu' : 'Abrir menu');
+        };
+
+        hamburger.addEventListener('click', () => {
+            alternarMenu(!menu.classList.contains('active'));
+        });
+
+        // Fecha ao escolher um link
+        menu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => alternarMenu(false));
+        });
+
+        // Fecha ao clicar fora do menu
+        document.addEventListener('click', (event) => {
+            const clicouFora = !menu.contains(event.target) && !hamburger.contains(event.target);
+            if (clicouFora && menu.classList.contains('active')) {
+                alternarMenu(false);
+            }
+        });
+
+        // Fecha com a tecla Esc e devolve o foco ao botão
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && menu.classList.contains('active')) {
+                alternarMenu(false);
+                hamburger.focus();
+            }
+        });
+
+        // A partir de 1024px o menu fica sempre visível: reseta o estado do mobile
+        window.matchMedia('(min-width: 1024px)').addEventListener('change', (event) => {
+            if (event.matches) alternarMenu(false);
+        });
+    }
 
     // 1. Seleciona todos os elementos que serão animados
     const elementsToFadeIn = document.querySelectorAll('.fade-in-element');
@@ -56,15 +91,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function addAnimation() {
         scrollers.forEach((scroller) => {
-            // Ativa a animação na CSS
+            // Ativa a animação (as classes data-[animated=true]: do HTML passam a valer)
             scroller.setAttribute("data-animated", true);
 
             // Pega os itens dentro da galeria
             const scrollerContent = Array.from(scroller.children);
 
-            // Cria um wrapper interno para a animação
+            // Cria um wrapper interno para a animação, estilizado com classes do Tailwind
             const scrollerInner = document.createElement('div');
-            scrollerInner.classList.add('scroller__inner');
+            scrollerInner.classList.add(
+                'flex', 'flex-nowrap', 'w-max', 'gap-4',
+                'animate-scroll',
+                'group-hover/scroller:[animation-play-state:paused]'
+            );
             scroller.appendChild(scrollerInner);
 
             // Move os itens originais para dentro do wrapper
@@ -85,4 +124,3 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 });
-

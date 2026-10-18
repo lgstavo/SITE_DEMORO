@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demorô · Tarefas da semana (protótipo)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Jost:wght@400;500;700&family=Permanent+Marker&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.11"></script>
+  </head>
+
+  <body class="min-h-screen bg-[linear-gradient(180deg,#f5f7ff,#e4e9ff)] font-['Jost',system-ui,sans-serif] text-[#10132e] antialiased">
+    <header class="sticky top-0 z-10 bg-[#000471] text-white shadow-[0_2px_12px_rgb(0_4_113/0.3)]">
+      <div class="mx-auto flex min-h-16 max-w-5xl flex-wrap items-center gap-x-6 gap-y-2 px-4 py-2">
+        <a href="#" class="font-['Anton'] text-2xl tracking-wide">DEMORÔ.</a>
+
+        <nav aria-label="Área do morador" class="order-3 basis-full sm:order-none sm:basis-auto">
+          <ul class="flex gap-1">
+            <li>
+              <a href="tarefas.html" aria-current="page" class="block rounded-lg bg-white px-3 py-2 font-bold text-[#000471]">Tarefas</a>
+            </li>
+            <li>
+              <a href="#" class="block rounded-lg px-3 py-2 font-bold text-[#d3d8fb] hover:bg-white/10 hover:text-white">Painel admin</a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="ml-auto flex items-center gap-3">
+          <span class="font-bold">Dobby</span>
+          <a
+            href="login.html"
+            class="inline-flex min-h-9 items-center rounded-lg border-2 border-white px-3 text-sm font-bold hover:bg-white/10 focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-[#ffd54a]"
+          >
+            Sair
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main class="mx-auto grid max-w-5xl gap-6 px-4 pb-16 pt-8">
+      <!-- Saudação -->
+      <div class="grid gap-1">
+        <h1 class="text-4xl font-medium text-[#000471] sm:text-5xl">
+          Olá, <span class="font-['Permanent_Marker'] text-[#1c21b8]">Dobby</span>!
+        </h1>
+        <p class="text-lg text-[#4a4f6e]">3 tarefas pendentes nesta semana.</p>
+      </div>
+
+      <!-- Navegação por semana -->
+      <nav aria-label="Escolher a semana" class="grid grid-cols-[auto_1fr_auto] items-center gap-3 rounded-xl bg-white p-3 shadow-[0_8px_24px_rgb(0_4_113/0.12)]">
+        <button
+          type="button"
+          aria-label="Semana anterior"
+          class="inline-flex min-h-9 items-center gap-1 rounded-lg border-2 border-[#000471] px-3 text-sm font-bold text-[#000471] hover:bg-[#eef1ff]"
+        >
+          ‹ <span class="hidden sm:inline">Anterior</span>
+        </button>
+        <p class="grid justify-items-center gap-1 text-center text-[#000471]">
+          <strong class="text-lg">12 a 18 de out.</strong>
+          <span class="rounded-full bg-[#eef1ff] px-2 text-xs font-bold leading-6">Esta semana</span>
+        </p>
+        <button
+          type="button"
+          aria-label="Próxima semana"
+          class="inline-flex min-h-9 items-center gap-1 rounded-lg border-2 border-[#000471] px-3 text-sm font-bold text-[#000471] hover:bg-[#eef1ff]"
+        >
+          <span class="hidden sm:inline">Próxima</span> ›
+        </button>
+      </nav>
+
+      <!-- Filtro -->
+      <div role="group" aria-label="Quais tarefas mostrar" class="inline-flex justify-self-start rounded-full bg-white p-1 shadow-[0_8px_24px_rgb(0_4_113/0.12)]">
+        <button
+          type="button"
+          data-filtro="minhas"
+          aria-pressed="false"
+          class="min-h-10 rounded-full px-4 font-bold text-[#000471] aria-pressed:bg-[#1c21b8] aria-pressed:text-white"
+        >
+          Minhas tarefas
+        </button>
+        <button
+          type="button"
+          data-filtro="todas"
+          aria-pressed="true"
+          class="min-h-10 rounded-full px-4 font-bold text-[#000471] aria-pressed:bg-[#1c21b8] aria-pressed:text-white"
+        >
+          Todas
+        </button>
+      </div>
+
+      <!-- Lista agrupada por dia -->
+      <div class="grid gap-6">
+        <!-- Segunda -->
+        <section data-dia class="grid gap-2" aria-labelledby="dia-seg">
+          <h2 id="dia-seg" class="flex flex-wrap items-baseline gap-2 text-lg font-bold text-[#000471]">
+            Segunda-feira <span class="font-normal text-[#4a4f6e]">12/10</span>
+          </h2>
+          <ul class="grid gap-2">
+            <!-- Tarefa feita -->
+            <li class="group grid gap-1 rounded-lg border border-l-[5px] border-[#d5d9ee] border-l-[#1c21b8] bg-white px-4 py-3 shadow-[0_2px_6px_rgb(0_4_113/0.06)] has-[:checked]:border-l-[#1d7444] has-[:checked]:bg-[#f7fbf8]">
+              <label class="flex cursor-pointer items-start gap-3">
+                <input type="checkbox" checked class="peer mt-0.5 h-[1.4rem] w-[1.4rem] shrink-0 cursor-pointer accent-[#1d7444]" />
+                <span class="font-bold peer-checked:text-[#4a4f6e] peer-checked:line-through">Dar comida para os cachorros (manhã)</span>
+              </label>
+              <p class="flex flex-wrap items-center gap-2 pl-9 text-sm text-[#4a4f6e]">
+                <span class="font-bold text-[#000471]">07:30</span>
+                <span class="rounded-full bg-[#eef1ff] px-2 text-xs font-bold leading-6 text-[#000471]">Bixos</span>
+                <span class="hidden font-bold text-[#1d7444] group-has-[:checked]:inline">Feita por Cupim às 07:50</span>
+              </p>
+            </li>
+            <li class="group grid gap-1 rounded-lg border border-l-[5px] border-[#d5d9ee] border-l-[#1c21b8] bg-white px-4 py-3 shadow-[0_2px_6px_rgb(0_4_113/0.06)] has-[:checked]:border-l-[#1d7444] has-[:checked]:bg-[#f7fbf8]">
+              <label class="flex cursor-pointer items-start gap-3">
+                <input type="checkbox" checked class="peer mt-0.5 h-[1.4rem] w-[1.4rem] shrink-0 cursor-pointer accent-[#1d7444]" />
+                <span class="font-bold peer-checked:text-[#4a4f6e] peer-checked:line-through">Guardar o almoço</span>
+              </label>
+              <p class="flex flex-wrap items-center gap-2 pl-9 text-sm text-[#4a4f6e]">
+                <span class="font-bold text-[#000471]">13:30</span>
+                <span class="rounded-full bg-[#eef1ff] px-2 text-xs font-bold leading-6 text-[#000471]">Bixos</span>
+                <span class="hidden font-bold text-[#1d7444] group-has-[:checked]:inline">Feita por Cupim às 13:50</span>
+              </p>
+            </li>
+          </ul>
+        </section>
+
+        <!-- Terça -->
+        <section data-dia class="grid gap-2" aria-labelledby="dia-ter">
+          <h2 id="dia-ter" class="flex flex-wrap items-baseline gap-2 text-lg font-bold text-[#000471]">
+            Terça-feira <span class="font-normal text-[#4a4f6e]">13/10</span>
+          </h2>
+          <ul class="grid gap-2">
+            <!-- Tarefa atrasada: borda e selo laranja somem quando marcada -->
+            <li class="group grid gap-1 rounded-lg border border-l-[5px] border-[#d5d9ee] border-l-[#845400] bg-white px-4 py-3 shadow-[0_2px_6px_rgb(0_4_113/0.06)] has-[:checked]:border-l-[#1d7444] has-[:checked]:bg-[#f7fbf8]">
+              <label class="flex cursor-pointer items-start gap-3">
+                <input type="checkbox" class="peer mt-0.5 h-[1.4rem] w-[1.4rem] shrink-0 cursor-pointer accent-[#1d7444]" />
+                <span class="font-bold peer-checked:text-[#4a4f6e] peer-checked:line-through">Colocar o lixo para fora</span>
+              </label>
+              <p class="flex flex-wrap items-center gap-2 pl-9 text-sm text-[#4a4f6e]">
+                <span class="font-bold text-[#000471]">20:00</span>
+                <span class="rounded-full bg-[#eef1ff] px-2 text-xs font-bold leading-6 text-[#000471]">Grupo 024</span>
+                <span class="rounded-full bg-[#fff2d3] px-2 text-xs font-bold leading-6 text-[#845400] group-has-[:checked]:hidden">Atrasada</span>
+                <span class="hidden font-bold text-[#1d7444] group-has-[:checked]:inline">Feita por Dobby</span>
+              </p>
+            </li>
+          </ul>
+        </section>
+
+        <!-- Quarta -->
+        <section data-dia class="grid gap-2" aria-labelledby="dia-qua">
+          <h2 id="dia-qua" class="flex flex-wrap items-baseline gap-2 text-lg font-bold text-[#000471]">
+            Quarta-feira <span class="font-normal text-[#4a4f6e]">14/10</span>
+          </h2>
+          <ul class="grid gap-2">
+            <li class="group grid gap-1 rounded-lg border border-l-[5px] border-[#d5d9ee] border-l-[#1c21b8] bg-white px-4 py-3 shadow-[0_2px_6px_rgb(0_4_113/0.06)] has-[:checked]:border-l-[#1d7444] has-[:checked]:bg-[#f7fbf8]">
+              <label class="flex cursor-pointer items-start gap-3">
+                <input type="checkbox" checked class="peer mt-0.5 h-[1.4rem] w-[1.4rem] shrink-0 cursor-pointer accent-[#1d7444]" />
+                <span class="font-bold peer-checked:text-[#4a4f6e] peer-checked:line-through">Limpar a cozinha</span>
+              </label>
+              <p class="flex flex-wrap items-center gap-2 pl-9 text-sm text-[#4a4f6e]">
+                <span class="font-bold text-[#000471]">19:00</span>
+                <span class="rounded-full bg-[#eef1ff] px-2 text-xs font-bold leading-6 text-[#000471]">Grupo 023</span>
+                <span class="hidden font-bold text-[#1d7444] group-has-[:checked]:inline">Feita por Limitado às 19:20</span>
+              </p>
+            </li>
+          </ul>
+        </section>
+
+        <!-- Sábado (hoje) -->
+        <section data-dia class="grid gap-2" aria-labelledby="dia-sab">
+          <h2 id="dia-sab" class="flex flex-wrap items-baseline gap-2 text-lg font-bold text-[#000471]">
+            Sábado <span class="font-normal text-[#4a4f6e]">17/10</span>
+            <span class="rounded-full bg-[#1c21b8] px-2 text-xs font-bold leading-6 text-white">Hoje</span>
+          </h2>
+          <ul class="grid gap-2">
+            <li data-minha class="group grid gap-1 rounded-lg border border-l-[5px] border-[#d5d9ee] border-l-[#1c21b8] bg-white px-4 py-3 shadow-[0_2px_6px_rgb(0_4_113/0.06)] has-[:checked]:border-l-[#1d7444] has-[:checked]:bg-[#f7fbf8]">
+              <label class="flex cursor-pointer items-start gap-3">
+                <input type="checkbox" class="peer mt-0.5 h-[1.4rem] w-[1.4rem] shrink-0 cursor-pointer accent-[#1d7444]" />
+                <span class="font-bold peer-checked:text-[#4a4f6e] peer-checked:line-through">Limpar a piscina</span>
+              </label>
+              <p class="flex flex-wrap items-center gap-2 pl-9 text-sm text-[#4a4f6e]">
+                <span class="font-bold text-[#000471]">10:00</span>
+                <span class="rounded-full bg-[#eef1ff] px-2 text-xs font-bold leading-6 text-[#000471]">Grupo 022</span>
+                <span class="hidden font-bold text-[#1d7444] group-has-[:checked]:inline">Feita por Dobby</span>
+              </p>
+            </li>
+          </ul>
+        </section>
+
+        <!-- Domingo -->
+        <section data-dia class="grid gap-2" aria-labelledby="dia-dom">
+          <h2 id="dia-dom" class="flex flex-wrap items-baseline gap-2 text-lg font-bold text-[#000471]">
+            Domingo <span class="font-normal text-[#4a4f6e]">18/10</span>
+          </h2>
+          <ul class="grid gap-2">
+            <li data-minha class="group grid gap-1 rounded-lg border border-l-[5px] border-[#d5d9ee] border-l-[#1c21b8] bg-white px-4 py-3 shadow-[0_2px_6px_rgb(0_4_113/0.06)] has-[:checked]:border-l-[#1d7444] has-[:checked]:bg-[#f7fbf8]">
+              <label class="flex cursor-pointer items-start gap-3">
+                <input type="checkbox" class="peer mt-0.5 h-[1.4rem] w-[1.4rem] shrink-0 cursor-pointer accent-[#1d7444]" />
+                <span class="font-bold peer-checked:text-[#4a4f6e] peer-checked:line-through">Compras da semana</span>
+              </label>
+              <p class="flex flex-wrap items-center gap-2 pl-9 text-sm text-[#4a4f6e]">
+                <span class="font-bold text-[#000471]">16:00</span>
+                <span class="rounded-full bg-[#eef1ff] px-2 text-xs font-bold leading-6 text-[#000471]">Dobby</span>
+                <span class="hidden font-bold text-[#1d7444] group-has-[:checked]:inline">Feita por Dobby</span>
+              </p>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </main>
+
+    <script>
+      document.querySelectorAll('[data-filtro]').forEach((botao) =>
+        botao.addEventListener('click', () => {
+          const soMinhas = botao.dataset.filtro === 'minhas'
+          document.querySelectorAll('[data-filtro]').forEach((b) => b.setAttribute('aria-pressed', String(b === botao)))
+          document.querySelectorAll('[data-dia]').forEach((dia) => {
+            let algumVisivel = false
+            dia.querySelectorAll('li').forEach((item) => {
+              const mostrar = !soMinhas || item.hasAttribute('data-minha')
+              item.style.display = mostrar ? '' : 'none'
+              algumVisivel ||= mostrar
+            })
+            dia.style.display = algumVisivel ? '' : 'none'
+          })
+        }),
+      )
+    </script>
+  </body>
+</html>

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demorô · Login (protótipo)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Jost:wght@400;500;700&family=Permanent+Marker&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.11"></script>
+  </head>
+
+  <body class="min-h-screen bg-[linear-gradient(180deg,#f5f7ff,#e4e9ff)] font-['Jost',system-ui,sans-serif] text-[#10132e] antialiased">
+    <div class="flex min-h-screen flex-col">
+      <header class="flex justify-center bg-[#000471] py-3">
+        <a href="#" class="font-['Anton'] text-2xl tracking-wide text-white">DEMORÔ.</a>
+      </header>
+
+      <main class="flex flex-1 flex-col items-center gap-4 px-4 py-10">
+        <div class="grid w-full max-w-[420px] gap-4 rounded-xl bg-white p-6 shadow-[0_8px_24px_rgb(0_4_113/0.16)]">
+          <h1 class="font-['Permanent_Marker'] text-4xl leading-none text-[#000471]">Área do morador</h1>
+          <p class="text-[#4a4f6e]">Entre para ver e marcar as tarefas da semana.</p>
+
+          <!-- method="post" evita que a senha apareça na URL se o JavaScript falhar -->
+          <form id="form-login" method="post" class="grid gap-4" novalidate>
+            <div class="grid gap-1">
+              <label for="email" class="font-bold text-[#000471]">E-mail</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autocomplete="username"
+                placeholder="voce@exemplo.com"
+                class="min-h-[44px] w-full rounded-lg border-2 border-[#000471] bg-white px-3 py-2 text-[#10132e] placeholder:text-[#8a8fae] focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-1 focus-visible:outline-[#1c21b8]"
+              />
+            </div>
+
+            <div class="grid gap-1">
+              <label for="senha" class="font-bold text-[#000471]">Senha</label>
+              <div class="relative">
+                <input
+                  id="senha"
+                  name="senha"
+                  type="password"
+                  autocomplete="current-password"
+                  class="min-h-[44px] w-full rounded-lg border-2 border-[#000471] bg-white py-2 pl-3 pr-24 text-[#10132e] focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-1 focus-visible:outline-[#1c21b8]"
+                />
+                <button
+                  id="mostrar-senha"
+                  type="button"
+                  aria-pressed="false"
+                  class="absolute right-1 top-1/2 -translate-y-1/2 rounded-lg px-3 py-1 text-sm font-bold text-[#1c21b8] hover:bg-[#eef1ff] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#1c21b8]"
+                >
+                  Mostrar
+                </button>
+              </div>
+            </div>
+
+            <!-- Mensagem de erro (aparece ao enviar o formulário vazio) -->
+            <p
+              id="erro-login"
+              role="alert"
+              hidden
+              class="rounded-lg border-l-4 border-[#b42318] bg-[#fde8e6] px-4 py-3 font-medium text-[#b42318]"
+            >
+              E-mail ou senha inválidos.
+            </p>
+
+            <button
+              type="submit"
+              class="inline-flex min-h-[44px] items-center justify-center rounded-lg bg-[#1c21b8] px-5 font-bold text-white transition-colors hover:bg-[#12168a] focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-[#1c21b8]"
+            >
+              Entrar
+            </button>
+          </form>
+
+          <p class="text-sm text-[#4a4f6e]">
+            O acesso é só para moradores. Ainda não tem conta? Peça para a administração da república criar a sua.
+          </p>
+        </div>
+
+        <a href="#" class="font-bold text-[#000471] underline-offset-4 hover:underline">‹ Voltar para o site</a>
+      </main>
+    </div>
+
+    <script>
+      // Só para o protótipo: com os campos preenchidos, vai para tarefas.html
+      document.getElementById('form-login').addEventListener('submit', (evento) => {
+        evento.preventDefault()
+        const vazio = !document.getElementById('email').value || !document.getElementById('senha').value
+        document.getElementById('erro-login').hidden = !vazio
+        if (!vazio) window.location.href = 'tarefas.html'
+      })
+
+      const botaoSenha = document.getElementById('mostrar-senha')
+      botaoSenha.addEventListener('click', () => {
+        const campo = document.getElementById('senha')
+        const mostrando = campo.type === 'text'
+        campo.type = mostrando ? 'password' : 'text'
+        botaoSenha.textContent = mostrando ? 'Mostrar' : 'Ocultar'
+        botaoSenha.setAttribute('aria-pressed', String(!mostrando))
+      })
+    </script>
+  </body>
+</html>
